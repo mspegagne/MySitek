@@ -1,0 +1,22 @@
+Liste de trucs qui existe avec autorisation commerciale au niveau licence :
+
+Library traitement image -> vraiment complet avec notamment effet blur
+
+https://github.com/avalanche123/Imagine
+https://imagine.readthedocs.org/en/latest/index.html#
+
+image responsive -> adapte le poids en fonction de l'écran
+
+https://github.com/MattWilcox/Adaptive-Images
+http://adaptive-images.com
+
+text editor bootstrap
+
+https://github.com/mindmup/bootstrap-wysiwyg/
+http://mindmup.github.io/bootstrap-wysiwyg/
+
+text editor non bootstrap
+
+https://github.com/fraywing/textAngular/
+http://textangular.com
+

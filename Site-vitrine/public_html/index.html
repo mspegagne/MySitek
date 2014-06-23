@@ -6,27 +6,34 @@
         <link href="style.css" rel="stylesheet" type="text/css" />
 
     </head>
-
     <body>
+        <!-- FIXME faire apparaître ces liens
         <ul id="nav">
-            <li><a href="#intro" title="Next Section"><img src="images/dot.png" alt="Link" /></a></li>
-            <li><a href="#second" title="Next Section"><img src="images/dot.png" alt="Link" /></a></li>
-            <li><a href="#third" title="Next Section"><img src="images/dot.png" alt="Link" /></a></li>
-            <li><a href="#fourth" title="Next Section"><img src="images/dot.png" alt="Link" /></a></li>
-            <li><a href="#fifth" title="Next Section"><img src="images/dot.png" alt="Link" /></a></li>
+            <li><a href="#intro" title="Next Section"></a></li>
+            <li><a href="#second" title="Next Section"></a></li>
+            <li><a href="#third" title="Next Section"></a></li>
+            <li><a href="#fourth" title="Next Section"></a></li>
+            <li><a href="#fifth" title="Next Section"></a></li>
         </ul>
+        -->
 
         <div id="intro">
             <div class="logo">
-                <img src="img/logo.png" id="logo">
-            </div> <!--.story-->
-        </div> <!--#intro-->
+                <img src="img/logo.png" id="logo" alt="MySitek - Votre site personnalisé en toute simplicité"></img>
+            </div> <!-- logo-->
+        </div> <!--intro-->
 
         <div id="second">
             <div class="story"><div class="bg"></div>
-                <div class="float-right">
-                    <h2>Multiple Backgrounds</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean nibh erat, sagittis sit amet congue at, aliquam eu libero. Integer molestie, turpis vel ultrices facilisis, nisi mauris sollicitudin mauris, volutpat elementum enim urna eget odio. Donec egestas aliquet facilisis. Nunc eu nunc eget neque ornare fringilla. Nam vel sodales lectus. Nulla in pellentesque eros. Donec ultricies, enim vitae varius cursus, risus mauris iaculis neque, euismod sollicitudin metus erat vitae sapien. Sed pulvinar.</p>
+                <div class="float-left">
+                    <h1>Vous êtes...</h1>
+                    <ul>
+                        <li>Une association</li>
+                        <li>Un auto-entrepreneur</li>
+                        <li>Un artisant</li>
+                        <li>Un particulier...</li>
+                        <!-- TODO Realiser un léger mouvement de ces éléments -->
+                    </ul>
                 </div>
             </div> <!--.story-->
 
@@ -41,12 +48,6 @@
             </div> <!--.story-->
         </div> <!--#third-->
 
-        <div id="fifth">
-            <div class="story">
-                
-            </div> <!--.story-->
-        </div> <!--#fifth-->
-
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
         <script type="text/javascript" src="js/libs/jquery/jquery.parallax-1.1.3.js"></script>
         <script type="text/javascript" src="js/libs/jquery/ jquery.localscroll-1.2.7-min.js"></script>
@@ -59,7 +60,7 @@
                 $('.bg').parallax("50%", 0.4);
                 $('#third').parallax("50%", 0.3);
 
-            })
+            });
         </script>
     </body>
 </html>

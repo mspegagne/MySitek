@@ -70,7 +70,7 @@ h1, #pixels{
     margin: 0 0 15px 0;	
 }
 
-#header, #intro, #second{
+#header, #intro, #people{
     width: 100%;
 }
 
@@ -82,7 +82,7 @@ h1, #pixels{
     padding: 0;
 }
 
-#second{
+#people{
     background: url(img/bg4.jpg) 50% 0 no-repeat fixed;
     color: #444;
     height: 500px;
@@ -91,7 +91,7 @@ h1, #pixels{
     padding: 0;
 }
 
-#second .bg{
+#people .bg{
     background: url(img/MySitek.png) 50% 0 no-repeat fixed;
     height: 1300px;
     margin: 0 auto;
@@ -101,21 +101,21 @@ h1, #pixels{
     z-index: 200;
 }
 
-#third{
+#looking-for{
     background: url(img/bg2.jpg) 50% 0 no-repeat fixed;
     color: white;
     height: 650px;
     padding: 100px 0 0 0;	
 }
 
-.story{
+.true-story{
     margin: 0 auto;
     min-width: 980px;
     overflow: auto;
     width: 980px;
 }
 
-.story .float-left, .story .float-right{
+.true-story .float-left, .true-story .float-right{
     padding: 100px 0 0 0;
     position: relative;
     width: 500px;	

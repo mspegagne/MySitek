@@ -108,6 +108,13 @@ h1, #pixels{
     padding: 100px 0 0 0;	
 }
 
+#transition{
+    background: #16a085;
+    height: 400px;
+    margin: 0 auto;
+    padding: 40px 0 0 0;
+}
+
 .true-story{
     margin: 0 auto;
     min-width: 980px;

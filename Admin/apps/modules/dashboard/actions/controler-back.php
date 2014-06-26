@@ -1,0 +1,22 @@
+<?php
+$dashboard = $app['controllers_factory'];
+
+/* Activation de twig avec les templates du module */
+
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.class_path'    => __DIR__ . '/../../../../vendor/Twig/lib',
+        'twig.path' => array(__DIR__.'/../../../templates/'.$app['template'].'/',
+                             __DIR__.'/../templates/',)
+)); 
+
+$dashboard->get('/', function() use ($app) {
+   
+    return $app['twig']->render('index.twig', array(
+        'menu' => $app['modules_back'],
+        'adresse' => '../',
+        'hello' => 'Hello world 2 !'
+    ));
+    
+});
+
+$app->mount('/dashboard', $dashboard);

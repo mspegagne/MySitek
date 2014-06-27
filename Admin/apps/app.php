@@ -59,26 +59,59 @@ $app['modules_back'] = $app['db']->fetchAll($sql);
   // $app['db']->executeUpdate($sql, array('dashboard', '#', 'fa-tachometer', TRUE));
   
 
-//Pas encore implementer
-//$app->register(new Silex\Provider\SecurityServiceProvider());
+/* Securisation */
+
+$app->register(new Silex\Provider\SecurityServiceProvider());
+$app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 
-/* FIREWALL 
 $app['security.firewalls'] = array(
     'unsecured' => array(
-        'pattern' => '^/public',
+        'pattern' => '^/public',//enlever public 
         'anonymous' => true,
     ),
     'user' => array(
-        'pattern' => '^/',
-        'form' => array('login_path' => '/public/login', 'check_path' => '/can_i_haz_connection'),
-        'logout' => array('logout_path' => '/bye_bye'),
+        'pattern' => '^/', //il faudra mettre admin ici et router les modules back dans admin
+        'form' => array('login_path' => '/public/login', 'check_path' => '/login_check'),
+        'logout' => array('logout_path' => '/logout'),
         'users' => array(
-            'mysitek' => array('ROLE_ADMIN', 'E1ZK1Cni0XfyyscnSj+AqKsO3ohFZ8+K6plM7NWkZd+RjTIkmndbeWE4dHVS4XJw4KZWYPO0VayuoKGiJOjKSw=='),
+            'mysitek' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
         ),
     ),
 );
-*/
+
+
+//'users' => $app->share(function($app) { 
+            //        return new App\User\UserProvider($app['db']); 
+              //  }),
+
+/* Login */
+
+$app->register(new Silex\Provider\SessionServiceProvider());
+
+
+$app->get('/public/login', function(Request $request) use ($app) {
+    
+    #echo (new \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder())->encodePassword('foo', '');
+    
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.class_path'    => __DIR__ . '/../vendor/Twig/lib',
+        'twig.path' => array(__DIR__.'/templates/'.$app['template'].'/')
+    )); 
+    
+    return $app['twig']->render('login.twig', array(
+        'error'         => $app['security.last_error']($request),
+        'last_username' => $app['session']->get('_security.last_username')
+    ));
+});
+
+$app->get('/logout', function() use($app)
+{
+    $app['session']->set('user', null);
+    return $app->redirect('/public/login');
+ 
+});
+
 
 /* Routage */
 

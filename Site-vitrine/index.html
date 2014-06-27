@@ -1,88 +1,235 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
+
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>MySitek - Votre site personnalisé en toute simplicité</title>
-        <link href="style.css" rel="stylesheet" type="text/css" />
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
+        <title>MySitek - Votre site web personnalisé en toute simplicité</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css" rel="stylesheet">
+
+        <!-- Custom Google Web Font -->
+        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+        <!-- Add custom CSS here -->
+        <link href="css/landing-page.css" rel="stylesheet">
     </head>
+
     <body>
-        <!-- FIXME faire apparaître ces liens
-        <ul id="nav">
-            <li><a href="#intro" title="Next Section"></a></li>
-            <li><a href="#second" title="Next Section"></a></li>
-            <li><a href="#third" title="Next Section"></a></li>
-            <li><a href="#fourth" title="Next Section"></a></li>
-            <li><a href="#fifth" title="Next Section"></a></li>
-        </ul>
-        -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar">AAA</span>
+                        <span class="icon-bar">BBB</span>
+                        <span class="icon-bar">CCC</span>
+                    </button>
+                    <a  href=""><img src="img/logo.png" alt=""/></a>
+                </div>
 
-        <div id="intro">
-            <div class="logo">
-                <img src="img/logo.png" id="logo" alt="MySitek - Votre site personnalisé en toute simplicité"></img>
-            </div> <!-- logo-->
-        </div> <!--intro-->
-
-        <!-- FIXME transition dégueue -->
-        <div id="transition">
-            
-        </div>
-        
-        <div id="people">
-            <div class="true-story">
-                <div class="float-left">
-                    <h1>Vous êtes...</h1>
-                    <ul>
-                        <li>Une association</li>
-                        <li>Un auto-entrepreneur</li>
-                        <li>Un artisant</li>
-                        <li>Un particulier...</li>
-                        <!-- TODO Realiser un léger mouvement de ces éléments -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse" style="margin-top: 10px;">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#about">A propos</a>
+                        </li>
+                        <li><a href="#services">Témoignages</a>
+                        </li>
+                        <li><a href="#contact">Blog</a>
+                        </li>
+                        <li><a href="#contact">Contact</a>
+                        </li>
                     </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="intro-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-sm-12 intro-message">
+                        <h1>Votre site web personnalisé en toute simplicité</h1>
+                        <br />
+                        <br />
+                        <div style="text-align: center;">
+                            <a href="" class="btn btn-info btn-lg">
+                                <i class="fa fa-list fa-fw"></i>
+                                <span class="network-name">Découvrir notre solution</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div id="looking-for">
-            <div class="true-story">
-                <div class="float-left">
-                    <h1>Vous recherchez à avoir un site</h1>
-                    <ul>
-                        <li>Personnalisé</li>
-                        <li>Moderne</li>
-                        <li>Beau</li>
-                        <li>Stable</li>
-                        <!-- TODO Realiser une annimation -->
-                    </ul>
+        <div class="content-section-a">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Vous êtes ...</h2>
+                        <ul class="lead">
+                            <li>Une association</li>
+                            <li>Un auto-entrepreneur</li>
+                            <li>Un artisant</li>
+                            <li>Un particulier...</li>
+                            <!-- TODO Realiser un léger mouvement de ces éléments -->
+                        </ul>                
+                    </div>
+                    <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div id="mysitek-introduction">
-            <!-- TODO Remplir ce div -->
-        </div>
-        
-        <div id="who-are-we">
-            <!-- TODO Remplir ce div -->
-        </div>
-        
-        <div id="contact">
-            <!-- TODO Remplir ce div -->
-        </div>
-        
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery/jquery.parallax-1.1.3.js"></script>
-        <script type="text/javascript" src="js/libs/jquery/ jquery.localscroll-1.2.7-min.js"></script>
-        <script type="text/javascript" src="js/libs/jquery/jquery.scrollTo-1.4.2-min.js"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                //$('#nav').localScroll(800);
-                $('#intro').parallax("50%", 0.1);
-                $('#people').parallax("70%", -0.1);
-                //$('.bg').parallax("50%", 0.4);
-                $('#looking-for').parallax("50%", 0.3);
 
-            });
-        </script>
+        <div class="content-section-b">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Vous recherchez à avoir un site</h2>
+                        <ul class="lead">
+                            <li>Personnalisé</li>
+                            <li>Moderne</li>
+                            <li>Beau</li>
+                            <li>Au meilleur prix</li>
+                            <!-- TODO Realiser une annimation -->
+                        </ul>
+                    </div>
+                    <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content-section-a">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Ce que MySitek vous propose</h2>                  
+                        <p class="lead">
+
+                        </p>
+                    </div>
+                    <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section-b">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Qui sommes-nous ?</h2>
+                        <p class="lead">
+                            Nous sommes deux étudiants de l'INSA de Rennes.
+                        </p>
+                    </div>
+                    <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="content-section-a">
+            <div class="container">
+                <div style="text-align: center;">
+                    <div class="col-lg-5 col-sm-7">
+                        <hr class="section-heading-spacer">
+                        <div class="clearfix"></div>
+                        <h2 class="section-heading">Nous contacter</h2>                  
+                        <div class="container">
+                            <!--
+                            <div class="col-md-12">
+                                <div class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span> Success! Message sent.</strong></div>	  
+                                <div class="alert alert-danger"><span class="glyphicon glyphicon-alert"></span><strong> Error! Please check the inputs.</strong></div>
+                            </div>
+                            -->
+                            <form role="form" action="" method="post" >
+                                <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Champs requis</strong></div>
+                                <div class="form-group">
+                                    <label for="InputName">Votre Nom</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Entrez votre nom" required>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputEmail">Votre Email</label>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email" required  >
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputMessage">Votre Message</label>
+                                    <div class="input-group"
+                                         >
+                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputReal">Combien font 4+3 ? (Simple Spam Checker)</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="InputReal" id="InputReal" required>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="banner">
+                <div class="container">
+                    <div class="row">
+                        <div style="text-align: center;">
+                            <a href="" class="btn btn-success btn-lg">
+                                <i class="fa fa-list fa-fw"></i>
+                                <span class="network-name">Découvrir notre solution</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="list-inline">
+                                <li><a href="#home">Home</a>
+                                </li>
+                                <li class="footer-menu-divider">&sdot;</li>
+                                <li><a href="#about">About</a>
+                                </li>
+                                <li class="footer-menu-divider">&sdot;</li>
+                                <li><a href="#services">Services</a>
+                                </li>
+                                <li class="footer-menu-divider">&sdot;</li>
+                                <li><a href="#contact">Contact</a>
+                                </li>
+                            </ul>
+                            <p class="copyright text-muted small">Copyright &copy; MySitek 2014. All Rights Reserved</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <script src="js/jquery-1.10.2.js"></script>
+            <script src="js/bootstrap.js"></script>
     </body>
 </html>

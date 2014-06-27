@@ -25,11 +25,11 @@
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                         <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
+                        <span class="icon-bar">AAA</span>
+                        <span class="icon-bar">BBB</span>
+                        <span class="icon-bar">CCC</span>
                     </button>
-                    <a  href="http://allship.co"><img src="img/logo.png" alt=""/></a>
+                    <a  href=""><img src="img/logo.png" alt=""/></a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -57,7 +57,8 @@
                         <br />
                         <div style="text-align: center;">
                             <a href="" class="btn btn-info btn-lg">
-                                <i class="fa fa-list fa-fw"></i> <span class="network-name">Découvrir notre solution</span>
+                                <i class="fa fa-list fa-fw"></i>
+                                <span class="network-name">Découvrir notre solution</span>
                             </a>
                         </div>
                     </div>
@@ -126,7 +127,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="content-section-b">
             <div class="container">
                 <div class="row">
@@ -144,60 +145,91 @@
 
             </div>
         </div>
-        
+
         <div class="content-section-a">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 col-sm-6">
+                <div style="text-align: center;">
+                    <div class="col-lg-5 col-sm-7">
                         <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Nous contacter</h2>                  
-                        <p class="lead">
-                            #formulaire
-                        </p>
+                        <div class="container">
+                            <!--
+                            <div class="col-md-12">
+                                <div class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span> Success! Message sent.</strong></div>	  
+                                <div class="alert alert-danger"><span class="glyphicon glyphicon-alert"></span><strong> Error! Please check the inputs.</strong></div>
+                            </div>
+                            -->
+                            <form role="form" action="" method="post" >
+                                <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Champs requis</strong></div>
+                                <div class="form-group">
+                                    <label for="InputName">Votre Nom</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Entrez votre nom" required>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputEmail">Votre Email</label>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email" required  >
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputMessage">Votre Message</label>
+                                    <div class="input-group"
+                                         >
+                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputReal">Combien font 4+3 ? (Simple Spam Checker)</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="InputReal" id="InputReal" required>
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                                </div>
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right">
+                            </form>
+                        </div>
                     </div>
-                    <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                </div>
+            </div>
 
+            <div class="banner">
+                <div class="container">
+                    <div class="row">
+                        <div style="text-align: center;">
+                            <a href="" class="btn btn-success btn-lg">
+                                <i class="fa fa-list fa-fw"></i>
+                                <span class="network-name">Découvrir notre solution</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="banner">
-            <div class="container">
-                <div class="row">
-                    <div style="text-align: center;">
-                        <a href="https://go.allship.co" class="btn btn-primary btn-lg">
-                            <i class="fa fa-rocket fa-fw"></i> <span class="network-name">Commander un transport</span>
-                        </a>
+
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <ul class="list-inline">
+                                <li><a href="#home">Home</a>
+                                </li>
+                                <li class="footer-menu-divider">&sdot;</li>
+                                <li><a href="#about">About</a>
+                                </li>
+                                <li class="footer-menu-divider">&sdot;</li>
+                                <li><a href="#services">Services</a>
+                                </li>
+                                <li class="footer-menu-divider">&sdot;</li>
+                                <li><a href="#contact">Contact</a>
+                                </li>
+                            </ul>
+                            <p class="copyright text-muted small">Copyright &copy; MySitek 2014. All Rights Reserved</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="list-inline">
-                            <li><a href="#home">Home</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li><a href="#about">About</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li><a href="#services">Services</a>
-                            </li>
-                            <li class="footer-menu-divider">&sdot;</li>
-                            <li><a href="#contact">Contact</a>
-                            </li>
-                        </ul>
-                        <p class="copyright text-muted small">Copyright &copy; Your Company 2013. All Rights Reserved</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <script src="js/jquery-1.10.2.js"></script>
-        <script src="js/bootstrap.js"></script>
+            </footer>
+            <script src="js/jquery-1.10.2.js"></script>
+            <script src="js/bootstrap.js"></script>
     </body>
 </html>

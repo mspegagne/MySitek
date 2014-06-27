@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard - SB Admin</title>
+    <title>MySitek - Admin</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../{{adresse}}apps/templates/sb_admin/css/bootstrap.css" rel="stylesheet">
@@ -14,6 +14,7 @@
     <!-- Add custom CSS here -->
     <link href="../{{adresse}}apps/templates/sb_admin/css/sb-admin.css" rel="stylesheet">
     <link rel="stylesheet" href="../{{adresse}}apps/templates/sb_admin/font-awesome/css/font-awesome.min.css">
+   
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
   </head>
@@ -32,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{adresse}}index.php">MySitek</a>
+          <a class="navbar-brand" href="{{adresse}}">MySitek</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,7 +49,7 @@
 {% endblock %}
 
           <ul class="nav navbar-nav navbar-right navbar-user">
-            <li class="dropdown messages-dropdown">
+            <!-- <li class="dropdown messages-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">7</span> <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li class="dropdown-header">7 New Messages</li>
@@ -94,15 +95,16 @@
                 <li class="divider"></li>
                 <li><a href="#">View All</a></li>
               </ul>
-            </li>
+            </li> -->
+           
             <li class="dropdown user-dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+                <!--<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                 <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
                 <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                <li class="divider"></li>
-                <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
+                <li class="divider"></li> -->
+                <li><a href="{{ path('logout') }}"><i class="fa fa-power-off"></i> Logout</a></li>
               </ul>
             </li>
           </ul>
@@ -119,15 +121,15 @@
     </div><!-- /#wrapper -->
 
     <!-- JavaScript -->
-    <script src="js/jquery-1.10.2.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="../{{adresse}}apps/templates/sb_admin/js/jquery-1.10.2.js"></script>
+    <script src="../{{adresse}}apps/templates/sb_admin/js/bootstrap.js"></script>
 
     <!-- Page Specific Plugins -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="js/morris/chart-data-morris.js"></script>
-    <script src="js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="js/tablesorter/tables.js"></script>
+    <script src="../{{adresse}}apps/templates/sb_admin/js/morris/chart-data-morris.js"></script>
+    <script src="../{{adresse}}apps/templates/sb_admin/js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="../{{adresse}}apps/templates/sb_admin/js/tablesorter/tables.js"></script>
 
   </body>
 </html>

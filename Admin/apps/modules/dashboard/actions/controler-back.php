@@ -9,10 +9,13 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
                              __DIR__.'/../templates/',)
 )); 
 
+
 $dashboard->get('/', function() use ($app) {
-   
+    
+    //Recuperation de l'user
+    $app['user'] =  $app['security']->getToken()->getUser() ;
+
     return $app['twig']->render('index.twig', array(
-        'menu' => $app['modules_back'],
         'adresse' => '../',
         'hello' => 'Hello world 2 !'
     ));

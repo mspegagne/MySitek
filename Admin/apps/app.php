@@ -23,6 +23,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 $app['siteName'] = 'MySitek'; 
 $app['debug'] = true;
+$app['selected']=''; //module en cours (pour affichage lien actif)
 
 
 /* Recuperation du template */
@@ -117,7 +118,9 @@ $app->get('/', function() use ($app) {
     ));    
     
     //Recuperation de l'user
-    $app['user'] =  $app['security']->getToken()->getUser() ;
+    $app['user'] =  $app['security']->getToken()->getUser() ;    
+    
+    $app['selected']='dashboard';
 
     return $app['twig']->render('index.twig', array(
         'adresse' => '',
@@ -130,13 +133,13 @@ $app->get('/', function() use ($app) {
 
 foreach ($app['modules_back'] as $module){
 
-    include_once __DIR__.'/modules/'.$module['name'].'/actions/controler-back.php';
+    include_once __DIR__.'/modules/'.$module['lien'].'/actions/controler-back.php';
 
 }
 
 foreach ($app['modules_front'] as $module){
 
-    include_once __DIR__.'/modules/'.$module['name'].'/actions/controler-front.php';
+    include_once __DIR__.'/modules/'.$module['lien'].'/actions/controler-front.php';
 
 }
 

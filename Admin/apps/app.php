@@ -16,7 +16,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
-
 use Doctrine\Common\Persistence\ObjectManager;
 
 
@@ -64,26 +63,22 @@ $app['modules_back'] = $app['db']->fetchAll($sql);
 $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
+include_once __DIR__.'/../lib/model/UserProvider.php';
 
 $app['security.firewalls'] = array(
     'unsecured' => array(
-        'pattern' => '^/public',//enlever public 
+        'pattern' => '^/public',//TODO enlever public 
         'anonymous' => true,
     ),
     'user' => array(
-        'pattern' => '^/', //il faudra mettre admin ici et router les modules back dans admin
+        'pattern' => '^/', //TODO il faudra mettre admin ici et router les modules back dans admin
         'form' => array('login_path' => '/public/login', 'check_path' => '/login_check'),
         'logout' => array('logout_path' => '/logout'),
-        'users' => array(
-            'mysitek' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
-        ),
+        'users' => $app->share(function () use ($app) {
+                        return new UserProvider($app['db']);}),
     ),
 );
-
-
-//'users' => $app->share(function($app) { 
-            //        return new App\User\UserProvider($app['db']); 
-              //  }),
+                        
 
 /* Login */
 
@@ -105,12 +100,7 @@ $app->get('/public/login', function(Request $request) use ($app) {
     ));
 });
 
-$app->get('/logout', function() use($app)
-{
-    $app['session']->set('user', null);
-    return $app->redirect('/public/login');
- 
-});
+
 
 
 /* Routage */
@@ -126,8 +116,10 @@ $app->get('/', function() use ($app) {
                              __DIR__.'/modules/dashboard/templates/')
     ));    
     
+    //Recuperation de l'user
+    $app['user'] =  $app['security']->getToken()->getUser() ;
+
     return $app['twig']->render('index.twig', array(
-        'menu' => $app['modules_back'],        
         'adresse' => '',
         'hello' => 'Hello world!'
          
@@ -147,6 +139,8 @@ foreach ($app['modules_front'] as $module){
     include_once __DIR__.'/modules/'.$module['name'].'/actions/controler-front.php';
 
 }
+
+
 
 return $app;
 

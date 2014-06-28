@@ -43,8 +43,11 @@
 
     <ul class="nav navbar-nav side-nav">
       {% for item in app.modules_back %}
-          <li {% if item.selected == true %}class="active"{% endif %}><a href="{{ adresse }}{{ item.lien }}"><i class="fa {{ item.icon }}"></i> {{ item.name }}</a></li>
+          <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="{{ adresse }}{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
       {% endfor %}
+      <li><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><i class="fa fa-envelope"></i> Gmail</a></li>
+     
+      
     </ul>
 {% endblock %}
 

@@ -1,6 +1,7 @@
 <?php
 $dashboard = $app['controllers_factory'];
 
+
 /* Activation de twig avec les templates du module */
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -13,7 +14,9 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 $dashboard->get('/', function() use ($app) {
     
     //Recuperation de l'user
-    $app['user'] =  $app['security']->getToken()->getUser() ;
+    $app['user'] =  $app['security']->getToken()->getUser() ;    
+    
+    $app['selected']='dashboard';
 
     return $app['twig']->render('index.twig', array(
         'adresse' => '../',

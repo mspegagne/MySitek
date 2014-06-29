@@ -123,7 +123,6 @@ $app->get('/', function() use ($app) {
     $app['selected']='dashboard';
 
     return $app['twig']->render('index.twig', array(
-        'adresse' => '',
         'hello' => 'Hello world!'
          
     ));

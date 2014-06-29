@@ -9,20 +9,21 @@
     <title>MySitek - Admin</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../apps/templates/sb_admin/css/bootstrap.css" rel="stylesheet">
+    <link href="/media/templates/sb_admin/css/bootstrap.css" rel="stylesheet">
 
 
   </head>
   
   <style>
 body{
- background: url(../../apps/templates/sb_admin/img/bg.jpg) no-repeat center center fixed; 
-      
+    height: 100%;
+    width: 100%;
+    background: url(/media/templates/sb_admin/img/bg.jpg) no-repeat center center fixed; 
      
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
       
 }
 html,body{
@@ -160,7 +161,7 @@ html,body{
     <div class="container">
 	<div class="login-container">
             <div id="output"></div>
-            <div> <img src="../../apps/templates/sb_admin/img/MySitek_ico.png" alt="" width="150"/></div>
+            <div> <img src="/media/templates/sb_admin/img/MySitek_ico.png" alt="" width="150"/></div>
                        <div class="form-box">
                 <form class="form-inline" role="form" action="{{ path('login_check') }}" method="post">
                  {{ error }}

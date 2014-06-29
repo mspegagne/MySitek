@@ -9,11 +9,11 @@
     <title>MySitek - Admin</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../{{adresse}}apps/templates/sb_admin/css/bootstrap.css" rel="stylesheet">
+    <link href="/media/templates/sb_admin/css/bootstrap.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link href="../{{adresse}}apps/templates/sb_admin/css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="../{{adresse}}apps/templates/sb_admin/font-awesome/css/font-awesome.min.css">
+    <link href="/media/templates/sb_admin/css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
    
     <!-- Page Specific CSS -->
     <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
@@ -33,7 +33,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{adresse}}">MySitek</a>
+          <a class="navbar-brand" href="/">MySitek</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,11 +43,11 @@
 
     <ul class="nav navbar-nav side-nav">
       {% for item in app.modules_back %}
-          <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="{{ adresse }}{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
+          <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
       {% endfor %}
+      <li><a href="http://admin.mysitek.com/owncloud/" target="_blank"><i class="fa fa-folder-open"></i> Documents</a></li>
       <li><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><i class="fa fa-envelope"></i> Gmail</a></li>
-     
-      
+          
     </ul>
 {% endblock %}
 
@@ -124,15 +124,15 @@
     </div><!-- /#wrapper -->
 
     <!-- JavaScript -->
-    <script src="../{{adresse}}apps/templates/sb_admin/js/jquery-1.10.2.js"></script>
-    <script src="../{{adresse}}apps/templates/sb_admin/js/bootstrap.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- Page Specific Plugins -->
     <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="../{{adresse}}apps/templates/sb_admin/js/morris/chart-data-morris.js"></script>
-    <script src="../{{adresse}}apps/templates/sb_admin/js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="../{{adresse}}apps/templates/sb_admin/js/tablesorter/tables.js"></script>
+    <script src="/media/templates/sb_admin/js/morris/chart-data-morris.js"></script>
+    <script src="/media/templates/sb_admin/js/tablesorter/jquery.tablesorter.js"></script>
+    <script src="/media/templates/sb_admin/js/tablesorter/tables.js"></script>
 
   </body>
 </html>

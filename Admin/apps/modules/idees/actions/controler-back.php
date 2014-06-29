@@ -19,7 +19,6 @@ $idees->get('/', function() use ($app) {
     $app['selected']='idees';
     
     return $app['twig']->render('index.twig', array(
-        'adresse' => '../',
         'hello' => 'Hello world idees !'
     ));
     

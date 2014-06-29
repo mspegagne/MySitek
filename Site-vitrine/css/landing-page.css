@@ -203,7 +203,8 @@ img#scroll-arrow:hover {
     font-weight: 700;
     font-size: 14px;
     display: inline-block;
-    width: 145px;
+    padding-right: 10px;
+    padding-bottom: 10px;
     white-space: nowrap
 }
 

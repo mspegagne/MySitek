@@ -182,3 +182,12 @@ p.copyright {
     margin: 0 0 0 0;
     max-width: 600px;
 }
+
+img#scroll-arrow {
+    opacity: 0.8;
+    width: 120px;
+}
+img#scroll-arrow:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}

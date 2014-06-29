@@ -57,8 +57,9 @@ body, h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.intro-message > h3 {
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+.intro-message > h3,
+.banner-message > h3 {
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
 }
 
 @media (max-width: 767px) {
@@ -99,6 +100,10 @@ nav .navbar {
 .content-section-a {
     background-color: #f8f8f8;
     padding: 50px 0;
+}
+
+.bg-faces {
+    background: url(../img/faces.jpg) repeat center center;
 }
 
 .content-section-b {
@@ -171,4 +176,55 @@ footer {
 
 p.copyright {
     margin: 15px 0 0;
+}
+
+#submit {
+    font-size: 1.2em;
+}
+
+#InputEmail {
+    display: inline-block;
+    margin: 0 0 0 0;
+    max-width: 600px;
+}
+
+img#scroll-arrow {
+    opacity: 0.8;
+    width: 120px;
+}
+img#scroll-arrow:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.points {
+    list-style-type: none;
+    padding: 15px 0 0
+}
+
+.points li {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 700;
+    font-size: 14px;
+    display: inline-block;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    white-space: nowrap
+}
+
+span.round-tabs{
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: inline-block;
+    border-radius: 100px;
+    background: white;
+    float: left;
+    margin-top: -3px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 25px;
+     color: #3e4149;
+     border: 2px solid #3e4149;
 }

@@ -4,18 +4,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="description" content="Avec MySitek, que vous soyez une association, un artisant, un entrepreneur, un particulier, ... créez votre site web personnalisé en toute simplicité.">
+        <meta name="author" content="Mathieu SPEGAGNE et Bruno MATRY">
 
         <title>MySitek - Votre site web personnalisé en toute simplicité</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="css/bootstrap.css" rel="stylesheet">
-
-        <!-- Custom Google Web Font -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-        <!-- Add custom CSS here -->
         <link href="css/landing-page.css" rel="stylesheet">
     </head>
 
@@ -66,28 +62,42 @@
                             </div>
                             <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-warning center-block">
                         </form>
+                        <h3>Faites défiler pour découvrir la présentation du projet !</h3>
+                        <img id="scroll-arrow" src="img/arrow-down.png">
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="content-section-a">
+        <div class="content-section-a bg-faces">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-sm-6">
-                        <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Vous êtes ...</h2>
-                        <ul class="lead">
-                            <li>Une association</li>
-                            <li>Un auto-entrepreneur</li>
-                            <li>Un artisant</li>
-                            <li>Un particulier...</li>
-                            <!-- TODO Realiser un léger mouvement de ces éléments -->
-                        </ul>                
-                    </div>
-                    <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-
+                        <ul class="points">
+                            <li>
+                                <span class="round-tabs">
+                                    <i class="fa fa-suitcase"></i>
+                                </span>
+                                Entrepreneur,<br>
+                                Particulier
+                            </li>
+                            <li>
+                                <span class="round-tabs">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                                Artisant,<br>
+                                Artiste
+                            </li>
+                            <li>
+                                <span class="round-tabs">
+                                    <i class="fa fa-group"></i>
+                                </span>
+                                Une association,<br>
+                                une organisation
+                            </li>
+                        </ul> 
                     </div>
                 </div>
             </div>
@@ -97,14 +107,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                        <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Vous recherchez à avoir un site</h2>
-                        <ul class="lead">
-                            <li>Personnalisé</li>
-                            <li>Moderne</li>
-                            <li>Beau</li>
-                            <li>Au meilleur prix</li>
+                        <ul class="points">
+                            <li>
+                                <span class="round-tabs">
+                                    <i class="fa fa-gear"></i>
+                                </span>
+                                Personnalisé
+                            </li>
+                            <li>
+                                <span class="round-tabs">
+                                    <i class="fa fa-rocket"></i>
+                                </span>
+                                Moderne
+                            </li>
+                            <li>
+                                <span class="round-tabs">
+                                    <i class="fa fa-euro"></i>
+                                </span>
+                                Au meilleur prix
+                            </li>
                             <!-- TODO Realiser une annimation -->
                         </ul>
                     </div>
@@ -119,7 +142,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-sm-6">
-                        <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Ce que MySitek vous propose</h2>                  
                         <p class="lead">
@@ -137,7 +159,6 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                        <hr class="section-heading-spacer">
                         <div class="clearfix"></div>
                         <h2 class="section-heading">Qui sommes-nous ?</h2>
                         <p class="lead">
@@ -150,61 +171,60 @@
 
             </div>
         </div>
-
-        <div class="content-section-a">
-            <div class="container" style="text-align: center;">
-                <div class="col-lg-6 col-sm-push-2  col-sm-8">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading" style="text-align: center;">Nous contacter</h2>                  
-                    <!--
-                    <div class="col-md-12">
-                        <div class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span> Success! Message sent.</strong></div>	  
-                        <div class="alert alert-danger"><span class="glyphicon glyphicon-alert"></span><strong> Error! Please check the inputs.</strong></div>
-                    </div>
-                    <form role="form" action="" method="post" >
-                        <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Champs requis</strong></div>
-                        <div class="form-group">
-                            <label for="InputName">Votre nom</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Entrez votre nom" required>
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InputEmail">Votre email</label>
-                            <div class="input-group">
-                                <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email" required  >
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InputMessage">Votre message</label>
-                            <div class="input-group"
-                                 >
-                                <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="InputReal">Combien font 4+3 ? (Simple Spam Checker)</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="InputReal" id="InputReal" required>
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                        </div>
-                        <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info center-block">
-                    </form>
-                    -->
-                </div>
-            </div>
-        </div>
+        <!--
+               <div class="content-section-a">
+                   <div class="container" style="text-align: center;">
+                       <div class="col-lg-6 col-sm-push-2  col-sm-8">
+                           <div class="clearfix"></div>
+                           <h2 class="section-heading" style="text-align: center;">Nous contacter</h2>                  
+                          
+                           <div class="col-md-12">
+                               <div class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span> Success! Message sent.</strong></div>	  
+                               <div class="alert alert-danger"><span class="glyphicon glyphicon-alert"></span><strong> Error! Please check the inputs.</strong></div>
+                           </div>
+                           <form role="form" action="" method="post" >
+                               <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Champs requis</strong></div>
+                               <div class="form-group">
+                                   <label for="InputName">Votre nom</label>
+                                   <div class="input-group">
+                                       <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Entrez votre nom" required>
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                               </div>
+                               <div class="form-group">
+                                   <label for="InputEmail">Votre email</label>
+                                   <div class="input-group">
+                                       <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email" required  >
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                               </div>
+                               <div class="form-group">
+                                   <label for="InputMessage">Votre message</label>
+                                   <div class="input-group"
+                                        >
+                                       <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                               </div>
+                               <div class="form-group">
+                                   <label for="InputReal">Combien font 4+3 ? (Simple Spam Checker)</label>
+                                   <div class="input-group">
+                                       <input type="text" class="form-control" name="InputReal" id="InputReal" required>
+                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
+                               </div>
+                               <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info center-block">
+                           </form>
+                           
+                       </div>
+                   </div>
+               </div>
+        -->
         <div class="content-section-b">
             <div class="banner">
                 <div class="clearfix"></div>
                 <div class="container">
-                    <div class="row">
-                        <div style="text-align: center;">
-                            <a href="" class="btn btn-success btn-lg">
-                                <i class="fa fa-list fa-fw"></i>
-                                <span class="network-name">Découvrir notre solution</span>
-                            </a>
-                        </div>
+                    <div class="row banner-message" style="text-align: center;">
+                        <h3>Vous avez des question ? Contactez-vous !</h3>
+                        <a href="" class="btn btn-warning btn-lg">
+                            <span class="network-name">Nous contacter</span>
+                        </a>
                     </div>
                 </div>
             </div>

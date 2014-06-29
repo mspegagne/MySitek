@@ -102,6 +102,10 @@ nav .navbar {
     padding: 50px 0;
 }
 
+.bg-faces {
+    background: url(../img/faces.jpg) repeat center center;
+}
+
 .content-section-b {
     border-top: 1px solid #e7e7e7;
     border-bottom: 1px solid #e7e7e7;

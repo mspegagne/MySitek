@@ -19,7 +19,6 @@ $projet->get('/', function() use ($app) {
     $app['selected']='projet';
     
     return $app['twig']->render('index.twig', array(
-        'adresse' => '../',
         'hello' => 'Hello world 3 !'
     ));
     

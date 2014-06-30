@@ -141,6 +141,22 @@ img#scroll-arrow {
     float: left;
 }
 
+.profile-picture {
+    width: 150px;
+    height: 150px;
+    line-height: 45px;
+    border-radius: 100px;
+    background: #FFF;
+    color: #222 ;
+    text-align: center;
+    display: inline-block;
+    border: 2px solid #3e4149;
+}
+
+.profile-picture img {
+    max-width: 146px;
+}
+
 .banner {
     padding: 100px 0;
     color: #f8f8f8;

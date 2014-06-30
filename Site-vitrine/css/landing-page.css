@@ -86,8 +86,9 @@ body, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-nav .navbar {
-    background-color: #999;
+img#scroll-arrow {
+    opacity: 0.8;
+    width: 70px;
 }
 
 .network-name {
@@ -107,8 +108,6 @@ nav .navbar {
 }
 
 .content-section-b {
-    border-top: 1px solid #e7e7e7;
-    border-bottom: 1px solid #e7e7e7;
     padding: 50px 0;
 }
 
@@ -227,4 +226,29 @@ span.round-tabs{
     font-size: 25px;
      color: #3e4149;
      border: 2px solid #3e4149;
+}
+
+@media (max-width: 767px) {
+    .title-message {
+        padding-bottom: 15%;
+    }
+
+    .title-message > h1 {
+        font-size: 3em;
+    }
+    
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+        font-size: 3em;
+    }	
+}
+
+/* Surchage bootstrap */
+.navbar-toggle {
+    margin-top: 18px;
+}
+
+.navbar {
+    min-height: 70px;
 }

@@ -61,6 +61,26 @@ body, h1, h2, h3, h4, h5, h6 {
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+.intro-message .scroll {
+    width: 70px;
+    height: 70px;
+    line-height: 45px;
+    border-radius: 100px;
+    background: #FFF;
+    margin-top: 30%;
+    color: #222 ;
+    text-align: center;
+    opacity: 0.8;
+    display: inline-block;
+    cursor: pointer;
+}
+.intro-message .scroll:hover {
+    opacity: 0.6;
+}
+.intro-message .scroll i {
+    padding-top: 6px;
+}
+
 .intro-message > h3,
 .banner-message > h3 {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);

@@ -106,26 +106,8 @@ $app->get('/public/login', function(Request $request) use ($app) {
 
 /* Routage */
 
-$app->get('/', function() use ($app) {
-
-    
-    //Pour l'admin on lui dit d'aller chercher le module dashboard et on lui envoie les memes infos mais 
-    //pour mysitek il faudra faire un index.twig dans le template qui reenverra l'interface d'admin.
-    $app->register(new Silex\Provider\TwigServiceProvider(), array(
-        'twig.class_path'    => __DIR__ . '/../vendor/Twig/lib',
-        'twig.path' => array(__DIR__.'/templates/'.$app['template'].'/',
-                             __DIR__.'/modules/dashboard/templates/')
-    ));    
-    
-    //Recuperation de l'user
-    $app['user'] =  $app['security']->getToken()->getUser() ;    
-    
-    $app['selected']='dashboard';
-
-    return $app['twig']->render('index.twig', array(
-        'hello' => 'Hello world!'
-         
-    ));
+$app->get('/', function() use ($app) {    
+      return $app->redirect('/dashboard');
 });
 
 //Routage des différents modules

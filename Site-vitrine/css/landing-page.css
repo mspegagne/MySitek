@@ -31,10 +31,8 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .intro-header {
-    padding-top: 50px;
-    display: table;
-    height: 100%;
-    width: 100%;
+    padding-top: 150px;
+    padding-bottom: 50px;
     position: relative;
     background: url(../img/bg2.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
@@ -42,12 +40,11 @@ body, h1, h2, h3, h4, h5, h6 {
     -o-background-size: cover;
     background-size: cover;
     color: #f8f8f8;
-    text-align: left;
+    text-align: center;
 }
 
 .intro-message {
     position: relative;
-    padding-top: 10%;
 }
 
 .intro-message > h1 {
@@ -68,7 +65,7 @@ body, h1, h2, h3, h4, h5, h6 {
     line-height: 45px;
     border-radius: 100px;
     background: #FFF;
-    margin-top: 30%;
+    margin-top: 25px;
     color: #222 ;
     text-align: center;
     opacity: 0.8;
@@ -82,16 +79,16 @@ body, h1, h2, h3, h4, h5, h6 {
     padding-top: 6px;
 }
 
+.intro-message >h1 {
+    padding-bottom: 60px;
+}
+
 .intro-message > h3,
 .banner-message > h3 {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
 }
 
 @media (max-width: 767px) {
-    .intro-message {
-        padding-bottom: 15%;
-    }
-
     .intro-message > h1 {
         font-size: 3em;
     }

@@ -278,6 +278,10 @@ span.round-tabs{
     }	
 }
 
+.anchor {
+    padding-top: 10px;
+}
+
 /* Surchage bootstrap */
 .navbar-toggle {
     margin-top: 18px;

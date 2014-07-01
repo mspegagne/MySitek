@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <a name="presentation"></a>
+        <a name="presentation" class="anchor"></a>
         <div class="content-section-a ">
             <div class="container">
                 <div class="row">
@@ -136,13 +136,13 @@
                             <!-- TODO Realiser une annimation -->
                         </ul>
                     </div>
-                    
+
                 </div>
 
             </div>
         </div>
 
-        <a name="mysitek"></a>
+        <a name="mysitek" class="anchor"></a>
         <div class="content-section-a">
             <div class="container">
                 <div class="row">
@@ -164,7 +164,7 @@
             </div>
         </div>
 
-        <a name="who-are-we"></a>
+        <a name="who-are-we" class="anchor"></a>
         <div class="content-section-b">
             <div class="container">
                 <div class="row" style="text-align: center">
@@ -296,5 +296,23 @@
         </footer>
         <script src="js/libs/jquery/jquery-1.10.2.js"></script>
         <script src="js/libs/bootstrap/bootstrap.min.js"></script>
+        <script>
+            //   Script pour le scroll en douceur entre les ancres...
+            $(function() {
+                $('a[href*=#]:not([href=#])').click(function() {
+                    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+
+                        var target = $(this.hash);
+                        target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                        if (target.length) {
+                            $('html,body').animate({
+                                scrollTop: target.offset().top
+                            }, 500);
+                            return false;
+                        }
+                    }
+                });
+            });
+        </script>
     </body>
 </html>

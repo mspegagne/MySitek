@@ -30,17 +30,33 @@ body, h1, h2, h3, h4, h5, h6 {
     padding-left: 15px;
 }
 
-.intro-header {
-    padding-top: 150px;
-    padding-bottom: 50px;
-    position: relative;
-    background: url(../img/bg2.jpg) no-repeat center center fixed; 
+.intro {
+    display: table;
+    width: 100%;
+    height: auto;
+    padding: 100px 0;
+    text-align: center;
+    color: #f8f8f8;
+    background: url(../img/bg2.jpg) no-repeat bottom center fixed; 
+    background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    color: #f8f8f8;
-    text-align: center;
+    -o-background-size: cover;
+}
+
+.intro-body h1 {
+	font-weight:bold;
+	font-size: 3.8em;
+	text-shadow:2px 2px 4px #000;
+}
+
+.intro-body h2 {
+	font-size: 1.4em;
+}
+.intro-body {
+    display: table-cell;
+    vertical-align: middle;
 }
 
 .intro-message {
@@ -307,6 +323,11 @@ span.round-tabs{
         padding: 0;
         background-color: white;
         border-bottom: 1px solid #e7e7e7;
+    }
+    
+    .intro {
+        height: 100%;
+        padding: 0;
     }
 }
 

@@ -180,9 +180,18 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .img2
 {
-    border: 20px solid #F7CA18;
+    border: 20px solid #16A085;
 }
 
+#round-in {
+    margin-top: 20px;
+    margin-left: 57px;
+}
+
+#round-in:hover {
+    color: #fff;
+    background-color: #007bb6;
+}
 
 .profile-picture {
     width: 150px;

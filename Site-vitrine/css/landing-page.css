@@ -74,12 +74,7 @@ body, h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     cursor: pointer;
 }
-.intro-message .scroll:hover {
-    opacity: 0.6;
-}
-.intro-message .scroll i {
-    padding-top: 6px;
-}
+
 
 .intro-message >h1 {
     padding-bottom: 60px;
@@ -88,6 +83,48 @@ body, h1, h2, h3, h4, h5, h6 {
 .intro-message > h3,
 .banner-message > h3 {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
+}
+
+
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border: 2px solid #fff;
+    border-radius: 35px;
+    font-size: 40px;
+    color: #fff;
+    background: 0 0;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
+}
+
+.btn-circle:hover,
+.btn-circle:focus {
+    outline: 0;
+    color: #fff;
+    background: rgba(255,255,255,.1);
+}
+
+
+.page-scroll .btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+}
+
+.page-scroll .btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
 }
 
 @media (max-width: 767px) {
@@ -364,4 +401,41 @@ span.round-tabs{
 
 .navbar-default .navbar-nav > li > a:hover {
     color: #555;
+}
+
+
+/* ##### ANIMATION BOUTON SCROLL ##### */
+
+@-webkit-keyframes pulse {    
+    0 {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@-moz-keyframes pulse {    
+    0 {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
 }

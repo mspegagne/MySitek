@@ -12,19 +12,9 @@ body, h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
     font-weight: 400;
     text-align: justify;
+    margin-top: 30px;
 }
 
-.header {
-    display: table;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    background: url(../img/bg.jpg) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
 
 .navbar-header img {
     padding-left: 15px;
@@ -33,11 +23,10 @@ body, h1, h2, h3, h4, h5, h6 {
 .intro {
     display: table;
     width: 100%;
-    height: auto;
-    padding: 100px 0;
+    height: 100%;
     text-align: center;
-    color: #f8f8f8;
-    background: url(../img/bg2.jpg) no-repeat bottom center fixed; 
+    color: #fff;
+    background: url(../img/bg.jpg) no-repeat center center fixed; 
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -45,11 +34,6 @@ body, h1, h2, h3, h4, h5, h6 {
     -o-background-size: cover;
 }
 
-.intro-body h1 {
-	font-weight:bold;
-	font-size: 3.8em;
-	text-shadow:2px 2px 4px #000;
-}
 
 .intro-body h2 {
 	font-size: 1.4em;
@@ -64,9 +48,11 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .intro-message > h1 {
-    margin: 0;
+    margin-top: 70px;
     font-size: 5em;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.28);
+    font-family: "Montserrat", "Open sans", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 }
 
 .intro-divider {
@@ -144,16 +130,22 @@ body, h1, h2, h3, h4, h5, h6 {
     margin-bottom: 30px;
 }
 
-/* TODO : bettex fix ! */
-h2 {
-    margin-top: 0px;
-}
-
 .section-heading-spacer {
     border-top: 3px solid #e7e7e7;
     width: 200px;
     float: left;
 }
+
+.img1
+{
+    border: 20px solid #1BA39C;
+}
+
+.img2
+{
+    border: 20px solid #F7CA18;
+}
+
 
 .profile-picture {
     width: 150px;
@@ -279,6 +271,12 @@ span.round-tabs{
 }
 
 @media (max-width: 767px) {
+    
+    nav.navbar-default {
+        background-color: white;
+        border-bottom: 2px solid #cc6600;
+    }
+    
     .title-message {
         padding-bottom: 15%;
     }
@@ -310,9 +308,10 @@ span.round-tabs{
 @media (min-width: 767px) {
 
     .navbar {
+        
         padding: 20px 0;
         letter-spacing: 1px;
-        background: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0);
         border: 0px;
         -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
         -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
@@ -322,13 +321,41 @@ span.round-tabs{
     .top-nav-collapse {
         padding: 0;
         background-color: white;
-        border-bottom: 1px solid #e7e7e7;
+        border-bottom: 2px solid #cc6600;
     }
     
-    .intro {
-        height: 100%;
-        padding: 0;
+}
+
+@media(max-width:992px) {
+
+    .screen
+    {
+        margin-top: 60px; 
+        text-align: center;
     }
+    
+    .btn-primary {
+    font-size: 13px;
+}
+
+    .intro {
+        padding: 20px 0;
+        background: url(../img/bg.jpg) no-repeat bottom center scroll;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    
+    .banner {        
+        padding: 70px 0;
+        background: url(../img/bg_banner.jpg) no-repeat center center scroll;        
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
 }
 
 .navbar-default .navbar-nav > li > a {

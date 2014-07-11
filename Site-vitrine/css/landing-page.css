@@ -185,7 +185,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 #round-in {
     margin-top: 20px;
-    margin-left: 57px;
+    margin-left: 55px;
 }
 
 #round-in:hover {
@@ -375,13 +375,18 @@ span.round-tabs{
 
     .screen
     {
-        margin-top: 60px; 
+        margin-top: 90px; 
         text-align: center;
     }
     
     .btn-primary {
     font-size: 13px;
+	}
+
 }
+
+@media(max-width:1200px) {
+
 
     .intro {
         padding: 20px 0;

@@ -32,6 +32,13 @@ $sql = "SELECT * FROM templates WHERE selected = 1";
 $retour = $app['db']->fetchAssoc($sql);
 $app['template'] = $retour['name']; 
 
+/* Recuperation du module index */
+
+$sql = "SELECT * FROM modules WHERE accueil = 1";
+$retour = $app['db']->fetchAssoc($sql);
+$app['index'] = $retour['lien'];
+
+
 
 /* Recuperation des modules */
 
@@ -64,50 +71,48 @@ $app['modules_back'] = $app['db']->fetchAll($sql);
 $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
-include_once __DIR__.'/../lib/model/UserProvider.php';
+include_once __DIR__ . '/../lib/model/UserProvider.php';
 
 $app['security.firewalls'] = array(
-    'unsecured' => array(
-        'pattern' => '^/public',//TODO enlever public 
-        'anonymous' => true,
-    ),
-    'user' => array(
-        'pattern' => '^/', //TODO il faudra mettre admin ici et router les modules back dans admin
-        'form' => array('login_path' => '/public/login', 'check_path' => '/login_check'),
+    'admin' => array(
+        'pattern' => '^/admin', //TODO il faudra mettre admin ici et router les modules back dans admin
+        'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
         'logout' => array('logout_path' => '/logout'),
         'users' => $app->share(function () use ($app) {
-                        return new UserProvider($app['db']);}),
+            return new UserProvider($app['db']);
+        }),
     ),
-);
-                        
+);                     
 
 /* Login */
 
 $app->register(new Silex\Provider\SessionServiceProvider());
 
 
-$app->get('/public/login', function(Request $request) use ($app) {
-    
+$app->get('/login', function(Request $request) use ($app) {
+
     #echo (new \Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder())->encodePassword('foo', '');
-    
+
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
-        'twig.class_path'    => __DIR__ . '/../vendor/Twig/lib',
-        'twig.path' => array(__DIR__.'/templates/'.$app['template'].'/')
-    )); 
-    
+        'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
+        'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
+    ));
+
     return $app['twig']->render('login.twig', array(
-        'error'         => $app['security.last_error']($request),
-        'last_username' => $app['session']->get('_security.last_username')
+                'error' => $app['security.last_error']($request),
+                'last_username' => $app['session']->get('_security.last_username')
     ));
 });
 
 
 
 
+
 /* Routage */
 
-$app->get('/', function() use ($app) {    
-      return $app->redirect('/dashboard');
+$app->get('/', function() use ($app) {
+
+    return $app->redirect('/' . $app['index']);
 });
 
 //Routage des différents modules

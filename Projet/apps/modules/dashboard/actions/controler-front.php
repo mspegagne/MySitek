@@ -1,8 +1,23 @@
 <?php
+$dashboard = $app['controllers_factory'];
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+$dashboard->get('/', function() use ($app) {
+    
+    /* Activation de twig avec les templates du module */
+
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+            'twig.class_path'    => __DIR__ . '/../../../../vendor/Twig/lib',
+            'twig.path' => array(__DIR__.'/../../../templates/'.$app['template'].'/',
+                                 __DIR__.'/../templates/',)
+    )); 
+    
+    $app['selected']='dashboard';
+
+    return $app['twig']->render('index.twig', array(
+        'hello' => 'Hello world 2 !'
+    ));
+    
+});
+
+$app->mount('/dashboard', $dashboard);

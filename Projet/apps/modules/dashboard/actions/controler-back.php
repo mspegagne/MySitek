@@ -1,8 +1,8 @@
 <?php
-$dashboard = $app['controllers_factory'];
+$dashboardadmin = $app['controllers_factory'];
 
 
-$dashboard->get('/', function() use ($app) {
+$dashboardadmin->get('/', function() use ($app) {
     
     /* Activation de twig avec les templates du module */
 
@@ -23,4 +23,4 @@ $dashboard->get('/', function() use ($app) {
     
 });
 
-$app->mount('/dashboard', $dashboard);
+$app->mount('/admin/dashboard', $dashboardadmin);

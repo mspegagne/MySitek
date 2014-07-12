@@ -1,142 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>MySitek - Admin</title>
+        <title>MySitek</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Add custom CSS here -->
-    <link href="/apps/templates/sb_admin/css/sb-admin.css" rel="stylesheet">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
-   
-    <!-- Page Specific CSS -->
-    <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
-    
-    {% block media %}
-    {% endblock %}
-    
-  </head>
+        <!-- Add custom CSS here -->
+        <link href="/apps/templates/sb_admin/css/sb-admin.css" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 
-  <body>
+        <!-- Page Specific CSS -->
+        <link rel="stylesheet" href="http://cdn.oesmith.co.uk/morris-0.4.3.min.css">
 
-    <div id="wrapper">
+        {% block media %}
+        {% endblock %}
 
-      <!-- Sidebar -->
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">MySitek</a>
-        </div>
+    </head>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        
-<div class="collapse navbar-collapse navbar-ex1-collapse">
-{% block menu %}
+    <body>
 
-    <ul class="nav navbar-nav side-nav">
-      {% for item in app.modules_back %}
-          <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
-      {% endfor %}
-      <li><a href="http://admin.mysitek.com/owncloud/" target="_blank"><i class="fa fa-folder-open"></i> Documents</a></li>
-      <li><a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><i class="fa fa-envelope"></i> Gmail</a></li>
-          
-    </ul>
-{% endblock %}
+        {% block menu %}
 
-          <ul class="nav navbar-nav navbar-right navbar-user">
-            <!-- <li class="dropdown messages-dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">7</span> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header">7 New Messages</li>
-                <li class="message-preview">
-                  <a href="#">
-                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                    <span class="name">John Smith:</span>
-                    <span class="message">Hey there, I wanted to ask you something...</span>
-                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li class="message-preview">
-                  <a href="#">
-                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                    <span class="name">John Smith:</span>
-                    <span class="message">Hey there, I wanted to ask you something...</span>
-                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li class="message-preview">
-                  <a href="#">
-                    <span class="avatar"><img src="http://placehold.it/50x50"></span>
-                    <span class="name">John Smith:</span>
-                    <span class="message">Hey there, I wanted to ask you something...</span>
-                    <span class="time"><i class="fa fa-clock-o"></i> 4:34 PM</span>
-                  </a>
-                </li>
-                <li class="divider"></li>
-                <li><a href="#">View Inbox <span class="badge">7</span></a></li>
-              </ul>
-            </li>
-            <li class="dropdown alerts-dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> Alerts <span class="badge">3</span> <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Default <span class="label label-default">Default</span></a></li>
-                <li><a href="#">Primary <span class="label label-primary">Primary</span></a></li>
-                <li><a href="#">Success <span class="label label-success">Success</span></a></li>
-                <li><a href="#">Info <span class="label label-info">Info</span></a></li>
-                <li><a href="#">Warning <span class="label label-warning">Warning</span></a></li>
-                <li><a href="#">Danger <span class="label label-danger">Danger</span></a></li>
-                <li class="divider"></li>
-                <li><a href="#">View All</a></li>
-              </ul>
-            </li> -->
-           
-            <li class="dropdown user-dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ app.user.username | title }} <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <!--<li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                <li><a href="#"><i class="fa fa-envelope"></i> Inbox <span class="badge">7</span></a></li>
-                <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
-                <li class="divider"></li> -->
-                <li><a href="{{ path('logout') }}"><i class="fa fa-power-off"></i> Logout </a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </nav>
+            <ul>
+                {% for item in app.modules_front %}
+                    <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
+                    {% endfor %} 
+            </ul>
+        {% endblock %}
 
-      <div id="page-wrapper">
 
         {% block content %}
         {% endblock %}
 
-      </div><!-- /#page-wrapper -->
 
-    </div><!-- /#wrapper -->
 
-    <!-- JavaScript -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <!-- JavaScript -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <!-- Page Specific Plugins -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
-    <script src="/apps/templates/sb_admin/js/morris/chart-data-morris.js"></script>
-    <script src="/apps/templates/sb_admin/js/tablesorter/jquery.tablesorter.js"></script>
-    <script src="/apps/templates/sb_admin/js/tablesorter/tables.js"></script>
+        <!-- Page Specific Plugins -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="http://cdn.oesmith.co.uk/morris-0.4.3.min.js"></script>
+        <script src="/apps/templates/sb_admin/js/morris/chart-data-morris.js"></script>
+        <script src="/apps/templates/sb_admin/js/tablesorter/jquery.tablesorter.js"></script>
+        <script src="/apps/templates/sb_admin/js/tablesorter/tables.js"></script>
 
-  </body>
+    </body>
 </html>

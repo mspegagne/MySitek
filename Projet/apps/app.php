@@ -72,8 +72,8 @@ $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 include_once __DIR__ . '/../lib/model/UserProvider.php';
 
 $app['security.firewalls'] = array(
-    'admin' => array(
-        'pattern' => '^/admin', //TODO il faudra mettre admin ici et router les modules back dans admin
+    'user' => array(
+        'pattern' => '^/admin', 
         'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
         'logout' => array('logout_path' => '/logout'),
         'users' => $app->share(function () use ($app) {
@@ -111,6 +111,19 @@ $app->get('/login', function(Request $request) use ($app) {
 $app->get('/', function() use ($app) {
 
     return $app->redirect('/' . $app['index']);
+});
+
+$app->get('/admin', function() use ($app) {
+
+     $app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
+        'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
+    ));
+
+    return $app['twig']->render('admin.twig', array(
+                'hello' => 'Hello world !'
+    ));
+    
 });
 
 //Routage des différents modules

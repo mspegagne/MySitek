@@ -6,31 +6,29 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-
 /* Activation de doctrine */
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
-        'driver'   => 'pdo_sqlite',
-        'path'     => __DIR__.'/../data/app.db',
+        'driver' => 'pdo_sqlite',
+        'path' => __DIR__ . '/../data/app.db',
     ),
 ));
 
 use Doctrine\Common\Persistence\ObjectManager;
 
-
 /* Parametres du site */
 
-$app['siteName'] = 'MySitek'; 
+$app['siteName'] = 'MySitek';
 $app['debug'] = true;
-$app['selected']=''; //module en cours (pour affichage lien actif)
+$app['selected'] = ''; //module en cours (pour affichage lien actif)
 
 
 /* Recuperation du template */
 
 $sql = "SELECT * FROM templates WHERE selected = 1";
 $retour = $app['db']->fetchAssoc($sql);
-$app['template'] = $retour['name']; 
+$app['template'] = $retour['name'];
 
 /* Recuperation du module index */
 
@@ -52,19 +50,19 @@ $app['modules_back'] = $app['db']->fetchAll($sql);
 
 
 
-/* ADD TEMPLATE A implementer dans install.php */ 
- 
-  // $sql = "INSERT INTO templates (name,selected) VALUES (?,?)";
-  // $app['db']->executeUpdate($sql, array('sb_admin', TRUE));
- 
+/* ADD TEMPLATE A implementer dans install.php */
+
+// $sql = "INSERT INTO templates (name,selected) VALUES (?,?)";
+// $app['db']->executeUpdate($sql, array(--valeurs--));
+
 
 
 /* ADD MODULE  A implementer dans install.php */
- 
-  
-  // $sql = "INSERT INTO modules (name, lien, icon, selected) VALUES (?,?,?,?)";
-  // $app['db']->executeUpdate($sql, array('dashboard', '#', 'fa-tachometer', TRUE));
-  
+
+
+// $sql = "INSERT INTO modules (name, lien, icon, selected, front, accueil) VALUES (?,?,?,?,?,?)";
+// $app['db']->executeUpdate($sql, array(--valeurs--));
+
 
 /* Securisation */
 
@@ -82,7 +80,7 @@ $app['security.firewalls'] = array(
             return new UserProvider($app['db']);
         }),
     ),
-);                     
+);
 
 /* Login */
 
@@ -117,16 +115,14 @@ $app->get('/', function() use ($app) {
 
 //Routage des différents modules
 
-foreach ($app['modules_back'] as $module){
+foreach ($app['modules_back'] as $module) {
 
-    include_once __DIR__.'/modules/'.$module['lien'].'/actions/controler-back.php';
-
+    include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-back.php';
 }
 
-foreach ($app['modules_front'] as $module){
+foreach ($app['modules_front'] as $module) {
 
-    include_once __DIR__.'/modules/'.$module['lien'].'/actions/controler-front.php';
-
+    include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-front.php';
 }
 
 

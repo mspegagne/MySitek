@@ -1,0 +1,39 @@
+{% extends "layout.twig" %}
+
+
+{% block media %}
+{% endblock %}
+
+
+
+{% block content %}
+    <p>
+        {{ hello }}
+    </p>
+
+    <h3>Liste modules Front</h3>
+    <ul>
+        {% for item in app.modules_front %}
+            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
+            {% endfor %} 
+    </ul>
+
+    <h3>Liste modules Back</h3>
+    <ul>
+        {% for item in app.modules_back %}
+            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
+            {% endfor %} 
+    </ul>
+
+    <br>
+    <h3>Liste parametres</h3>
+    
+    <p>
+        Ici configuration et tout le bordel (Stores etc)
+    </p>
+    <br>
+    <a href="{{ path('admin_logout') }}"><i class="fa fa-power-off"></i> Logout </a>
+    <br>
+    <br>
+
+{% endblock %}

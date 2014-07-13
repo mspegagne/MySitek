@@ -15,10 +15,10 @@ $default->get('/', function() use ($app) {
             __DIR__ . '/../templates/',)
     ));
 
-    $app['selected'] = 'dashboard';
+    $app['selected'] = 'default';
 
-    return $app['twig']->render('index.twig', array(
-                'hello' => 'Hello world !'
+    return $app['twig']->render('front.twig', array(
+                'hello' => 'Hello world Front !'
     ));
 });
 

@@ -1,26 +1,26 @@
 <?php
-$dashboardadmin = $app['controllers_factory'];
 
+//changer le nom du module
+$defaultadmin = $app['controllers_factory'];
 
-$dashboardadmin->get('/', function() use ($app) {
-    
+/* Routage du module */
+
+$defaultadmin->get('/', function() use ($app) {
+
     /* Activation de twig avec les templates du module */
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
-            'twig.class_path'    => __DIR__ . '/../../../../vendor/Twig/lib',
-            'twig.path' => array(__DIR__.'/../../../templates/'.$app['template'].'/',
-                                 __DIR__.'/../templates/',)
-    )); 
-    
-    //Recuperation de l'user
-    $app['user'] =  $app['security']->getToken()->getUser() ;    
-    
-    $app['selected']='dashboard';
-
-    return $app['twig']->render('index.twig', array(
-        'hello' => 'Hello world 2 !'
+        'twig.class_path' => __DIR__ . '/../../../../vendor/Twig/lib',
+        'twig.path' => array(__DIR__ . '/../../../templates/' . $app['template'] . '/',
+            __DIR__ . '/../templates/',)
     ));
-    
+
+    $app['selected'] = 'default';
+
+    return $app['twig']->render('back.twig', array(
+                'hello' => 'Hello world Back !'
+    ));
 });
 
-$app->mount('/admin/dashboard', $dashboardadmin);
+//changer le nom du module
+$app->mount('/admin/default', $defaultadmin);

@@ -2,7 +2,7 @@
 
 
 {% block media %}
-    <link href="/apps/modules/default/templates/css/template.css" rel="stylesheet">
+    <link href="/apps/modules/default/templates/css/module.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -15,14 +15,14 @@
     <h3>Liste modules Front</h3>
     <ul>
         {% for item in app.modules_front %}
-            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
+            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
             {% endfor %} 
     </ul>
 
     <h3>Liste modules Back</h3>
     <ul>
         {% for item in app.modules_back %}
-            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
+            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
             {% endfor %} 
     </ul>
 

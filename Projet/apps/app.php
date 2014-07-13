@@ -121,7 +121,7 @@ $app->get('/admin/', function() use ($app) {
     ));
 
     return $app['twig']->render('admin.twig', array(
-                'hello' => 'Hello world !'
+                'hello' => 'Hello world Admin !'
     ));
     
 });
@@ -134,7 +134,8 @@ foreach ($app['modules_back'] as $module) {
 }
 
 foreach ($app['modules_front'] as $module) {
-
+    
+    include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-back.php';
     include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-front.php';
 }
 

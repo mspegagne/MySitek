@@ -70,12 +70,12 @@ $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
 include_once __DIR__ . '/../lib/model/UserProvider.php';
-
+/* FIREWALL */
 $app['security.firewalls'] = array(
     'user' => array(
-        'pattern' => '^/admin', 
+        'pattern' => '^/admin/',
         'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
-        'logout' => array('logout_path' => '/logout'),
+        'logout' => array('logout_path' => '/admin/logout'),
         'users' => $app->share(function () use ($app) {
             return new UserProvider($app['db']);
         }),
@@ -113,7 +113,7 @@ $app->get('/', function() use ($app) {
     return $app->redirect('/' . $app['index']);
 });
 
-$app->get('/admin', function() use ($app) {
+$app->get('/admin/', function() use ($app) {
 
      $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',

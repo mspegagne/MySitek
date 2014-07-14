@@ -44,9 +44,13 @@ $app['index'] = $retour['lien'];
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1";
 $app['modules_front'] = $app['db']->fetchAll($sql);
 
-//front à 0 signifie module uniquement admin
+//front à 0 signifie module back
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0";
 $app['modules_back'] = $app['db']->fetchAll($sql);
+
+//front à -1 signifie module uniquement admin
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = -1";
+$app['modules_admin'] = $app['db']->fetchAll($sql);
 
 
 
@@ -132,6 +136,12 @@ foreach ($app['modules_back'] as $module) {
 
     include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-back.php';
 }
+
+foreach ($app['modules_admin'] as $module) {
+
+    include_once __DIR__ . '/modules/admin/' . $module['lien'] . '/actions/controler-back.php';
+}
+
 
 foreach ($app['modules_front'] as $module) {
     

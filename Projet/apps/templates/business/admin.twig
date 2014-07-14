@@ -26,7 +26,7 @@
     </ul>
 
     <br>
-    <h3>Liste parametres</h3>
+    <h3>Liste modules Admin</h3>
      <ul>
         {% for item in app.modules_admin %}
             <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>

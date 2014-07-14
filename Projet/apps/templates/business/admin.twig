@@ -2,6 +2,7 @@
 
 
 {% block media %}
+    <link href="/apps/templates/business/css/admin.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -12,29 +13,33 @@
     </p>
 
     <h3>Liste modules Front</h3>
-    <ul>
+    <div class="row">
         {% for item in app.modules_front %}
-            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
-            {% endfor %} 
-    </ul>
-
+            <div class="process-step col-xs-6 col-sm-3 col-md-2">
+                <a href="/admin/{{ item.lien }}"> <span class="btn btn-default btn-circle front"><i class="{{ item.icon }} fa-4x"></i></span></a>
+                <p> {{ item.name | title}}</p>
+            </div>
+        {% endfor %}
+    </div>
     <h3>Liste modules Back</h3>
-    <ul>
+    <div class="row">
         {% for item in app.modules_back %}
-            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
-            {% endfor %} 
-    </ul>
-
-    <br>
+            <div class="process-step col-xs-6 col-sm-3 col-md-2">
+                <a href="/admin/{{ item.lien }}"> <span class="btn btn-default btn-circle back"><i class="{{ item.icon }} fa-4x"></i></span></a>
+                <p> {{ item.name | title}}</p>
+            </div>
+        {% endfor %}
+    </div>
     <h3>Liste modules Admin</h3>
-     <ul>
+    <div class="row">
         {% for item in app.modules_admin %}
-            <li {% if app.selected == item.lien %}class="active"{% endif %}><a href="/admin/{{ item.lien }}"><i class="{{ item.icon }}"></i> {{ item.name | title}}</a></li>
-            {% endfor %} 
-    </ul>
-    <p>
-        Ici configuration et tout le bordel (Stores etc)
-    </p>
+            <div class="process-step col-xs-6 col-sm-3 col-md-2">
+                <a href="/admin/{{ item.lien }}"> <span class="btn btn-default btn-circle admin"><i class="{{ item.icon }} fa-4x"></i></span></a>
+                <p> {{ item.name | title}}</p>
+            </div>
+        {% endfor %}
+    </div>
+
     <br>
     <a href="{{ path('admin_logout') }}"><i class="fa fa-power-off"></i> Logout </a>
     <br>

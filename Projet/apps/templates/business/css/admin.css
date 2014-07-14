@@ -1,0 +1,29 @@
+.process-step {   
+    margin-top:10px;  
+    text-align: center;
+}
+
+
+.btn-circle {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    padding: 25px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    color: white;
+}
+
+.front{
+    background-color: #1BBC9B;
+}
+
+.back{
+    background-color: #1BA39C;
+}
+
+.admin{
+    background-color: #16A085;
+}
+

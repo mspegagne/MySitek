@@ -1,0 +1,17 @@
+{% extends "layout.twig" %}
+
+
+{% block css %}
+    <link href="/apps/modules/2048/templates/css/module.css" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+    <div class="row">
+        <object class="obj" type="text/html" data="/apps/modules/2048/lib/2048/index.html" width="100%">
+        </object>
+    </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

@@ -1,0 +1,13 @@
+.obj
+{
+    height: 850px;
+}
+
+
+@media(max-width: 550px) {
+    .obj
+    {
+        height: 500px;
+    }
+
+}

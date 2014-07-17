@@ -30,7 +30,7 @@
         <link href="/apps/templates/default/css/template.css" rel="stylesheet">
 
         <!-- Contenu à mettre dans head à partir du twig qui utilise le template (ex: css)  -->
-        {% block media %}
+        {% block css %}
         {% endblock %}
 
     </head>
@@ -64,6 +64,9 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="/apps/templates/default/js/template.js"></script>
+
+        {% block js %}
+        {% endblock %}
 
     </body>
 </html>

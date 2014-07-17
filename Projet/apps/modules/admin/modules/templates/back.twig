@@ -1,13 +1,244 @@
 {% extends "layout.twig" %}
 
 
-{% block media %}
-    <link href="/apps/modules/parametres/templates/css/module.css" rel="stylesheet">
+{% block css %}
+    <link href="/apps/modules/admin/modules/templates/css/module.css" rel="stylesheet">
 {% endblock %}
 
 
 {% block content %}
-    <p>
-        {{ hello }}
-    </p>
+
+<div class="container-fluid carousel">
+    <div id="custom_carousel" class="carousel slide" data-ride="carousel" data-interval="2500">
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3"><img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive"></div>
+                        <div class="col-md-9">
+                            <h3>Titre - Nom</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+                        </div>
+                    </div>
+                </div>            
+            </div> 
+            <div class="item">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3"><img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive"></div>
+                        <div class="col-md-9">
+                            <h3>Titre - Nom</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+                        </div>
+                    </div>
+                </div>            
+            </div> 
+            <div class="item">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3"><img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive"></div>
+                        <div class="col-md-9">
+                            <h3>Titre - Nom</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+                        </div>
+                    </div>
+                </div>            
+            </div> 
+            <div class="item">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3"><img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive"></div>
+                        <div class="col-md-9">
+                            <h3>Titre - Nom</h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.</p>
+                        </div>
+                    </div>
+                </div>            
+            </div> 
+        <!-- End Item -->
+        </div>
+        <!-- End Carousel Inner -->
+        <div class="controls">
+            <ul class="nav">
+                <li data-target="#custom_carousel" data-slide-to="0" class="active"><a href="#"><img src="http://placehold.it/50x50"><small>Slide One</small></a></li>
+                <li data-target="#custom_carousel" data-slide-to="1"><a href="#"><img src="http://placehold.it/50x50"><small>Slide Two</small></a></li>
+                <li data-target="#custom_carousel" data-slide-to="2"><a href="#"><img src="http://placehold.it/50x50"><small>Slide Three</small></a></li>
+                <li data-target="#custom_carousel" data-slide-to="3"><a href="#"><img src="http://placehold.it/50x50"><small>Slide Four</small></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Carousel -->
+</div>
+    
+<!-- Items TODO: Boucle -->
+<div id="sotre" class="row" >
+    <div class="col-sm-3 module">
+        <div class="col-item">
+            <div class="photo">
+                <img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive" alt="a" />
+            </div>
+            <div class="info">
+                <div class="row">
+                    <div class="price col-md-6">
+                        <h5>Titre - Nom</h5>
+                        <h5 class="price-text-color">
+                            €50.00</h5>
+                    </div>
+                    <div class="rating hidden-sm col-md-6">
+                        <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="fa fa-star"></i>
+                    </div>
+                </div>
+                    <h6>
+                        Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
+                    </h6>                
+                <div class="separator clear-left">
+                    <p class="btn-add">
+                        <i class="fa fa-download"></i><a href="" class="hidden-sm">Télécharger</a></p>
+                    <p class="btn-details">
+                        <i class="fa fa-list"></i><a href="" class="hidden-sm">Plus d'infos</a></p>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-3 module">
+        <div class="col-item">
+            <div class="photo">
+                <img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive" alt="a" />
+            </div>
+            <div class="info">
+                <div class="row">
+                    <div class="price col-md-6">
+                        <h5>Titre - Nom</h5>
+                        <h5 class="price-text-color">
+                            €50.00</h5>
+                    </div>
+                    <div class="rating hidden-sm col-md-6">
+                        <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="fa fa-star"></i>
+                    </div>
+                </div>
+                    <h6>
+                        Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
+                    </h6>                
+                <div class="separator clear-left">
+                    <p class="btn-add">
+                        <i class="fa fa-download"></i><a href="" class="hidden-sm">Télécharger</a></p>
+                    <p class="btn-details">
+                        <i class="fa fa-list"></i><a href="" class="hidden-sm">Plus d'infos</a></p>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 module">
+        <div class="col-item">
+            <div class="photo">
+                <img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive" alt="a" />
+            </div>
+            <div class="info">
+                <div class="row">
+                    <div class="price col-md-6">
+                        <h5>Titre - Nom</h5>
+                        <h5 class="price-text-color">
+                            €50.00</h5>
+                    </div>
+                    <div class="rating hidden-sm col-md-6">
+                        <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="fa fa-star"></i>
+                    </div>
+                </div>
+                    <h6>
+                        Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
+                    </h6>                
+                <div class="separator clear-left">
+                    <p class="btn-add">
+                        <i class="fa fa-download"></i><a href="" class="hidden-sm">Télécharger</a></p>
+                    <p class="btn-details">
+                        <i class="fa fa-list"></i><a href="" class="hidden-sm">Plus d'infos</a></p>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 module">
+        <div class="col-item">
+            <div class="photo">
+                <img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive" alt="a" />
+            </div>
+            <div class="info">
+                <div class="row">
+                    <div class="price col-md-6">
+                        <h5>Titre - Nom</h5>
+                        <h5 class="price-text-color">
+                            €50.00</h5>
+                    </div>
+                    <div class="rating hidden-sm col-md-6">
+                        <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="fa fa-star"></i>
+                    </div>
+                </div>
+                    <h6>
+                        Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
+                    </h6>                
+                <div class="separator clear-left">
+                    <p class="btn-add">
+                        <i class="fa fa-download"></i><a href="" class="hidden-sm">Télécharger</a></p>
+                    <p class="btn-details">
+                        <i class="fa fa-list"></i><a href="" class="hidden-sm">Plus d'infos</a></p>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 module">
+        <div class="col-item">
+            <div class="photo">
+                <img src="/apps/modules/admin/modules/data/responsive.jpg" class="img-responsive" alt="a" />
+            </div>
+            <div class="info">
+                <div class="row">
+                    <div class="price col-md-6">
+                        <h5>Titre - Nom</h5>
+                        <h5 class="price-text-color">
+                            €50.00</h5>
+                    </div>
+                    <div class="rating hidden-sm col-md-6">
+                        <i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="price-text-color fa fa-star"></i><i class="price-text-color fa fa-star">
+                        </i><i class="fa fa-star"></i>
+                    </div>
+                </div>
+                    <h6>
+                        Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
+                    </h6>                
+                <div class="separator clear-left">
+                    <p class="btn-add">
+                        <i class="fa fa-download"></i><a href="" class="hidden-sm">Télécharger</a></p>
+                    <p class="btn-details">
+                        <i class="fa fa-list"></i><a href="" class="hidden-sm">Plus d'infos</a></p>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+    <script src="/apps/modules/admin/modules/templates/js/module.js"></script>
 {% endblock %}

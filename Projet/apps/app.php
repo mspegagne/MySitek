@@ -54,20 +54,6 @@ $app['modules_admin'] = $app['db']->fetchAll($sql);
 
 
 
-/* ADD TEMPLATE A implementer dans install.php */
-
-// $sql = "INSERT INTO templates (name,selected) VALUES (?,?)";
-// $app['db']->executeUpdate($sql, array(--valeurs--));
-
-
-
-/* ADD MODULE  A implementer dans install.php */
-
-
-// $sql = "INSERT INTO modules (name, lien, icon, selected, front, accueil) VALUES (?,?,?,?,?,?)";
-// $app['db']->executeUpdate($sql, array(--valeurs--));
-
-
 /* Securisation */
 
 $app->register(new Silex\Provider\SecurityServiceProvider());
@@ -119,7 +105,7 @@ $app->get('/', function() use ($app) {
 
 $app->get('/admin/', function() use ($app) {
 
-     $app->register(new Silex\Provider\TwigServiceProvider(), array(
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
     ));
@@ -127,7 +113,58 @@ $app->get('/admin/', function() use ($app) {
     return $app['twig']->render('admin.twig', array(
                 'hello' => 'Hello world Admin !'
     ));
+});
+
+//TODO: interface message -> modal dans admin.twig avec message et activation passés en parametres
+$app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
+
+    include_once __DIR__ . '/../lib/model/Install.php';
+
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
+        'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
+    ));
+
+    $error = Install::installation($file, $type, $app);
+
     
+    /****** MAJ SUITE A INSTALLATION ******/
+    
+    /* Recuperation du template */
+
+    $sql = "SELECT * FROM templates WHERE selected = 1";
+    $retour = $app['db']->fetchAssoc($sql);
+    $app['template'] = $retour['name'];
+
+    /* Recuperation du module index */
+
+    $sql = "SELECT * FROM modules WHERE accueil = 1";
+    $retour = $app['db']->fetchAssoc($sql);
+    $app['index'] = $retour['lien'];
+
+    /* Recuperation des modules */
+
+    //front à 1 signifie que le module à une partie publique
+    $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1";
+    $app['modules_front'] = $app['db']->fetchAll($sql);
+
+    //front à 0 signifie module back
+    $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0";
+    $app['modules_back'] = $app['db']->fetchAll($sql);
+
+    //front à -1 signifie module uniquement admin
+    $sql = "SELECT * FROM modules WHERE selected = 1 AND front = -1";
+    $app['modules_admin'] = $app['db']->fetchAll($sql);
+
+    if ($error == '') {
+        return $app['twig']->render('admin.twig', array(
+                    'hello' => 'Le fichier est maintenant installé'
+        ));
+    } else {
+        return $app['twig']->render('admin.twig', array(
+                    'hello' => $error
+        ));
+    }
 });
 
 //Routage des différents modules
@@ -144,7 +181,7 @@ foreach ($app['modules_admin'] as $module) {
 
 
 foreach ($app['modules_front'] as $module) {
-    
+
     include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-back.php';
     include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-front.php';
 }

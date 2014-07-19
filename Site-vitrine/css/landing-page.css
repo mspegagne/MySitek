@@ -175,6 +175,13 @@ span.round-tabs {
     border: 2px solid #3e4149;
 }
 
+/***** Spécifique unique / pointe *****/
+#unique i.fa,
+#pointe i.fa {
+    font-size: 9em;
+    margin-top: 60px;
+}
+
 /***** Spécifique qui sommes-nous *****/
 
 #nous p {
@@ -280,6 +287,6 @@ img.no-border {
     border: none !important;
 }
 
-.row.center {
+.center {
     text-align: center !important;
 }

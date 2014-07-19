@@ -21,14 +21,6 @@
         border-bottom: 2px solid #cc6600;
     }
 
-    .title-message {
-        padding-bottom: 15%;
-    }
-
-    .title-message > h1 {
-        font-size: 3em;
-    }
-
     .banner h2 {
         margin: 0;
         text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
@@ -45,7 +37,7 @@
         margin-bottom: 0;
     }
 
-    .intro-message > h1 {
+    .intro-body h1 {
         font-size: 3em;
     }
 

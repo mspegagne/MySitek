@@ -19,7 +19,6 @@ body, h1, h2, h3, h4, h5, h6 {
     padding-left: 15px;
 }
 
-
 .intro {
     display: table;
     width: 100%;
@@ -40,28 +39,19 @@ body, h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.intro-body h2 {
-    font-size: 1.4em;
-}
-
-.intro-message {
-    position: relative;
-}
-
-.intro-message > h1 {
+.intro-body h1 {
     margin-top: 70px;
     font-size: 5em;
-    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.28);
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.4);
     font-family: "Montserrat", "Open sans", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding-bottom: 60px;
 }
 
-.intro-message > h3,
-.banner-message > h3 {
+.intro-body h3 {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 1);
 }
 
-.intro-message .scroll {
+.intro-body .scroll {
     width: 70px;
     height: 70px;
     line-height: 45px;
@@ -74,6 +64,11 @@ body, h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     cursor: pointer;
 }
+
+.intro-message {
+    position: relative;
+}
+
 
 /************ Bouton Scroll ***********/
 .btn-circle {
@@ -116,33 +111,17 @@ body, h1, h2, h3, h4, h5, h6 {
     -moz-animation-timing-function: linear;
 }
 
-.content-section-a,
-.content-section-b {
+/*************** Sections *************/
+.content-section {
     padding: 50px 0;
 }
 
-.content-section-a {
-    background-color: #f8f8f8;
-}
-
-.content-section-a img {
-    border: 20px solid #663300;
-}
-
-.content-section-b img {
-    border: 20px solid #cc6600;
-}
-
-.section-heading {
-    margin-bottom: 30px;
-}
-
-.points {
+.content-section ul {
     list-style-type: none;
     padding: 15px 0 0
 }
 
-.points li {
+.content-section li {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 700;
@@ -152,32 +131,67 @@ body, h1, h2, h3, h4, h5, h6 {
     white-space: nowrap;
 }
 
-#round-in {
-    margin-top: 20px;
-    margin-left: 55px;
+.content-section h2 {
+    margin-bottom: 30px;
 }
 
-#round-in:hover {
+.content-section.left {
+    background-color: #f8f8f8;
+}
+
+.content-section.left img {
+    border: 20px solid #663300;
+}
+
+.content-section.right img {
+    border: 20px solid #cc6600;
+}
+
+span.round-tabs {
+    width: 50px;
+    height: 50px;
+    float: left;
+    line-height: 45px;
+    border-radius: 100px;
+    display: inline-block;
+    background: white;
+    margin-top: -3px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 25px;
+    color: #3e4149;
+    border: 2px solid #3e4149;
+}
+
+/***** Spécifique qui sommes-nous *****/
+
+#nous p {
+    margin-bottom: 40px;
+}
+
+#nous img {
+    max-width: 146px;
+}
+
+#nous span.round-tabs {
+    float: none;
+    margin: 0px;
+}
+
+#nous .round-tabs:hover {
     color: #fff;
     background-color: #007bb6;
 }
 
-.profile-picture {
+#nous .round-tabs.profile-picture {
     width: 150px;
     height: 150px;
-    line-height: 45px;
-    border-radius: 100px;
-    background: #FFF;
-    color: #222 ;
-    text-align: center;
-    display: inline-block;
-    border: 2px solid #3e4149;
+    float: none;
+    background: #3e4149;
+    margin: 20px 0px 10px 0px;
 }
 
-.profile-picture img {
-    max-width: 146px;
-}
-
+/*************** Bannière *************/
 .banner {
     padding: 100px 0;
     color: #f8f8f8;
@@ -228,27 +242,11 @@ img#scroll-arrow:hover {
     cursor: pointer;
 }
 
-span.round-tabs{
-    width: 50px;
-    height: 50px;
-    line-height: 45px;
-    display: inline-block;
-    border-radius: 100px;
-    background: white;
-    float: left;
-    margin-top: -3px;
-    margin-right: 10px;
-    text-align: center;
-    font-size: 25px;
-    color: #3e4149;
-    border: 2px solid #3e4149;
-}
-
 .anchor {
     padding-top: 10px;
 }
 
-/* Surchage bootstrap */
+/********* Surchage bootstrap *********/
 .navbar-toggle {
     margin-top: 18px;
 }
@@ -263,4 +261,13 @@ span.round-tabs{
 
 .navbar-default .navbar-nav > li > a:hover {
     color: #555;
+}
+
+/*********** Outils utiles ************/
+img.no-border {
+    border: none !important;
+}
+
+.row.center {
+    text-align: center !important;
 }

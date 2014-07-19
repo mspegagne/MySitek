@@ -154,6 +154,11 @@ body, h1, h2, h3, h4, h5, h6 {
     border: 20px solid #cc6600;
 }
 
+.content-section strong {
+    font-weight: normal;
+    color: black;
+}
+
 span.round-tabs {
     width: 50px;
     height: 50px;

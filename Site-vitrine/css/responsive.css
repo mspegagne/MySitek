@@ -1,0 +1,102 @@
+@media (min-width: 767px) {
+    
+    .navbar {
+        padding: 20px 0;
+        letter-spacing: 1px;
+        background: rgba(255, 255, 255, 0);
+        border: 0px;
+        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
+        transition: background .5s ease-in-out,padding .5s ease-in-out;
+    }
+
+    .top-nav-collapse {
+        padding: 0;
+        background-color: white;
+        border-bottom: 2px solid #cc6600;
+    }
+
+    nav.navbar-default {
+        background-color: white;
+        border-bottom: 2px solid #cc6600;
+    }
+
+    .title-message {
+        padding-bottom: 15%;
+    }
+
+    .title-message > h1 {
+        font-size: 3em;
+    }
+
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    ul.intro-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.intro-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}
+
+@media(max-width:992px) {
+
+    .screen {
+        margin-top: 90px; 
+        text-align: center;
+    }
+
+    .btn-primary {
+        font-size: 13px;
+    }
+}
+
+@media(max-width:1200px) {
+
+    .intro, .banner {
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+    
+    .intro {
+        padding: 20px 0;
+        background: url(../img/bg.jpg) no-repeat bottom center scroll;
+    }
+
+    .banner {        
+        padding: 70px 0;
+        background: url(../img/bg_banner.jpg) no-repeat center center scroll;        
+    }
+    
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}

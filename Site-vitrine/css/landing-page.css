@@ -19,6 +19,12 @@ body, h1, h2, h3, h4, h5, h6 {
     padding-left: 15px;
 }
 
+.top-nav-collapse {
+    padding: 0;
+    background-color: white;
+    border-bottom: 2px solid #cc6600;
+}
+
 .intro {
     display: table;
     width: 100%;

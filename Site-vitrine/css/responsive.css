@@ -32,10 +32,6 @@
         margin-bottom: 0;
     }
 
-    .intro-body h1 {
-        font-size: 3em;
-    }
-
     ul.intro-social-buttons > li {
         display: block;
         margin-bottom: 20px;
@@ -60,6 +56,10 @@
 
     .btn-primary {
         font-size: 13px;
+    }
+    
+    .intro-body h1 {
+        font-size: 3em;
     }
 }
 

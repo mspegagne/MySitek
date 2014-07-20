@@ -121,7 +121,7 @@ class Install {
 		fclose($fp);
  
 		if($data==false){
-			$error.='Le téléchargement à partir des serveurs de MySitek a échoué.<br />'.$curlerror;	
+			$error.='Le téléchargement à partir des serveurs de MySitek a échoué.'.$curlerror;	
 		}
 		return($error.$curlerror);
 
@@ -138,7 +138,7 @@ class Install {
 		if($error=='') {
 			$txt='Le système est prêt pour l\'installation.';
 		}else{
-			$txt='Le système n\'est pas configuré l\'installation.<br />'.$error;
+			$txt='Le système n\'est pas configuré l\'installation.'.$error;
 		}
                 return($txt);                
 	}
@@ -153,7 +153,7 @@ class Install {
 		if($error=='') {
 			$txt='Le fichier est maintenant installé';
 		}else{
-			$txt='L\'installation a échouée<br />'.$error;
+			$txt='L\'installation a échouée'.$error;
 		}
                 return($txt);    
 	}

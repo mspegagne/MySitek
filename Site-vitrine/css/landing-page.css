@@ -210,6 +210,21 @@ span.round-tabs {
     margin: 20px 0px 10px 0px;
 }
 
+/***** Spécifique nous contacter ******/
+
+#contact_us textarea { 
+    resize: none;
+}
+
+#contact_us #submit {
+    font-size: 1.2em;
+}
+
+#contact_us #InputEmail {
+    display: inline-block;
+    margin: 0 0 0 0;
+}
+
 /*************** Bannière *************/
 .banner {
     padding: 100px 0;
@@ -240,16 +255,6 @@ footer {
 
 p.copyright {
     margin: 15px 0 0;
-}
-
-#submit {
-    font-size: 1.2em;
-}
-
-#InputEmail {
-    display: inline-block;
-    margin: 0 0 0 0;
-    max-width: 600px;
 }
 
 img#scroll-arrow {

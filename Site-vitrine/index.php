@@ -1,54 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Avec MySitek, que vous soyez un entrepreneur, un artisan, un particulier, ... créez votre site web moderne, personnalisé et sans publicité en toute simplicité.">
-        <meta name="author" content="Mathieu SPEGAGNE et Bruno MATRY">
-
-        <title>MySitek - Votre site web personnalisé en toute simplicité</title>
-
-        <link rel="icon" href="img/favicon.ico" />
-        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-
-        <link href="css/landing-page.css" rel="stylesheet" type="text/css">
-        <link href="css/responsive.css" rel="stylesheet" type="text/css">
-        <link href="css/animation-scroll-button.css" rel="stylesheet" type="text/css">
-    </head>
+    <?php include_once "./share/head.php"; ?>
 
     <body id="page-top" data-spy="scroll" data-target=".navbar-custom">
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <img src="img/logo.png" height="50" alt="" style="margin-top: 10px;"/>
-                </div>
 
-                <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse page-scroll" style="margin-top: 10px;">
-                    <ul class="nav navbar-nav">
-                        <li><a href="#welcome">Accueil</a>
-                        </li>
-                        <li><a href="#presentation">Présentation</a>
-                        </li>
-                        <li><a href="#mysitek">MySitek</a>
-                        </li>
-                        <li><a href="#who-are-we">Qui sommes-nous ?</a>
-                        </li>
-                        <!--<li><a href="">Contact</a>
-                        </li>-->
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <?php
+        $preciseLink = false;
+        include_once "./share/nav.php";
+        ?>
 
         <section id="intro" class="intro">            
             <a id="welcome"></a>
@@ -164,8 +124,8 @@
                         <div class="clearfix"></div>
                         <h2>Ce que MySitek vous propose</h2>                  
                         <p class="lead">
-                            MySitek est un outil vous permettant de <strong>créer un site internet adapté à vos besoins en 3 clics</strong>.<br/>
-                            La particularité de MySitek est que vous conservez la main sur votre site internet. En effet, après avoir choisi votre base, vous pouvez choisir d'héberger vous-même votre site. Vous en disposez alors de façon illimitée et gratuite. Vous pourrez continuer de faire évoluer votre offre en sélectionnant de nouveaux modules ou en mettant à jour votre base.
+                            MySitek est un outil vous permettant de <strong>créer en 3 clics un site internet adapté à vos besoins</strong>.<br/>
+                            La particularité de MySitek est que vous conservez la main sur votre site internet. En effet, après avoir choisi votre modèle de base, vous en disposez de façon illimitée et gratuite. Vous pouvez alors continuer de faire évoluer votre offre en sélectionnant de nouveaux modules ou en mettant à jour votre modèle de base.
                         </p>
                     </div>
                     <div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
@@ -182,7 +142,7 @@
                         <div class="clearfix"></div>
                         <h2>Pour MySitek, chaque site est unique    </h2>
                         <p class="lead">
-                            <strong>Plusieurs bases</strong> vous serons proposées afin de répondre au mieux à vos besoins. Les <strong>modules</strong> (slider pour présenter vos créations, bibliothèque d'images, ...) qui vous seront proposés pourront être <strong>ajoutés ou retirés à votre guise</strong>. Nous vous proposons un choix varié de thèmes modernes et responsive (adaptés aux ordinateurs, tablettes et mobiles) que vous pourrez <strong>personnaliser en quelques clics</strong>.
+                            <strong>Plusieurs bases</strong> vous serons proposées afin de répondre au mieux à vos besoins. Les <strong>modules</strong> (bibliothèque d'images, statistiques avancées, ...) qui vous seront proposés pourront être <strong>ajoutés ou retirés à votre guise</strong>. Nous vous proposons un choix varié de thèmes modernes et adaptés aux ordinateurs, tablettes et mobiles. Vous pourrez les <strong>personnaliser en quelques clics</strong>.
                         </p>
                     </div>
                     <div class="col-lg-5 col-sm-pull-6 col-sm-6 screen center">
@@ -254,58 +214,13 @@
                     <div class="col-lg-4 col-md-8 col-xs-12">
                         <h3>Bruno Matry</h3>
                         <p class="lead">
-                            Fils de musiciens et petit-fils d'artisan peintre, Bruno est étudiant en informatique à l'INSA de Rennes. Il est fortement impliqué dans le monde associatif aussi bien dans le domaine de l'évènementiel (Rock'n Solex, InsaLan) que dans l'entreprenariat (Junior-Entreprise).</br>Il s'intéresse plus particulièrement aux technologies du web et est donc fortement impliqué dans ce projet.
+                            Fils de musiciens et petit-fils d'artisan peintre, Bruno est étudiant en informatique à l'INSA de Rennes. Il est fortement impliqué dans le monde associatif aussi bien dans le domaine de l'évènementiel (Rock'n Solex, InsaLan) que dans l'entreprenariat (Junior-Entreprise).</br>S'intéressant plus particulièrement aux technologies du web, il est donc fortement impliqué dans ce projet.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!--
-               <div class="content-section-a">
-                   <div class="container" style="text-align: center;">
-                       <div class="col-lg-6 col-sm-push-2  col-sm-8">
-                           <div class="clearfix"></div>
-                           <h2> style="text-align: center;">Nous contacter</h2>                  
-                          
-                           <div class="col-md-12">
-                               <div class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span> Success! Message sent.</strong></div>	  
-                               <div class="alert alert-danger"><span class="glyphicon glyphicon-alert"></span><strong> Error! Please check the inputs.</strong></div>
-                           </div>
-                           <form role="form" action="" method="post" >
-                               <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Champs requis</strong></div>
-                               <div class="form-group">
-                                   <label for="InputName">Votre nom</label>
-                                   <div class="input-group">
-                                       <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Entrez votre nom" required>
-                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                               </div>
-                               <div class="form-group">
-                                   <label for="InputEmail">Votre email</label>
-                                   <div class="input-group">
-                                       <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email" required  >
-                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                               </div>
-                               <div class="form-group">
-                                   <label for="InputMessage">Votre message</label>
-                                   <div class="input-group"
-                                        >
-                                       <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                               </div>
-                               <div class="form-group">
-                                   <label for="InputReal">Combien font 4+3 ? (Simple Spam Checker)</label>
-                                   <div class="input-group">
-                                       <input type="text" class="form-control" name="InputReal" id="InputReal" required>
-                                       <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span></div>
-                               </div>
-                               <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info center-block">
-                           </form>
-                           
-                       </div>
-                   </div>
-               </div>
-        -->
         <section id="banner" class="content-section">
             <div class="banner">
                 <div class="clearfix"></div>
@@ -323,36 +238,10 @@
             </div>
         </section>
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="list-inline  page-scroll">
-                            <li><a href="#welcome">Accueil</a>
-                            </li>
-                            <li>&sdot;</li>
-                            <li><a href="#presentation">Présentation</a>
-                            </li>
-                            <li>&sdot;</li>
-                            <li><a href="#mysitek">A propos de MySitek</a>
-                            </li>
-                            <li>&sdot;</li>
-                            <li><a href="#who-are-we">Qui sommes-nous ?</a>
-                            </li>
-                            <!--<li class="footer-menu-divider">&sdot;</li>
-                            <li><a href="">Nous contacter</a>
-                            </li>-->
-                        </ul>
-                        <p class="copyright text-muted small">Copyright &copy; MySitek 2014. All Rights Reserved</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.min.js"></script>
-        <script src="js/mysitek.js"></script>
-        <script src="js/ga.js"></script>
+        <?php
+        include_once "./share/footer.php";
+        include_once "./share/scripts.php";
+        ?>
+
     </body>
 </html>

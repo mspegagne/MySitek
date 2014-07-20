@@ -14,7 +14,21 @@
             <div class="container">
                 <div class="col-lg-offset-2 col-lg-8">
                     <div class="clearfix"></div>
-                    <h2>Nous contacter</h2>                  
+                    <h2>Nous contacter</h2>
+                    <?php
+                    if (!empty($succeed)) {
+                        switch ($succeed) {
+                            case 1:
+                                echo '<div class="alert alert-success"><strong><span class="glyphicon glyphicon-send"></span>  Votre message à bien été envoyé.</strong></div>';
+                                break;
+                            case 2:
+                                echo '<div class="alert alert-danger"><strong><span class="glyphicon glyphicon-remove"></span>  Erreur! Mauvaise valeur pour le test.</strong></div>';
+                                break;
+                            default :
+                                break;
+                        }
+                    }
+                    ?>
 
                     <form role="form" action="contact_us_post.php" method="post" >
                         <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Champs requis</strong></div>

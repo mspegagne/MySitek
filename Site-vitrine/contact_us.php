@@ -32,7 +32,6 @@
                     ?>
 
                     <form role="form" action="contact_us_post.php" method="post" >
-                        <div class="well well-sm"><strong><i class="glyphicon glyphicon-ok form-control-feedback"></i> Champs requis</strong></div>
                         <div class="form-group">
                             <label for="InputName">Votre nom</label>
                             <div class="input-group">
@@ -55,7 +54,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="InputReal">Combien font 4+3 ?</label>
+                            <label for="InputReal">Combien font 4+3 ? (Nous vérifions que le formulaire n'est pas rempli automatiquement par un robot)</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="InputReal" id="InputReal" required>
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>

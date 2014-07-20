@@ -124,8 +124,8 @@
                         <div class="clearfix"></div>
                         <h2>Ce que MySitek vous propose</h2>                  
                         <p class="lead">
-                            MySitek est un outil vous permettant de <strong>créer un site internet adapté à vos besoins en 3 clics</strong>.<br/>
-                            La particularité de MySitek est que vous conservez la main sur votre site internet. En effet, après avoir choisi votre base, vous pouvez choisir d'héberger vous-même votre site. Vous en disposez alors de façon illimitée et gratuite. Vous pourrez continuer de faire évoluer votre offre en sélectionnant de nouveaux modules ou en mettant à jour votre base.
+                            MySitek est un outil vous permettant de <strong>créer en 3 clics un site internet adapté à vos besoins</strong>.<br/>
+                            La particularité de MySitek est que vous conservez la main sur votre site internet. En effet, après avoir choisi votre modèle de base, vous en disposez de façon illimitée et gratuite. Vous pouvez alors continuer de faire évoluer votre offre en sélectionnant de nouveaux modules ou en mettant à jour votre modèle de base.
                         </p>
                     </div>
                     <div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-8 col-xs-offset-2">
@@ -142,7 +142,7 @@
                         <div class="clearfix"></div>
                         <h2>Pour MySitek, chaque site est unique    </h2>
                         <p class="lead">
-                            <strong>Plusieurs bases</strong> vous serons proposées afin de répondre au mieux à vos besoins. Les <strong>modules</strong> (slider pour présenter vos créations, bibliothèque d'images, ...) qui vous seront proposés pourront être <strong>ajoutés ou retirés à votre guise</strong>. Nous vous proposons un choix varié de thèmes modernes et responsive (adaptés aux ordinateurs, tablettes et mobiles) que vous pourrez <strong>personnaliser en quelques clics</strong>.
+                            <strong>Plusieurs bases</strong> vous serons proposées afin de répondre au mieux à vos besoins. Les <strong>modules</strong> (bibliothèque d'images, statistiques avancées, ...) qui vous seront proposés pourront être <strong>ajoutés ou retirés à votre guise</strong>. Nous vous proposons un choix varié de thèmes modernes et adaptés aux ordinateurs, tablettes et mobiles. Vous pourrez les <strong>personnaliser en quelques clics</strong>.
                         </p>
                     </div>
                     <div class="col-lg-5 col-sm-pull-6 col-sm-6 screen center">
@@ -214,7 +214,7 @@
                     <div class="col-lg-4 col-md-8 col-xs-12">
                         <h3>Bruno Matry</h3>
                         <p class="lead">
-                            Fils de musiciens et petit-fils d'artisan peintre, Bruno est étudiant en informatique à l'INSA de Rennes. Il est fortement impliqué dans le monde associatif aussi bien dans le domaine de l'évènementiel (Rock'n Solex, InsaLan) que dans l'entreprenariat (Junior-Entreprise).</br>Il s'intéresse plus particulièrement aux technologies du web et est donc fortement impliqué dans ce projet.
+                            Fils de musiciens et petit-fils d'artisan peintre, Bruno est étudiant en informatique à l'INSA de Rennes. Il est fortement impliqué dans le monde associatif aussi bien dans le domaine de l'évènementiel (Rock'n Solex, InsaLan) que dans l'entreprenariat (Junior-Entreprise).</br>S'intéressant plus particulièrement aux technologies du web, il est donc fortement impliqué dans ce projet.
                         </p>
                     </div>
                 </div>

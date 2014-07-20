@@ -55,6 +55,10 @@
     .content-section {
         padding: 25px 0px;
     }
+    
+    #contact-us {
+        margin-top: 50px;
+    }
 }
 
 @media(max-width:992px) {

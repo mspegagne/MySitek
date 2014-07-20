@@ -212,17 +212,32 @@ span.round-tabs {
 
 /***** Spécifique nous contacter ******/
 
-#contact_us textarea { 
+#contact-us textarea { 
     resize: none;
 }
 
-#contact_us #submit {
+#contact-us #submit {
     font-size: 1.2em;
 }
 
-#contact_us #InputEmail {
+#contact-us #InputEmail {
     display: inline-block;
     margin: 0 0 0 0;
+}
+
+.contact-us {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(../img/bg3.jpg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+.contact-us h2 {
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.75);
+}
+
+.contact-us label {
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 1);
 }
 
 /*************** Bannière *************/

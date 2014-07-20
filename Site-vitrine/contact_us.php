@@ -10,11 +10,12 @@
         include_once "./share/nav.php";
         ?>
 
-        <section id="contact_us" class="content-section">
+        <section id="contact-us" class="contact-us content-section">
             <div class="container">
                 <div class="col-lg-offset-2 col-lg-8">
                     <div class="clearfix"></div>
                     <h2>Nous contacter</h2>
+                    
                     <?php
                     if (!empty($succeed)) {
                         switch ($succeed) {
@@ -62,23 +63,6 @@
                         </div>
                         <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info center-block">
                     </form>
-                </div>
-            </div>
-        </section>
-
-        <section id="banner" class="content-section">
-            <div class="banner">
-                <div class="clearfix"></div>
-                <div class="container">
-                    <div class="row">
-                        <!--<h3>Lancement prévu fin 2014. Vous souhaitez etre tenu au courant de l'avancement de notre projet ? Laissez-nous votre email !</h3>
-                        <form role="form" action="" method="post" >
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email">
-                            </div>
-                            <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-warning center-block">
-                        </form>-->
-                    </div>
                 </div>
             </div>
         </section>

@@ -18,10 +18,10 @@
                         <div class="col-lg-12 col-sm-12 intro-message"> 
                             <h1>Votre site web personnalisé en toute simplicité</h1>
                             <h3>Lancement prévu fin 2014 !</h3>
-                            <h3>Vous souhaitez etre tenu au courant de l'avancement de notre projet ? Laissez-nous votre email !</h3>
                             <?php if(!empty($_GET['succeed']) && $_GET['succeed'] == 1): ?>
-                            <div class="alert alert-success col-lg-offset-3 col-lg-6"><strong><span class="glyphicon glyphicon-send"></span>  Votre adresse mail a bien été enregistrée.</strong></div>
+                            <div class="alert alert-success col-lg-offset-4 col-lg-4" id="succeeded-form"><strong><span class="glyphicon glyphicon-send"></span>  Votre adresse mail a bien été enregistrée.</strong></div>
                             <?php else: ?>
+                            <h3>Vous souhaitez etre tenu au courant de l'avancement de notre projet ? Laissez-nous votre email !</h3>
                             <form role="form" action="index_email_post.php" method="post" >
                                 <div class="form-group col-lg-offset-3 col-lg-6">
                                     <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email">
@@ -29,9 +29,9 @@
                                 <div class="col-lg-1">
                                     <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-warning center-block">
                                 </div>
-                                <div class="clearfix"></div>
                             </form>
                             <?php endif; ?>
+                            <div class="clearfix"></div>
                             <span class="page-scroll">
                                 <a href="#presentation" class="btn btn-circle">
                                     <i class="fa fa-angle-double-down animated"></i>

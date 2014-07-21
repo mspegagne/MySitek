@@ -15,7 +15,6 @@
                 <div class="col-lg-offset-2 col-lg-8">
                     <div class="clearfix"></div>
                     <h2>Nous contacter</h2>
-                    
                     <?php
                     if (!empty($succeed)) {
                         switch ($succeed) {
@@ -60,7 +59,7 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-ok form-control-feedback"></i></span>
                             </div>
                         </div>
-                        <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info center-block">
+                        <input type="submit" name="submit" id="submit" value="Envoyer" class="btn btn-info center-block">
                     </form>
                 </div>
             </div>

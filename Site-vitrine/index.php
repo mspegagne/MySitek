@@ -18,20 +18,6 @@
                         <div class="col-lg-12 col-sm-12 intro-message"> 
                             <h1>Votre site web personnalisé en toute simplicité</h1>
                             <h3>Lancement prévu fin 2014 !</h3>
-                            <?php if(!empty($_GET['succeed']) && $_GET['succeed'] == 1): ?>
-                            <div class="alert alert-success col-lg-offset-4 col-lg-4" id="succeeded-form"><strong><span class="glyphicon glyphicon-send"></span>  Votre adresse mail a bien été enregistrée.</strong></div>
-                            <?php else: ?>
-                            <h3>Vous souhaitez etre tenu au courant de l'avancement de notre projet ? Laissez-nous votre email !</h3>
-                            <form role="form" action="index_email_post.php" method="post" >
-                                <div class="form-group col-lg-offset-3 col-lg-6">
-                                    <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email">
-                                </div>
-                                <div class="col-lg-1">
-                                    <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-warning center-block">
-                                </div>
-                            </form>
-                            <?php endif; ?>
-                            <div class="clearfix"></div>
                             <span class="page-scroll">
                                 <a href="#presentation" class="btn btn-circle">
                                     <i class="fa fa-angle-double-down animated"></i>
@@ -195,7 +181,7 @@
                     <div class="col-lg-2 col-md-4 col-xs-12">
                         <div class="row center">
                             <span class="round-tabs profile-picture">
-                                <img class="no-border" src="img/mathieu.png" alt="mathieu">
+                                <img class="no-border" src="img/mathieu.png" alt="mathieu" width="150" height="150">
                             </span>                            
                         </div>
                         <div class="row center">
@@ -216,7 +202,7 @@
                     <div class="col-lg-2 col-md-4 col-xs-12">
                         <div class="row center">
                             <span class="round-tabs profile-picture">
-                                <img class="no-border" src="img/bruno.png" alt="bruno">
+                                <img class="no-border" src="img/bruno.png" alt="bruno" width="150" height="150">
                             </span>
                         </div>
                         <div class="row center">
@@ -239,14 +225,22 @@
             <div class="banner">
                 <div class="clearfix"></div>
                 <div class="container">
-                    <div class="row">
-                        <!--<h3>Lancement prévu fin 2014. Vous souhaitez etre tenu au courant de l'avancement de notre projet ? Laissez-nous votre email !</h3>
-                        <form role="form" action="" method="post" >
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email">
-                            </div>
-                            <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-warning center-block">
-                        </form>-->
+                    <div class="row center">
+                        <h3>Lancement prévu fin 2014 !</h3>
+                        <?php if (!empty($_GET['succeed']) && $_GET['succeed'] == 1): ?>
+                            <div class="alert alert-success col-lg-offset-4 col-lg-4" id="succeeded-form"><strong><span class="glyphicon glyphicon-send"></span>  Votre adresse mail a bien été enregistrée.</strong></div>
+                        <?php else: ?>
+                            <h3>Vous souhaitez etre tenu au courant de l'avancement de notre projet ? Laissez-nous votre email !</h3>
+                            <form role="form" action="index_email_post.php" method="post" >
+                                <div class="form-group col-lg-offset-2 col-lg-6">
+                                    <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Entrez votre email" required >
+                                </div>
+                                <div class="col-lg-1">
+                                    <input type="submit" name="submit" id="submit" value="Valider" class="btn btn-warning center-block">
+                                </div>
+                            </form>
+                        <?php endif; ?>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>

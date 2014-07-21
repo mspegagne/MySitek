@@ -12,7 +12,5 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 
-    <link href="css/landing-page.css" rel="stylesheet" type="text/css">
-    <link href="css/responsive.css" rel="stylesheet" type="text/css">
-    <link href="css/animation-scroll-button.css" rel="stylesheet" type="text/css">
+    <link href="css/mysitek.min.css" rel="stylesheet" type="text/css">
 </head>

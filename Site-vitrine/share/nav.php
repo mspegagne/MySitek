@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img src="img/logo.png" height="50" alt="" style="margin-top: 10px;"/>
+            <img src="img/logo.png" width="250" height="62" alt="" style="margin-top: 10px;"/>
         </div>
 
         <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse page-scroll" style="margin-top: 10px;">

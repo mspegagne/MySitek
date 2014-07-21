@@ -20,6 +20,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 /* Parametres du site */
 
 $app['siteName'] = 'MySitek';
+$app['url'] = 'http://localhost/';
+$app['user'] = 'mathieu.sge@hotmail.fr'; //TODO : à charger à partir des parametres
 $app['debug'] = true;
 $app['selected'] = ''; //module en cours (pour affichage lien actif)
 
@@ -115,21 +117,65 @@ $app->get('/admin/', function() use ($app) {
     ));
 });
 
+$app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
+
+    require_once __DIR__ . '/../lib/payplug/lib/Payplug.php';
+
+    Payplug::setConfigFromFile(__DIR__ . '/../lib/payplug/parameters.json');
+
+    $ipn = 'http://api.mysitek.com/ipn.php?user=' . $app['user'] . '&amp;type=' . $type . '&amp;module=' . $file . '';
+    $install = $app['url'] . 'admin/install/' . $type . '/' . $file . '';
+
+    //TODO : Récupération de l'objet module et remplir à partir la variable prix ci dessous :
+    $prix = '0150';
+
+    if ($prix == 0) {
+        //TODO
+        //exectution de $ipn
+        //l'api sait à partir du nom du module que le prix est de 0
+        //Donc maj token               
+
+        return $app->redirect('/admin/install/' . $type . '/' . $file . '');
+    } else {
+
+
+        //TODO : Récupération des variables ci dessous à partir des parametres en db client :
+        $prenom = 'john';
+        $nom = 'doe';
+
+        $paymentUrl = PaymentUrl::generateUrl(array(
+                    'amount' => $prix,
+                    'currency' => 'EUR',
+                    'ipnUrl' => $ipn,
+                    'returnUrl' => $return,
+                    'email' => $app['user'],
+                    'firstName' => $prenom,
+                    'lastName' => $nom
+        ));
+        
+        header("Location: $paymentUrl");
+        exit();
+
+        return '';
+    }
+});
+
 //TODO: interface message -> modal dans admin.twig avec message et activation passés en parametres
 $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 
-    include_once __DIR__ . '/../lib/model/Install.php';
+    require_once __DIR__ . '/../lib/model/Install.php';
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
     ));
 
+    //TODO : checktoken pour confirmer paiement si ok alors install
     $error = Install::installation($file, $type, $app);
 
-    
-    /****** MAJ SUITE A INSTALLATION ******/
-    
+
+    /*     * **** MAJ SUITE A INSTALLATION ***** */
+
     /* Recuperation du template */
 
     $sql = "SELECT * FROM templates WHERE selected = 1";

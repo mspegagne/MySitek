@@ -18,19 +18,22 @@ $result['name'] = $_POST['InputName'];
 $result['email'] = $_POST['InputEmail'];
 $result['message'] = $_POST['InputMessage'];
 $result['test'] = (int) $_POST['InputReal'];
-$file = 'contact_info';
+//$file = 'contact_info';
 
 if ($result['test'] === 7) {
-    $handle = fopen($file, 'a');
+    //$handle = fopen($file, 'a');
     $date = date("d-m-Y-H:i:s");
-    fwrite($handle, "$date\n");
-
+    //fwrite($handle, "$date\n");
+    
+    $message = "$date\n";
     foreach ($result as $key => $element) {
         $element = substr(clearPost($element), 0, 2000);
-        fwrite($handle, "$key : $element\n");
+        $message .= "$key : $element\n";
+        //fwrite($handle, "$key : $element\n");
     }
-    fwrite($handle, "\n--------------------------------------\n");
-    fclose($handle);
+    mail("contact@mysitek.com", "[SiteVitrine-Contact] Nouveau message", $message);
+    //fwrite($handle, "\n--------------------------------------\n");
+    //fclose($handle);
     $succeed  = 1;
     include_once 'contact_us.php';
 } else {

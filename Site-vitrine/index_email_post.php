@@ -15,14 +15,15 @@ function clearPost($word) {
 }
 
 $email = substr(clearPost($_POST['InputEmail']), 0, 200);
-$file = 'contact_email';
+//$file = 'contact_email';
 
 $handle = fopen($file, 'a');
 $date = date("d-m-Y-H:i:s");
-fwrite($handle, "$date\n");
+//fwrite($handle, "$date\n");
 
-fwrite($handle, "Email : $email\n");
-fwrite($handle, "\n--------------------------------------\n");
-fclose($handle);
+//fwrite($handle, "Email : $email\n");
+//fwrite($handle, "\n--------------------------------------\n");
+//fclose($handle);
+mail("contact@mysitek.com", "[SiteVitrine-Email] Nouveau email enregistré", "$date\nEmail : $email\n");
     
 header('Location: /index.php?succeed=1');

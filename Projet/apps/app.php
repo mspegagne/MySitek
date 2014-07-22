@@ -123,7 +123,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
 
     Payplug::setConfigFromFile(__DIR__ . '/../lib/payplug/parameters.json');
 
-    $ipn = 'http://api.mysitek.com/ipn.php?user=' . $app['user'] . '&amp;type=' . $type . '&amp;module=' . $file . '';
+    $ipn = 'http://api.mysitek.com/payplug/ipn.php?user=' . $app['user'] . '&amp;type=' . $type . '&amp;module=' . $file . '';
     $install = $app['url'] . 'admin/install/' . $type . '/' . $file . '';
 
     //TODO : Récupération de l'objet module et remplir à partir la variable prix ci dessous :
@@ -147,7 +147,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
                     'amount' => $prix,
                     'currency' => 'EUR',
                     'ipnUrl' => $ipn,
-                    'returnUrl' => $return,
+                    'returnUrl' => $ipn,
                     'email' => $app['user'],
                     'firstName' => $prenom,
                     'lastName' => $nom

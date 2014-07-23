@@ -19,7 +19,7 @@ class Install {
 	* @brief Checks if all the ownCloud dependencies are installed
 	* @return string with error messages
 	*/ 
-	public function checkdependencies() {
+	public static function checkdependencies() {
 		$error='';
 		
 		// do we have PHP 5.3.2 or newer?
@@ -55,7 +55,7 @@ class Install {
 	* @brief Check the cURL version
 	* @return bool status of CURLOPT_CERTINFO implementation
 	*/ 
-	public function iscertinfoavailable(){
+	public static function iscertinfoavailable(){
 		$curlDetails =  curl_version();
 		return version_compare($curlDetails['version'], '7.19.1') != -1;
 	}

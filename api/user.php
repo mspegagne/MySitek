@@ -112,11 +112,23 @@ class User {
         return $list;
     }
 
+    //maj Token après installation d'un nouveau module
     public function updateToken($module, $type) {
 
         $token = $this->calculToken(array_push($this->getList(), array($module => $type)));
         $this->setToken($token);
         //TODO : enregistrer en bdd nvl valeurs
+    }
+
+    //Verification anti-piratage
+    public function checkToken($token) {
+
+        $tokenuser = $this->getToken();
+        if ($tokenuser == $token) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
     }
 
 }

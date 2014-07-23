@@ -9,8 +9,8 @@ $module = htmlspecialchars($_GET["module"]);
 $type = htmlspecialchars($_GET["type"]);
 $user = htmlspecialchars($_GET["tuser"]);
 
-//TODO : recuperation objet module à partir de l'api
-//TODO recuperation du prix du module
+//TODO #API : recuperation objet module à partir de l'api
+//TODO #API :recuperation du prix du module
 $prixmodule = '';
 
 $token = new User($user);

@@ -126,12 +126,12 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
     $ipn = 'http://api.mysitek.com/payplug/ipn.php?user=' . $app['user'] . '&amp;type=' . $type . '&amp;module=' . $file . '';
     $install = $app['url'] . 'admin/install/' . $type . '/' . $file . '';
 
-    //TODO : Récupération de l'objet module et remplir à partir la variable prix ci dessous :
+    //TODO #API : Récupération de l'objet module et remplir à partir la variable prix ci dessous :
     $prix = '0150';
 
     if ($prix == 0) {
         //TODO
-        //exectution de $ipn
+        //execution de $ipn
         //l'api sait à partir du nom du module que le prix est de 0
         //Donc maj token               
 
@@ -170,7 +170,7 @@ $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
     ));
 
-    //TODO : checktoken pour confirmer paiement si ok alors install
+    //TODO : checkToken pour confirmer paiement si ok alors install
     $error = Install::installation($file, $type, $app);
 
 

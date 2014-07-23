@@ -1,6 +1,6 @@
 <?php
 
-//TODO : inclure classe Token
+require_once __DIR__ . '/../token.php';
 
 require_once __DIR__ . '/lib/Payplug.php';
 Payplug::setConfigFromFile("parameters.json");
@@ -13,9 +13,11 @@ $user = htmlspecialchars($_GET["tuser"]);
 //TODO recuperation du prix du module
 $prixmodule = '';
 
+$token = new Token($user);
+
 if ($prixmodule == 0) {
 
-    //TODO : majToken($user, $module)
+    $token->update($module, $type);
 } else {
 
     try {
@@ -27,7 +29,7 @@ if ($prixmodule == 0) {
         //la il se fait baiser il paie mais ca marche pas :P
         if ($prixmodule == $prix) {
 
-            //TODO : majToken($user, $module)
+            $token->update($module, $type);
         }
     } catch (InvalidSignatureException $e) {
         header("Location: http://www.mysitek.com/");

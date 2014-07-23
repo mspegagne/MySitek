@@ -171,8 +171,14 @@ $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
     ));
 
     //TODO : checkToken pour confirmer paiement si ok alors install
+    //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
+    //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
+    //peut également servir pour une future periode de test 
+    
     $error = Install::installation($file, $type, $app);
 
+    //TODO : redirection suite à l'instalation vers admin pour eviter un refresh  (inoffensif mais chiant)
+    //evite egalement la maj ci dessous, pour le moment ca pour afficher $error en attendant modal
 
     /*     * **** MAJ SUITE A INSTALLATION ***** */
 

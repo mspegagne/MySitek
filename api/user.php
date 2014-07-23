@@ -1,17 +1,19 @@
 <?php
 
-class Token {
+class User {
 
     private $token;
-    private $key;
+    private $key;    
+    private $mail;
 
     public function __construct($mail) {
 
-        //TODO recup key et token actuel en bdd
+        //TODO recup key et token actuel en bdd where $mail
         $token = '';
         $key = '';
         $this->token = $token;
-        $this->key = $key;
+        $this->key = $key;        
+        $this->mail = $mail;
     }
 
     private function getKey() {
@@ -23,15 +25,25 @@ class Token {
 
         return $this->token;
     }
+    
+    private function getMail() {
+
+        return $this->mail;
+    }
 
     private function setKey($value) {
 
         $this->key = $value;
     }
 
-    public function setToken($value) {
+    private function setToken($value) {
 
         $this->token = $value;
+    }
+    
+    private function setMail($value) {
+
+        $this->mail = $value;
     }
 
     // -----------------------------------------
@@ -85,14 +97,14 @@ class Token {
         return $newstr;
     }
 
-    private function calcul($list) {
+    public function calculToken($list) {
 
         $key = $this->getKey();
         $token = crypter($key, $list);
         return $token;
     }
 
-    private function getList() {
+    public function getList() {
 
         $token = $this->getToken();
         $key = $this->getKey();
@@ -100,9 +112,9 @@ class Token {
         return $list;
     }
 
-    private function update($module, $type) {
+    public function updateToken($module, $type) {
 
-        $token = array_push($this->getList(), array($module => $type));
+        $token = $this->calculToken(array_push($this->getList(), array($module => $type)));
         $this->setToken($token);
         //TODO : enregistrer en bdd nvl valeurs
     }

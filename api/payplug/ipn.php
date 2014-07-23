@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../token.php';
+require_once __DIR__ . '/../user.php';
 
 require_once __DIR__ . '/lib/Payplug.php';
 Payplug::setConfigFromFile("parameters.json");
@@ -13,11 +13,11 @@ $user = htmlspecialchars($_GET["tuser"]);
 //TODO recuperation du prix du module
 $prixmodule = '';
 
-$token = new Token($user);
+$token = new User($user);
 
 if ($prixmodule == 0) {
 
-    $token->update($module, $type);
+    $token->updateToken($module, $type);
 } else {
 
     try {

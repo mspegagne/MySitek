@@ -3,7 +3,7 @@
 class User {
 
     private $token;
-    private $key;    
+    private $key;
     private $mail;
 
     public function __construct($mail) {
@@ -12,7 +12,7 @@ class User {
         $token = '';
         $key = '';
         $this->token = $token;
-        $this->key = $key;        
+        $this->key = $key;
         $this->mail = $mail;
     }
 
@@ -25,7 +25,7 @@ class User {
 
         return $this->token;
     }
-    
+
     private function getMail() {
 
         return $this->mail;
@@ -40,7 +40,7 @@ class User {
 
         $this->token = $value;
     }
-    
+
     private function setMail($value) {
 
         $this->mail = $value;

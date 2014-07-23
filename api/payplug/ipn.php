@@ -29,7 +29,7 @@ if ($prixmodule == 0) {
         //la il se fait baiser il paie mais ca marche pas :P
         if ($prixmodule == $prix) {
 
-            $token->update($module, $type);
+            $token->updateToken($module, $type);
         }
     } catch (InvalidSignatureException $e) {
         header("Location: http://www.mysitek.com/");

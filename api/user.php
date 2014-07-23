@@ -15,6 +15,13 @@ class User {
         $this->key = $key;
         $this->mail = $mail;
     }
+    
+     public static function newUser($mail, $token) {
+
+        $key = uniqid(rand());
+        //TODO save tout ca en bdd
+    }  
+    
 
     private function getKey() {
 

@@ -89,9 +89,18 @@
         <footer>
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 text-center">
+                    <div class="col-lg-4 col-lg-offset-4 text-center">
                         <p><a href="/admin/">Admin</a> Copyright &copy; MySitek 2014</p>
                     </div>
+                    {% if app.reseaux is defined %}
+                        <div class="col-lg-4 text-center">
+                            {% for key, reseau in app.reseaux %}
+                                <a href="{{ reseau }}" rel="nofollow" target="_blank">
+                                    <span class="round-tabs" id="round-{{ key }}"><i class="fa fa-{{ key }}"></i></span>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </footer>

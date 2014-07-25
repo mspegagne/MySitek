@@ -1,7 +1,5 @@
 <?php
 
-
-
 // init
 ob_start(); 
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
@@ -9,15 +7,15 @@ ini_set('display_errors', 1);
 @set_time_limit(0);
  
 /**
- * @brief Setup class with a few helper functions
+ * @brief Classe d'installation
  *
  */ 
 class Install {
 
  
 	/**
-	* @brief Checks if all the ownCloud dependencies are installed
-	* @return string with error messages
+	* @brief Verifie la compatibilité des versions
+	* @return Message d'erreur
 	*/ 
 	public static function checkdependencies() {
 		$error='';
@@ -52,7 +50,7 @@ class Install {
 
 
 	/**
-	* @brief Check the cURL version
+	* @brief Verifie la version de cURL
 	* @return bool status of CURLOPT_CERTINFO implementation
 	*/ 
 	public static function iscertinfoavailable(){
@@ -63,10 +61,13 @@ class Install {
 
  
 	/**
-	* @brief Performs the ownCloud install. 
-	* @return string with error messages
+	* @brief Execute l'installation 
+        * @param String $file nom du fichier à installer
+        * @param String $type type du fichier (templates ou modules) 
+        * @param String $type type du fichier (templates ou modules)
+	* @return Message d'erreur
 	*/ 
-       public static function installation($file, $type, $app) {	
+       public static function installation($file, $type) {	
 		$error='';
 		
 		// downloading latest release
@@ -98,10 +99,10 @@ class Install {
 
 	 
 	/**
-	* @brief Downloads a file and stores it in the local filesystem
+	* @brief Telecharge le fichier zip et le stocke à l'adresse donnée
 	* @param url $url
 	* @param path $path	
-	* @return string with error messages
+	* @return Message d'erreur
 	*/ 
 	public static function getfile($url,$path) {
 		$error='';
@@ -131,7 +132,8 @@ class Install {
 	
 
 	/**
-	* @brief Shows the check dependencies screen
+	* @brief Affiche l'etat du systeme
+	* @return String $txt
 	*/ 
 	public static function showcheckdependencies(){
 		$error=Install::checkdependencies();
@@ -145,10 +147,11 @@ class Install {
 
 
 	/**
-	* @brief Shows the install screen
+	* @brief Affiche l'etat de l'installation
+	* @return String $txt
 	*/ 
-	public static function showinstall($file, $type, $app){
-		$error=Install::installation($file, $type, $app);
+	public static function showinstall($file, $type){
+		$error=Install::installation($file, $type);
 	
 		if($error=='') {
 			$txt='Le fichier est maintenant installé';

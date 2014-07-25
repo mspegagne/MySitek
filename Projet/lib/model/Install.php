@@ -65,9 +65,10 @@ class Install {
         * @param String $file nom du fichier à installer
         * @param String $type type du fichier (templates ou modules) 
         * @param String $type type du fichier (templates ou modules)
+        * @param App $app pour setup.php 
 	* @return Message d'erreur
 	*/ 
-       public static function installation($file, $type) {	
+       public static function installation($file, $type, $app) {	
 		$error='';
 		
 		// downloading latest release
@@ -147,11 +148,11 @@ class Install {
 
 
 	/**
-	* @brief Affiche l'etat de l'installation
+	* @brief Lance et affiche l'etat de l'installation
 	* @return String $txt
 	*/ 
-	public static function showinstall($file, $type){
-		$error=Install::installation($file, $type);
+	public static function showinstall($file, $type, $app){
+		$error=Install::installation($file, $type, $app);
 	
 		if($error=='') {
 			$txt='Le fichier est maintenant installé';

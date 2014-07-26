@@ -3,26 +3,27 @@
 namespace Service;
 
 use Validator\ValidatorInterface;
+use Repository\RepositoryInterface;
 
 abstract class AbstractService {
     
     /**
      * Données à valider
-     * 
      * @var array
      */
     protected $data;
     
     /**
      * Validateur associé
-     * 
      * @var ValidatorInterface 
      */
     protected $validator;
-
-    public function __construct(array $data) {
-        $this->data = $data;
-    }
+    
+    /**
+     * Repository associé
+     * @var RepositoryInterface 
+     */
+    protected $repository;
     
     protected function validateData() {
         if(!$this->validator->validate()) {
@@ -30,7 +31,5 @@ abstract class AbstractService {
         }
     }
     
-    public function getInfos() {
-        $this->validateData();
-    }
+    public function getInfosInJson();
 }

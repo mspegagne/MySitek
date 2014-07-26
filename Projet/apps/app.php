@@ -61,7 +61,8 @@ $app['modules_admin'] = $app['db']->fetchAll($sql);
 $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
-include_once __DIR__ . '/../lib/model/UserProvider.php';
+require_once __DIR__ . '/../lib/model/UserProvider.php';
+
 /* FIREWALL */
 $app['security.firewalls'] = array(
     'user' => array(
@@ -164,7 +165,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
 $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 
     require_once __DIR__ . '/../lib/model/Install.php';
-
+    
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')

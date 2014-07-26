@@ -130,7 +130,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
     $prix = '0150';
 
     if ($prix == 0) {
-        //TODO
+        //TODO #TOKEN
         //execution de $ipn
         //l'api sait à partir du nom du module que le prix est de 0
         //Donc maj token               
@@ -160,7 +160,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
     }
 });
 
-//TODO: interface message -> modal dans admin.twig avec message et activation passés en parametres
+//TODO : interface message -> modal dans admin.twig avec message et activation passés en parametres
 $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 
     require_once __DIR__ . '/../lib/model/Install.php';
@@ -170,14 +170,14 @@ $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
     ));
 
-    //TODO : checkToken pour confirmer paiement si ok alors install
+    //TODO #TOKEN : checkToken pour confirmer paiement si ok alors install
     //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
     //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
     //peut également servir pour une future periode de test 
     
     $error = Install::installation($file, $type, $app);
 
-    //TODO : redirection suite à l'instalation vers admin pour eviter un refresh  (inoffensif mais chiant)
+    //TODO : redirection suite à l'instalation vers admin pour eviter un refresh de l'url (inoffensif mais chiant)
     //evite egalement la maj ci dessous, pour le moment ca pour afficher $error en attendant modal
 
     /*     * **** MAJ SUITE A INSTALLATION ***** */

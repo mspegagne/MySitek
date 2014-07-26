@@ -118,6 +118,26 @@ $app->get('/admin/', function() use ($app) {
     ));
 });
 
+$app->get('/admin/{notif}', function($notif) use ($app) {
+
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
+        'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
+    ));
+
+    switch ($notif) {
+        case 'install':
+            return $app['twig']->render('admin.twig', array(
+                        'hello' => 'Hello world Admin !',
+                        'notif' => 'Hello world !'
+            ));
+            break;
+        default :
+            return $app->redirect('/admin/');
+        
+    }
+});
+
 $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
 
     require_once __DIR__ . '/../lib/payplug/lib/Payplug.php';
@@ -153,7 +173,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
                     'firstName' => $prenom,
                     'lastName' => $nom
         ));
-        
+
         header("Location: $paymentUrl");
         exit();
 
@@ -165,7 +185,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
 $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 
     require_once __DIR__ . '/../lib/model/Install.php';
-    
+
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
@@ -175,7 +195,7 @@ $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
     //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
     //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
     //peut également servir pour une future periode de test 
-    
+
     $error = Install::installation($file, $type, $app);
 
     //TODO : redirection suite à l'instalation vers admin pour eviter un refresh de l'url (inoffensif mais chiant)

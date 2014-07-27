@@ -3,8 +3,10 @@
 namespace Front;
 
 use Front\Helper\OneModeHelper;
+use Front\Helper\ManyModeReceiver;
+use Service\AbstractService;
 
-abstract class Receiver {
+class Receiver {
 
     /**
      * Methode permettant de receptionner un element Json et de le rediriger
@@ -18,9 +20,21 @@ abstract class Receiver {
      */
     public static function receive($jsonElement) {
 
-        $receivedArray = json_decode($jsonElement, true);
+        $receivedData = json_decode($jsonElement, true);
 
-        $mode = $receivedArray['mode'];
+        $service = $this->getServiceFromData($receivedData);
+        
+        // TODO $service
+    }
+    
+    /**
+     * @param array $receivedData Les données à traiter
+     * @return AbstractService Le service adapté pour traiter la chaine Json
+     * 
+     * @throws ReceptionError
+     */
+    protected function getServiceFromData(array $receivedData) {
+        $mode = $receivedData['mode'];
 
         if (empty($mode)) {
             throw new ReceptionException("Mode non trouvé dans l'élément Json");
@@ -28,13 +42,11 @@ abstract class Receiver {
 
         switch ($mode) {
             case "one":
-                OneModeHelper::translate($receivedArray);
-                break;
+                return OneModeHelper::translate($receivedData);
             case "many":
-                break;
+                return ManyModeReceiver::translate($receivedData);
             default :
                 throw new ReceptionException("Mode inconnu pour l'élément Json");
         }
     }
-
 }

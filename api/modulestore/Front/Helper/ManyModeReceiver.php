@@ -4,12 +4,12 @@ namespace Front\Helper;
 
 use Front\ReceptionException;
 use Service\AbstractService;
-use Service\OneMixedService;
-use Service\OneModuleService;
-use Service\OneThemeService;
+use Service\ManyMixedService;
+use Service\ManyModuleService;
+use Service\ManyThemeService;
 
-abstract class OneModeHelper {
-
+abstract class ManyModeReceiver {
+    
     /**
      * @param array $receivedData
      * @return AbstractService Le service associé aux données reçues
@@ -25,11 +25,11 @@ abstract class OneModeHelper {
 
         switch ($type) {
             case "module":
-                return new OneModuleService($receivedData);
+                return new ManyModuleService($receivedData);
             case "theme":
-                return new OneThemeService($receivedData);
+                return new ManyThemeService($receivedData);
             case "mixed":
-                return new OneMixedService($receivedData);
+                return new ManyMixedService($receivedData);
             default :
                 throw new ReceptionException("Type inconnu pour l'élément Json");
         }

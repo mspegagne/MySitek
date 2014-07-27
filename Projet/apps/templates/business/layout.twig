@@ -28,10 +28,7 @@
 
         <!-- CSS  -->
         <link href="/apps/templates/business/css/business.css" rel="stylesheet">
-
-        <link rel="stylesheet" type="text/css" href="/lib/NotificationStyles/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/lib/NotificationStyles/css/ns-default.css" />
-        <link rel="stylesheet" type="text/css" href="/lib/NotificationStyles/css/ns-style-growl.css" />
+        <link rel="stylesheet" type="text/css" href="/lib/NotificationStyles/css/notif.css" />
 
         <!--[if IE]>
         <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -112,9 +109,6 @@
             </div>
         </footer>
 
-
-
-
         <!-- Core JavaScript Files -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
@@ -122,48 +116,49 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="/apps/templates/default/js/template.js"></script>
+        
+        {% if notif is defined %}
+            <script src="/lib/NotificationStyles/js/modernizr.custom.js"></script>
+            <script src="/lib/NotificationStyles/js/classie.js"></script>
+            <script src="/lib/NotificationStyles/js/notificationFx.js"></script>
 
-        <script src="/lib/NotificationStyles/js/modernizr.custom.js"></script>
-        <script src="/lib/NotificationStyles/js/classie.js"></script>
-        <script src="/lib/NotificationStyles/js/notificationFx.js"></script>
+            <script>
+                // create the notification
+                var notification = new NotificationFx({
+                    // element to which the notification will be appended
+                    // defaults to the document.body
+                    wrapper: document.body,
+                    // the message
+                    message: '<p>{{ notif }}</p>',
+                    // layout type: growl|attached|bar|other
+                    layout: 'growl',
+                    effect: 'scale',
+                    // notice, warning, error, success
+                    // will add class ns-type-warning, ns-type-error or ns-type-success
+                    type: 'notice',
+                    // if the user doesn´t close the notification then we remove it 
+                    // after the following time
+                    {% if time is defined %}
+                        ttl: {{ time }}, 
+                    {% else %}
+                        ttl: 4500,
+                    {% endif %}
+                    // callbacks
+                    onClose: function() {
+                        return false;
+                    },
+                    onOpen: function() {
+                        return false;
+                    }
 
-        <script>
-            // create the notification
-            var notification = new NotificationFx({
-                // element to which the notification will be appended
-                // defaults to the document.body
-                wrapper: document.body,
-                // the message
-                message: '<p>Hello World</p>',
-                // layout type: growl|attached|bar|other
-                layout: 'growl',
-                // effects for the specified layout:
-                // for growl layout: scale|slide|genie|jelly
-                // for attached layout: flip|bouncyflip
-                // for other layout: boxspinner|cornerexpand|loadingcircle|thumbslider
-                // ...
-                effect: 'scale',
-                // notice, warning, error, success
-                // will add class ns-type-warning, ns-type-error or ns-type-success
-                type: 'error',
-                // if the user doesn´t close the notification then we remove it 
-                // after the following time
-                ttl: 4500,
-                // callbacks
-                onClose: function() {
-                    return false;
-                },
-                onOpen: function() {
-                    return false;
-                }
+                });
 
-            });
+                // show the notification
+                notification.show();
 
-// show the notification
-            notification.show();
-
-        </script>
-
+            </script>
+        {% endif %}
+        
         <!-- js à rajouter au template   -->
         {% block js %}
         {% endblock %}

@@ -114,7 +114,9 @@ $app->get('/admin/', function() use ($app) {
     ));
 
     return $app['twig']->render('admin.twig', array(
-                'hello' => 'Hello world Admin !'
+                'hello' => 'Hello world Admin !',
+                'notif' => 'Hello world !',
+                'time' => '5000'
     ));
 });
 

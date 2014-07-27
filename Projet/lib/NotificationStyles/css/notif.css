@@ -67,7 +67,7 @@
 
 .ns-close:hover::before,
 .ns-close:hover::after {
-	background: #fff;
+	background: black;
 }
 
 .ns-close::before {
@@ -104,28 +104,10 @@
 /* Scale */
 .ns-effect-scale {
 
-    background-color: rgba(255, 255, 255, 0.9);
-    box-shadow: 0 20px 10px -15px rgba(0,0,0,0.15);
+    background-color: rgba(255,255,255, 0.9);
+    box-shadow: 0 7px 6px rgba(0,0,0,0.2), 2px 4px 6px rgba(0,0,0,0.5);
 }
 
-.ns-effect-scale a {
-    color: black;
-}
-
-.ns-effect-scale a:hover,
-.ns-effect-scale a:focus {
-    color: #fff;
-}
-
-.ns-effect-scale .ns-close::before,
-.ns-effect-scale .ns-close::after {
-    background: black;
-}
-
-.ns-effect-scale .ns-close:hover::before,
-.ns-effect-scale .ns-close:hover::after {
-    background: #fff;
-}
 
 .ns-effect-scale.ns-show,
 .ns-effect-scale.ns-hide {

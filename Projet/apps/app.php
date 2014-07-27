@@ -5,6 +5,8 @@ $app = new Silex\Application();
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Doctrine\Common\Persistence\ObjectManager;
+
 
 /* Activation de doctrine */
 
@@ -15,7 +17,6 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
-use Doctrine\Common\Persistence\ObjectManager;
 
 /* Parametres du site */
 
@@ -75,6 +76,8 @@ $app['security.firewalls'] = array(
     ),
 );
 
+        
+        
 /* Login */
 
 $app->register(new Silex\Provider\SessionServiceProvider());
@@ -97,8 +100,6 @@ $app->get('/login', function(Request $request) use ($app) {
 
 
 
-
-
 /* Routage */
 
 $app->get('/', function() use ($app) {
@@ -115,12 +116,10 @@ $app->get('/admin/', function() use ($app) {
 
     return $app['twig']->render('admin.twig', array(
                 'hello' => 'Hello world Admin !',
-                'notif' => 'Hello world !',
-                'time' => '5000'
     ));
 });
 
-$app->get('/admin/{notif}', function($notif) use ($app) {
+$app->get('/admin/notif/{notif}', function($notif) use ($app) {
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
@@ -128,15 +127,22 @@ $app->get('/admin/{notif}', function($notif) use ($app) {
     ));
 
     switch ($notif) {
-        case 'install':
+        case 'installok':
             return $app['twig']->render('admin.twig', array(
                         'hello' => 'Hello world Admin !',
-                        'notif' => 'Hello world !'
+                        'notif' => 'Le fichier est maintenant installé', //notif peut contenir du html
+                        'time' => '5000'
+            ));
+            break;
+        case 'installnok':
+            return $app['twig']->render('admin.twig', array(
+                        'hello' => 'Hello world Admin !',
+                        'notif' => 'Il y a une erreur lors de l\'installation',
+                        'time' => '5000'
             ));
             break;
         default :
             return $app->redirect('/admin/');
-        
     }
 });
 
@@ -183,7 +189,7 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
     }
 });
 
-//TODO : interface message -> modal dans admin.twig avec message et activation passés en parametres
+
 $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 
     require_once __DIR__ . '/../lib/model/Install.php';
@@ -200,45 +206,11 @@ $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 
     $error = Install::installation($file, $type, $app);
 
-    //TODO : redirection suite à l'instalation vers admin pour eviter un refresh de l'url (inoffensif mais chiant)
-    //evite egalement la maj ci dessous, pour le moment ca pour afficher $error en attendant modal
-
-    /*     * **** MAJ SUITE A INSTALLATION ***** */
-
-    /* Recuperation du template */
-
-    $sql = "SELECT * FROM templates WHERE selected = 1";
-    $retour = $app['db']->fetchAssoc($sql);
-    $app['template'] = $retour['name'];
-
-    /* Recuperation du module index */
-
-    $sql = "SELECT * FROM modules WHERE accueil = 1";
-    $retour = $app['db']->fetchAssoc($sql);
-    $app['index'] = $retour['lien'];
-
-    /* Recuperation des modules */
-
-    //front à 1 signifie que le module à une partie publique
-    $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1";
-    $app['modules_front'] = $app['db']->fetchAll($sql);
-
-    //front à 0 signifie module back
-    $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0";
-    $app['modules_back'] = $app['db']->fetchAll($sql);
-
-    //front à -1 signifie module uniquement admin
-    $sql = "SELECT * FROM modules WHERE selected = 1 AND front = -1";
-    $app['modules_admin'] = $app['db']->fetchAll($sql);
 
     if ($error == '') {
-        return $app['twig']->render('admin.twig', array(
-                    'hello' => 'Le fichier est maintenant installé'
-        ));
+        return $app->redirect('/admin/notif/installok');
     } else {
-        return $app['twig']->render('admin.twig', array(
-                    'hello' => $error
-        ));
+        return $app->redirect('/admin/notif/installnok');
     }
 });
 

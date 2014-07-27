@@ -123,13 +123,14 @@
             <script src="/lib/NotificationStyles/js/notificationFx.js"></script>
 
             <script>
+                
                 // create the notification
                 var notification = new NotificationFx({
                     // element to which the notification will be appended
                     // defaults to the document.body
                     wrapper: document.body,
                     // the message
-                    message: '<p>{{ notif }}</p>',
+                    message: '<p>{{ notif | raw }}</p>',
                     // layout type: growl|attached|bar|other
                     layout: 'growl',
                     effect: 'scale',

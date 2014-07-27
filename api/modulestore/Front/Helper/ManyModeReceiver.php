@@ -30,8 +30,6 @@ abstract class ManyModeReceiver {
                 return new ManyModuleService($receivedData);
             case "theme":
                 return new ManyThemeService($receivedData);
-            case "mixed":
-                return new ManyMixedService($receivedData);
             default :
                 throw new ReceptionException("Type inconnu pour l'élément Json");
         }

@@ -30,8 +30,6 @@ abstract class OneModeHelper {
                 return new OneModuleService($receivedData);
             case "theme":
                 return new OneThemeService($receivedData);
-            case "mixed":
-                return new OneMixedService($receivedData);
             default :
                 throw new ReceptionException("Type inconnu pour l'élément Json");
         }

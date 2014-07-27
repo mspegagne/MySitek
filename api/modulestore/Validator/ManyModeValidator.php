@@ -14,7 +14,8 @@ class ManyModeValidator implements ValidatorInterface {
         'popular',
         'alphabetical',
         'most-valued',
-        'most-downloaded'
+        'most-downloaded',
+        'tiny'
     );
     
     private $validValuesForSortOption = array(

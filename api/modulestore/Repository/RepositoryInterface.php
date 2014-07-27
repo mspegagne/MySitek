@@ -5,4 +5,6 @@ namespace Repository;
 interface RepositoryInterface {
     
     public function getElementByName($name);
+    
+    public function getTinyElements();
 }

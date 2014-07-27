@@ -11,6 +11,8 @@ use Service\ManyThemeService;
 abstract class ManyModeReceiver {
     
     /**
+     * Methode permettant de retourner un service adapté en fonction des données
+     * 
      * @param array $receivedData
      * @return AbstractService Le service associé aux données reçues
      * @throws ReceptionException

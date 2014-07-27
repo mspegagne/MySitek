@@ -21,10 +21,13 @@ class Receiver {
     public static function receive($jsonElement) {
 
         $receivedData = json_decode($jsonElement, true);
-
         $service = $this->getServiceFromData($receivedData);
+        $json = $service->getInfosInJson();
         
-        // TODO $service
+        /**
+         * @todo Renvoyer la chaîne Json
+         * @todo Intercepter les erreurs et les gérer
+         */
     }
     
     /**

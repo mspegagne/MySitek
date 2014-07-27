@@ -12,8 +12,9 @@ class ModuleRepository implements RepositoryInterface {
     protected $modules;
     
     public function getElementByName($name) {
-        // vérifier si le nom est valide
+        /**
+         * @todo vérifier si le nom est valide
+         */
         return $this->modules[$name];
-        // Recupérer des élements similaires ?
     }
 }

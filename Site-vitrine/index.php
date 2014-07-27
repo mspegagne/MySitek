@@ -181,7 +181,7 @@
                     <div class="col-lg-2 col-md-4 col-xs-12">
                         <div class="row center">
                             <span class="round-tabs profile-picture">
-                                <img class="no-border" src="img/mathieu.png" alt="mathieu" width="150" height="150">
+                                <img class="no-border" src="img/mathieu.png" alt="mathieu">
                             </span>                            
                         </div>
                         <div class="row center">
@@ -202,7 +202,7 @@
                     <div class="col-lg-2 col-md-4 col-xs-12">
                         <div class="row center">
                             <span class="round-tabs profile-picture">
-                                <img class="no-border" src="img/bruno.png" alt="bruno" width="150" height="150">
+                                <img class="no-border" src="img/bruno.png" alt="bruno">
                             </span>
                         </div>
                         <div class="row center">

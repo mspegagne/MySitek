@@ -1,11 +1,11 @@
 <?php
 
 //changer le nom du module
-$modules = $app['controllers_factory'];
+$store = $app['controllers_factory'];
 
 /* Routage du module */
 
-$modules->get('/', function() use ($app) {
+$store->get('/', function() use ($app) {
 
     /* Activation de twig avec les templates du module */
 
@@ -23,4 +23,4 @@ $modules->get('/', function() use ($app) {
 });
 
 //changer le nom du module
-$app->mount('/admin/modules', $modules);
+$app->mount('/admin/store', $store);

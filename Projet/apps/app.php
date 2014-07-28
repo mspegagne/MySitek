@@ -133,14 +133,12 @@ $app->get('/admin/notif/{notif}', function($notif) use ($app) {
                         'notif' => 'Le fichier est maintenant installé', //notif peut contenir du html
                         'time' => '5000'
             ));
-            break;
         case 'installnok':
             return $app['twig']->render('admin.twig', array(
                         'hello' => 'Hello world Admin !',
-                        'notif' => 'Il y a une erreur lors de l\'installation',
+                        'notif' => 'Erreur lors de l\\\'installation...',//Il faut mettre trois barres pour escape
                         'time' => '5000'
             ));
-            break;
         default :
             return $app->redirect('/admin/');
     }

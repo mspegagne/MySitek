@@ -44,15 +44,15 @@ $app['index'] = $retour['lien'];
 /* Recuperation des modules */
 
 //front à 1 signifie que le module à une partie publique
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1";
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1 ORDER BY id ASC";
 $app['modules_front'] = $app['db']->fetchAll($sql);
 
 //front à 0 signifie module back
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0";
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0 ORDER BY id ASC";
 $app['modules_back'] = $app['db']->fetchAll($sql);
 
 //front à -1 signifie module uniquement admin
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = -1";
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = -1 ORDER BY id ASC";
 $app['modules_admin'] = $app['db']->fetchAll($sql);
 
 

@@ -1,4 +1,4 @@
-.custab{
+.custab {
     border: 1px solid #ccc;
     padding: 5px;
     margin: 5% 0;
@@ -6,6 +6,20 @@
     transition: 0.5s;
 }
 
-.table-striped{
+.table-striped {
     background-color: white;
+}
+
+body.dragging, body.dragging * {
+    cursor: move !important;
+}
+
+.dragged {
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000;
+}
+
+i.drag {
+    cursor: pointer;
 }

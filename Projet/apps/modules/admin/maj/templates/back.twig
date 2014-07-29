@@ -9,7 +9,8 @@
 {% block content %}
     
     <div class="row col-md-12  custyle">
-        <table class="table table-striped custab">
+        <table class="table table-striped sorted_table custab">
+     
         <thead>
         <a href="#" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Tout mettre à jour</a>
             <tr>
@@ -19,19 +20,35 @@
                 <th class="text-center">Action</th>
             </tr>
         </thead>
+        <tbody>
         
                 {% for item in app.modules %}
                 <tr>
-                    <td>{{ item.id }}</td>
+                    <td><i class="drag fa fa-bars"></i></td>
                     <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
                     <td>{{ item.version }}</td>
                     <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                 </tr>
                 {% endfor %}
-         
+        </tbody>
         </table>
     </div>
 {% endblock %}
 
 {% block js %}
+    
+    <script src="/apps/modules/admin/maj/lib/jquery-sortable-min.js"></script>
+    <script>
+        
+    // Sortable rows
+    $('.sorted_table').sortable({
+      containerSelector: 'table',
+      itemPath: '> tbody',
+      itemSelector: 'tr',
+      handle: "i.drag",
+      placeholder: '<tr class="placeholder"/>',   
+    })
+    
+    
+    </script>
 {% endblock %}

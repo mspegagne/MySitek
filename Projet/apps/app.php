@@ -35,9 +35,9 @@ $app['template'] = $retour['name'];
 
 /* Recuperation du module index */
 
-$sql = "SELECT * FROM modules WHERE accueil = 1";
+$sql = "SELECT * FROM param WHERE ref = 'index'";
 $retour = $app['db']->fetchAssoc($sql);
-$app['index'] = $retour['lien'];
+$app['index'] = $retour['value'];
 
 
 
@@ -54,6 +54,14 @@ $app['modules_back'] = $app['db']->fetchAll($sql);
 //front à -1 signifie module uniquement admin
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = -1 ORDER BY id ASC";
 $app['modules_admin'] = $app['db']->fetchAll($sql);
+
+//front à 2 signifie module param
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 2 ORDER BY id ASC";
+$app['modules_param'] = $app['db']->fetchAll($sql);
+
+//liste modules
+$sql = "SELECT * FROM modules WHERE front != -1 ORDER BY front ASC";
+$app['modules'] = $app['db']->fetchAll($sql);
 
 
 

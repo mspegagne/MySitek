@@ -4,4 +4,8 @@
     margin: 5% 0;
     box-shadow: 3px 3px 2px #ccc;
     transition: 0.5s;
-    }
+}
+
+.table-striped{
+    background-color: white;
+}

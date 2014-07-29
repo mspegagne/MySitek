@@ -19,5 +19,10 @@ $maj->get('/', function() use ($app) {
     return $app['twig']->render('back.twig', array());
 });
 
+$maj->post('/rang', function (Request $request) use ($app) {
+  $message = $request->get('photo');
+    return new Response($message, 201);
+
+});
 //changer le nom du module
 $app->mount('/admin/maj', $maj);

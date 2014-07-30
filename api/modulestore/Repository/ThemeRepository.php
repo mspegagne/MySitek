@@ -2,25 +2,7 @@
 
 namespace Repository;
 
-class ThemeRepository implements RepositoryInterface {
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getElementByName($name) {
-        /**
-         * @todo
-         */
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getElementByNames(array $names) {
-        /**
-         * @todo
-         */
-    }
+class ThemeRepository extends AbstractRepository {
 
     /**
      * {@inheritdoc}

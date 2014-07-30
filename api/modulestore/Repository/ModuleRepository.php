@@ -2,34 +2,8 @@
 
 namespace Repository;
 
-use Entity\ModuleEntity;
-
-class ModuleRepository implements RepositoryInterface {
+class ModuleRepository extends AbstractRepository {
     
-    /**
-     * @var ModuleEntity[]
-     */
-    protected $modules;
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getElementByName($name) {
-        /**
-         * @todo vérifier si le nom est valide
-         */
-        return $this->modules[$name];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getElementByNames(array $names) {
-        /**
-         * @todo
-         */
-    }
-
     /**
      * {@inheritdoc}
      */
@@ -39,4 +13,18 @@ class ModuleRepository implements RepositoryInterface {
          */
     }
 
+    protected function getElementInDb($name) {
+        $this->modules[$name] = array();
+        $element = array();
+        
+        /**
+         * @todo récuperation de l'élément en BDD
+         */
+        
+        $this->modules[$name]['cache_age'] = new \DateTime('now');
+        
+        return $this->modules[$name];
+    }
+    
+    
 }

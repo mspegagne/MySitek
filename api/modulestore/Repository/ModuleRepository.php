@@ -14,17 +14,14 @@ class ModuleRepository extends AbstractRepository {
     }
 
     protected function getElementInDb($name) {
-        $this->modules[$name] = array();
-        $element = array();
+        $this->elements[$name] = array();
         
         /**
          * @todo récuperation de l'élément en BDD
          */
         
-        $this->modules[$name]['cache_age'] = new \DateTime('now');
+        $this->elements[$name]['cache_age'] = new \DateTime('now');
         
-        return $this->modules[$name];
+        return $this->elements[$name];
     }
-    
-    
 }

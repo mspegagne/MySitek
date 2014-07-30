@@ -6,13 +6,14 @@ use Entity\ModuleEntity;
 
 abstract class AbstractRepository {
 
-    const MAXCACHETIME = 60;
+    // Cache de 5 minutes
+    const MAXCACHETIME = 300;
 
 
     /**
      * @var ModuleEntity[]
      */
-    protected $modules;
+    protected $elements;
     
     /**
      * Methode permettant de récupérer un élément à partir de son nom
@@ -29,7 +30,7 @@ abstract class AbstractRepository {
      * @throws NotFoundException
      */
     public function getElementByName($name) {
-        if (key_exists($name, $this->modules)) {
+        if (key_exists($name, $this->elements)) {
             $this->getElementInDb($name);
         }
         return $this->getCacheValue($name);
@@ -75,12 +76,12 @@ abstract class AbstractRepository {
     protected function getElementInDb($name);
     
     protected function getCacheValue($name) {
-        $cacheAge = $this->modules[$name]['cache_age'];
+        $cacheAge = $this->elements[$name]['cache_age'];
         $now = new \DateTime('now');
         $diff = $cacheAge->getTimestamp() - $now->getTimestamp();
         if ($diff > self::MAXCACHETIME) {
             return $this->getElementInDb($name);
         }
-        return $this->modules[$name];
+        return $this->elements[$name];
     }
 }

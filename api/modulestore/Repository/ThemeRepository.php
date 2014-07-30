@@ -2,25 +2,7 @@
 
 namespace Repository;
 
-class ThemeRepository implements RepositoryInterface {
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getElementByName($name) {
-        /**
-         * @todo
-         */
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getElementByNames(array $names) {
-        /**
-         * @todo
-         */
-    }
+class ThemeRepository extends AbstractRepository {
 
     /**
      * {@inheritdoc}
@@ -30,5 +12,16 @@ class ThemeRepository implements RepositoryInterface {
          * @todo
          */
     }
-
+    
+    protected function getElementInDb($name) {
+        $this->elements[$name] = array();
+        
+        /**
+         * @todo récuperation de l'élément en BDD
+         */
+        
+        $this->elements[$name]['cache_age'] = new \DateTime('now');
+        
+        return $this->elements[$name];
+    }
 }

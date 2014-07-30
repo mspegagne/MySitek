@@ -1,0 +1,41 @@
+<VirtualHost *:80>
+   DocumentRoot /data/cdn/public
+   ServerName cdn-ci.local
+
+   # This should be omitted in the production environment
+   SetEnv APPLICATION_ENV testing
+
+   <Directory /data/cdn/public>
+       RewriteEngine On
+       RewriteCond %{REQUEST_FILENAME} -s [OR]
+       RewriteCond %{REQUEST_FILENAME} -l [OR]
+       RewriteCond %{REQUEST_FILENAME} -d
+       RewriteRule ^.*$ - [NC,L]
+       RewriteRule ^.*$ index.php [NC,L]
+       Options +Indexes +MultiViews +FollowSymLinks
+       AllowOverride All
+       Order allow,deny
+       Allow from all
+   </Directory>
+
+<Location /api/>
+        RewriteEngine On
+        RewriteCond %{REQUEST_FILENAME} -s [OR]
+        RewriteCond %{REQUEST_FILENAME} -l [OR]
+        RewriteCond %{REQUEST_FILENAME} -d
+        RewriteRule ^.*$ - [NC,L]
+        RewriteRule ^.*$ index.php [NC,L]
+</Location>
+
+ErrorLog ${APACHE_LOG_DIR}/cdn-ci-error.log
+
+# Possible values include: debug, info, notice, warn, error, crit,
+# alert, emerg.
+LogLevel warn
+
+CustomLog ${APACHE_LOG_DIR}/cdn-ci-access.log combined
+
+</VirtualHost>
+
+sudo a2ensite cdn-ci
+sudo service apache2 restart

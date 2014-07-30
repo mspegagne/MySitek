@@ -48,15 +48,15 @@ $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1 ORDER BY rang ASC
 $app['modules_front'] = $app['db']->fetchAll($sql);
 
 //front à 0 signifie module back
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0 ORDER BY rang ASC";
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 2 ORDER BY rang ASC";
 $app['modules_back'] = $app['db']->fetchAll($sql);
 
 //front à -1 signifie module uniquement admin
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = -1 ORDER BY rang ASC";
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0 ORDER BY rang ASC";
 $app['modules_admin'] = $app['db']->fetchAll($sql);
 
 //front à 2 signifie module param
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 2 ORDER BY rang ASC";
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 3 ORDER BY rang ASC";
 $app['modules_param'] = $app['db']->fetchAll($sql);
 
 //liste modules

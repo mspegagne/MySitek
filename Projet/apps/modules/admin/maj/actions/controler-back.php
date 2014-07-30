@@ -19,10 +19,56 @@ $maj->get('/', function() use ($app) {
     return $app['twig']->render('back.twig', array());
 });
 
-$maj->post('/rang', function (Request $request) use ($app) {
-  $message = $request->get('photo');
-    return new Response($message, 201);
+$maj->post('/rang/front', function () use ($app) {
 
+    $result = $_REQUEST["table"];
+    $result = '&'.$result;
+    $result = explode( '&table-1[]=', $result);    
+    $i = 0;
+    
+    foreach ($result as $value) {
+        $i++;
+        $sql = "UPDATE modules SET rang = ".$i." WHERE lien = ? AND front = 1";
+        $app['db']->executeUpdate($sql, array($value));
+    }    
+       
+    return '';
+    
 });
+
+$maj->post('/rang/back', function () use ($app) {
+
+    $result = $_REQUEST["table"];
+    $result = '&'.$result;
+    $result = explode( '&table-2[]=', $result);    
+    $i = 0;
+    
+    foreach ($result as $value) {
+        $i++;
+        $sql = "UPDATE modules SET rang = ".$i." WHERE lien = ? AND front = 2";
+        $app['db']->executeUpdate($sql, array($value));
+    }    
+       
+    return '';
+    
+});
+
+$maj->post('/rang/param', function () use ($app) {
+
+    $result = $_REQUEST["table"];
+    $result = '&'.$result;
+    $result = explode( '&table-3[]=', $result);    
+    $i = 0;
+    
+    foreach ($result as $value) {
+        $i++;
+        $sql = "UPDATE modules SET rang = ".$i." WHERE lien = ? AND front = 3";
+        $app['db']->executeUpdate($sql, array($value));
+    }    
+       
+    return '';
+    
+});
+
 //changer le nom du module
 $app->mount('/admin/maj', $maj);

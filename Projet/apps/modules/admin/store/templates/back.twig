@@ -85,9 +85,11 @@
                     <h6>
                         Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
                     </h6>                
-                    <div class="separator clear-left">
-                        <p class="btn-add">
-                            <i class="fa fa-download"></i><a href="/admin/install/modules/2048" class="hidden-sm">Install</a></p>
+                    <div id="2048" class="separator clear-left">
+                        <p  style="cursor: pointer;">
+                            <i class="fa fa-download"></i>
+                            <i id="wait2048" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                            Install</p>
                         <p class="btn-details">
                             <i class="fa fa-list"></i><br /><a href="/admin/achat/modules/2048" >Achat</a></p>
                     </div>
@@ -232,4 +234,92 @@
 
 {% block js %}
     <script src="/apps/modules/admin/store/templates/js/module.js"></script>
+    <!-- TODO boucler script ajax pour tous les modules 
+    
+    var notificationOk = new NotificationFx({
+            // element to which the notification will be appended
+            // defaults to the document.body
+            wrapper: document.body,
+            // the message
+            message: '<p>Module installé</p>',
+            // layout type: growl|attached|bar|other
+            layout: 'growl',
+            effect: 'scale',
+            // notice, warning, error, success
+            // will add class ns-type-warning, ns-type-error or ns-type-success
+            type: 'notice',
+            // if the user doesn´t close the notification then we remove it 
+            // after the following time
+            ttl: 4500,
+            // callbacks
+            onClose: function() {
+                return false;
+            },
+            onOpen: function() {
+                return false;
+            }
+
+        });
+
+        var notificationNok = new NotificationFx({
+            // element to which the notification will be appended
+            // defaults to the document.body
+            wrapper: document.body,
+            // the message
+            message: '<p>Erreur lors de l\\\'installation</p>',
+            // layout type: growl|attached|bar|other
+            layout: 'growl',
+            effect: 'scale',
+            // notice, warning, error, success
+            // will add class ns-type-warning, ns-type-error or ns-type-success
+            type: 'notice',
+            // if the user doesn´t close the notification then we remove it 
+            // after the following time
+            ttl: 4500,
+            // callbacks
+            onClose: function() {
+                return false;
+            },
+            onOpen: function() {
+                return false;
+            }
+
+        });
+    
+    
+    -->
+    <script type="text/javascript">
+
+
+        $("#2048").click(function() {
+
+            $.ajax({
+                type: "POST",
+                url: '/admin/install',
+                data: {type: "modules", file: "2048"},
+                beforeSend: function() {
+                    $('#wait2048').show();
+                },
+                complete: function() {
+                    $('#wait2048').hide();
+                },
+                error: function(request, error) { // Info Debuggage si erreur         
+                    alert("Erreur : responseText: " + request.responseText);
+                }
+
+            })
+                    .done(function(msg) {
+                        if (msg === '') {
+
+                            alert('ok');
+                        }
+                        else {
+                            alert(msg);
+                        }
+                    });
+            return false;
+
+        });
+    </script>
 {% endblock %}
+

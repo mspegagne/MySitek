@@ -116,50 +116,19 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="/apps/templates/default/js/template.js"></script>
-        
-        {% if notif is defined %}
-            <script src="/lib/NotificationStyles/js/modernizr.custom.js"></script>
-            <script src="/lib/NotificationStyles/js/classie.js"></script>
-            <script src="/lib/NotificationStyles/js/notificationFx.js"></script>
 
-            <script>
+        <script src="/lib/NotificationStyles/js/modernizr.custom.js"></script>
+        <script src="/lib/NotificationStyles/js/classie.js"></script>
+        <script src="/lib/NotificationStyles/js/notificationFx.js"></script>
+
+        <script>
+
+            {% if notif is defined %}
+                Notif('<p>{{ notif | raw }}</p>',{% if time is defined %}{{ time }}{% else %} 4500{% endif %});
+            {% endif %}
                 
-                // create the notification
-                var notification = new NotificationFx({
-                    // element to which the notification will be appended
-                    // defaults to the document.body
-                    wrapper: document.body,
-                    // the message
-                    message: '<p>{{ notif | raw }}</p>',
-                    // layout type: growl|attached|bar|other
-                    layout: 'growl',
-                    effect: 'scale',
-                    // notice, warning, error, success
-                    // will add class ns-type-warning, ns-type-error or ns-type-success
-                    type: 'notice',
-                    // if the user doesn´t close the notification then we remove it 
-                    // after the following time
-                    {% if time is defined %}
-                        ttl: {{ time }}, 
-                    {% else %}
-                        ttl: 4500,
-                    {% endif %}
-                    // callbacks
-                    onClose: function() {
-                        return false;
-                    },
-                    onOpen: function() {
-                        return false;
-                    }
+        </script>
 
-                });
-
-                // show the notification
-                notification.show();
-
-            </script>
-        {% endif %}
-        
         <!-- js à rajouter au template   -->
         {% block js %}
         {% endblock %}

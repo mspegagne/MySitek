@@ -86,12 +86,14 @@
                         Description - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam.
                     </h6>                
                     <div id="2048" class="separator clear-left">
-                        <p  style="cursor: pointer;">
+                        <p class="btn-add" style="cursor: pointer;">
                             <i class="fa fa-download"></i>
                             <i id="wait2048" class="fa fa-spinner fa-spin" style="display: none;"></i>
-                            Install</p>
+                           Install
+                        </p>
                         <p class="btn-details">
-                            <i class="fa fa-list"></i><br /><a href="/admin/achat/modules/2048" >Achat</a></p>
+                            <i class="fa fa-list"></i><a href="/admin/achat/modules/2048" >Acheter</a>
+                        </p>
                     </div>
                     <div class="clearfix">
                     </div>
@@ -234,60 +236,7 @@
 
 {% block js %}
     <script src="/apps/modules/admin/store/templates/js/module.js"></script>
-    <!-- TODO boucler script ajax pour tous les modules 
-    
-    var notificationOk = new NotificationFx({
-            // element to which the notification will be appended
-            // defaults to the document.body
-            wrapper: document.body,
-            // the message
-            message: '<p>Module installé</p>',
-            // layout type: growl|attached|bar|other
-            layout: 'growl',
-            effect: 'scale',
-            // notice, warning, error, success
-            // will add class ns-type-warning, ns-type-error or ns-type-success
-            type: 'notice',
-            // if the user doesn´t close the notification then we remove it 
-            // after the following time
-            ttl: 4500,
-            // callbacks
-            onClose: function() {
-                return false;
-            },
-            onOpen: function() {
-                return false;
-            }
-
-        });
-
-        var notificationNok = new NotificationFx({
-            // element to which the notification will be appended
-            // defaults to the document.body
-            wrapper: document.body,
-            // the message
-            message: '<p>Erreur lors de l\\\'installation</p>',
-            // layout type: growl|attached|bar|other
-            layout: 'growl',
-            effect: 'scale',
-            // notice, warning, error, success
-            // will add class ns-type-warning, ns-type-error or ns-type-success
-            type: 'notice',
-            // if the user doesn´t close the notification then we remove it 
-            // after the following time
-            ttl: 4500,
-            // callbacks
-            onClose: function() {
-                return false;
-            },
-            onOpen: function() {
-                return false;
-            }
-
-        });
-    
-    
-    -->
+    <!-- TODO boucler script ajax pour tous les modules -->
     <script type="text/javascript">
 
 
@@ -300,7 +249,7 @@
                 beforeSend: function() {
                     $('#wait2048').show();
                 },
-                complete: function() {
+                success: function() {
                     $('#wait2048').hide();
                 },
                 error: function(request, error) { // Info Debuggage si erreur         
@@ -310,11 +259,12 @@
             })
                     .done(function(msg) {
                         if (msg === '') {
+                            Notif('<p>2048 est maintenant installé</p>', 5000);
 
-                            alert('ok');
                         }
                         else {
-                            alert(msg);
+                            Notif('<p>Erreur lors de l\\\'installation...</p>', 5000);
+
                         }
                     });
             return false;

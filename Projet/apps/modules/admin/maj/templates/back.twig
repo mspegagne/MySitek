@@ -7,108 +7,134 @@
 
 
 {% block content %}
-<a href="#" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Tout mettre à jour</a>
-<br>
-        <table id="table-1" class="table table-striped sorted_table custab ">
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    Etes vous sûr de vouloir supprimer le module ? <br>
+                    Toutes vos données seront conservées. <br>
+                    Le module pourra être reinstallé gratuitement à partir du store.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <a href="#" class="btn btn-danger danger">Supprimer</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <thead>
-             <tr>
+    <a href="#" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Tout mettre à jour</a>
+    <br>
+    <table id="table-1" class="table table-striped sorted_table custab ">
+
+        <thead>
+            <tr>
                 <th width="15%">Rang</th>
                 <th width="20%">Nom</th>
                 <th width="20%" class="hidden-xs">Version installée</th>
                 <th width="20%">Version disponible</th>
                 <th width="15%" class="text-center"></th>
             </tr>
-            </thead>
-            <tbody>
-                <!--TODO #API : récuperer version disponible et liste des modules à mettre à jour-->
-                {% for item in app.modules_front %}
-                    <tr id="{{ item.lien }}">
-                        <td class="dragHandle"><i class="fa fa-bars"></i></td>
-                        <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
-                        <td  class="hidden-xs">{{ item.version }}</td>
-                        <td>{{ item.version }}</td>
-                        <td class="text-center">
-                            <span class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> </span>                          
-                            <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><span class="fa fa-spinner fa-spin"></span></span>            
-                            <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></span>            
-                            <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-cloud-download"></span></span>           
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <table id="table-2" class="table table-striped sorted_table custab">
-
-            <thead>
-                <tr>
-                    <th width="15%">Rang</th>
-                    <th width="20%">Nom</th>
-                    <th width="20%" class="hidden-xs">Version installée</th>
-                    <th width="20%">Version disponible</th>
-                    <th width="15%" class="text-center"></th>
+        </thead>
+        <tbody>
+            <!--TODO #API : récuperer version disponible et liste des modules à mettre à jour-->
+            {% for item in app.modules_front %}
+                <tr id="{{ item.lien }}">
+                    <td class="dragHandle"><i class="fa fa-bars"></i></td>
+                    <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
+                    <td  class="hidden-xs">{{ item.version }}</td>
+                    <td>{{ item.version }}</td>
+                    <td class="text-center">
+                        <a data-href="/admin/delete/modules/{{ item.lien }}" data-toggle="modal" data-target="#confirm-delete" href="#">
+                            <span class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> </span>                          
+                        </a>
+                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><i class="fa fa-spinner fa-spin"></i></span>      
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table id="table-2" class="table table-striped sorted_table custab">
 
-                {% for item in app.modules_back %}
-                    <tr id="{{ item.lien }}">
-                        <td class="dragHandle"><i class="fa fa-bars"></i></td>
-                        <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
-                        <td class="hidden-xs">{{ item.version }}</td>
-                        <td>{{ item.version }}</td>
-                        <td class="text-center">
-                            <span class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> </span>                          
-                            <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><span class="fa fa-spinner fa-spin"></span></span>            
-                            <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></span>            
-                            <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-cloud-download"></span></span>           
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <table id="table-3" class="table table-striped sorted_table custab">
+        <thead>
+            <tr>
+                <th width="15%">Rang</th>
+                <th width="20%">Nom</th>
+                <th width="20%" class="hidden-xs">Version installée</th>
+                <th width="20%">Version disponible</th>
+                <th width="15%" class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
 
-            <thead>
-                <tr>
-                    <th width="15%">Rang</th>
-                    <th width="20%">Nom</th>
-                    <th width="20%" class="hidden-xs">Version installée</th>
-                    <th width="20%">Version disponible</th>
-                    <th width="15%" class="text-center"></th>
+            {% for item in app.modules_back %}
+                <tr id="{{ item.lien }}">
+                    <td class="dragHandle"><i class="fa fa-bars"></i></td>
+                    <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
+                    <td class="hidden-xs">{{ item.version }}</td>
+                    <td>{{ item.version }}</td>
+                    <td class="text-center">
+                        <a data-href="/admin/delete/modules/{{ item.lien }}" data-toggle="modal" data-target="#confirm-delete" href="#">
+                            <span class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> </span>                          
+                        </a>
+                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><i class="fa fa-spinner fa-spin"></i></span>      
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
+            {% endfor %}
+        </tbody>
+    </table>
+    <table id="table-3" class="table table-striped sorted_table custab">
 
-                {% for item in app.modules_param %}
-                    <tr id="{{ item.lien }}">
-                        <td class="dragHandle"><i class="fa fa-bars"></i></td>
-                        <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
-                        <td class="hidden-xs">{{ item.version }}</td>
-                        <td>{{ item.version }}</td>
-                        <td class="text-center">
-                            <span class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> </span>                          
-                            <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><span class="fa fa-spinner fa-spin"></span></span>            
-                            <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></span>            
-                            <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-cloud-download"></span></span>           
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+        <thead>
+            <tr>
+                <th width="15%">Rang</th>
+                <th width="20%">Nom</th>
+                <th width="20%" class="hidden-xs">Version installée</th>
+                <th width="20%">Version disponible</th>
+                <th width="15%" class="text-center"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for item in app.modules_param %}
+                <tr id="{{ item.lien }}">
+                    <td class="dragHandle"><i class="fa fa-bars"></i></td>
+                    <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
+                    <td class="hidden-xs">{{ item.version }}</td>
+                    <td>{{ item.version }}</td>
+                    <td class="text-center">
+                        <a data-href="/admin/delete/modules/{{ item.lien }}" data-toggle="modal" data-target="#confirm-delete" href="#">
+                            <span class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> </span>                          
+                        </a>
+                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><i class="fa fa-spinner fa-spin"></i></span>      
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
 {% block js %}
 
     <script src="/apps/modules/admin/maj/lib/jquery.tablednd.js"></script>
     <script type="text/javascript">
+
+        $('#confirm-delete').on('show.bs.modal', function(e) {
+            $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
+        });
+
         $(document).ready(function() {
 
             $('#table-1').tableDnD({
                 onDrop: function() {
                     $.post(
-                            '/admin/maj/rang/front', 
-
+                            '/admin/maj/rang/front',
                             {table: decodeURI($.tableDnD.serialize())},
                     function(data) {
 
@@ -121,8 +147,7 @@
             $('#table-2').tableDnD({
                 onDrop: function() {
                     $.post(
-                            '/admin/maj/rang/back', 
-
+                            '/admin/maj/rang/back',
                             {table: decodeURI($.tableDnD.serialize())},
                     function(data) {
 
@@ -134,8 +159,7 @@
             $('#table-3').tableDnD({
                 onDrop: function() {
                     $.post(
-                            '/admin/maj/rang/param', 
-
+                            '/admin/maj/rang/param',
                             {table: decodeURI($.tableDnD.serialize())},
                     function(data) {
 

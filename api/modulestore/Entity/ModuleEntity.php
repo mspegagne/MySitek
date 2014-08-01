@@ -88,4 +88,117 @@ class ModuleEntity {
      * @var array
      */
     protected $otherInformations;
+    
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    public function setEditor($editor) {
+        $this->editor = $editor;
+    }
+
+    public function setVersion($version) {
+        $this->version = $version;
+    }
+
+    public function setCreationDate(\DateTime $creationDate) {
+        $this->creationDate = $creationDate;
+    }
+
+    public function setLastModificationDate(\DateTime $lastModificationDate) {
+        $this->lastModificationDate = $lastModificationDate;
+    }
+
+    public function setDependencies($dependencies) {
+        $this->dependencies = $dependencies;
+    }
+
+    public function setShortDescription($shortDescription) {
+        $this->shortDescription = $shortDescription;
+    }
+
+    public function setDescription($description) {
+        $this->description = $description;
+    }
+
+    public function setStars($stars) {
+        $this->stars = $stars;
+    }
+
+    public function setNumberOfUsers($numberOfUsers) {
+        $this->numberOfUsers = $numberOfUsers;
+    }
+
+    public function setLogo($logo) {
+        $this->logo = $logo;
+    }
+
+    public function setImages($images) {
+        $this->images = $images;
+    }
+
+    public function setOpinions(OpinionEntity $opinions) {
+        $this->opinions = $opinions;
+    }
+
+    public function setOtherInformations($otherInformations) {
+        $this->otherInformations = $otherInformations;
+    }
+
+        
+    public function getName() {
+        return $this->name;
+    }
+
+    public function getEditor() {
+        return $this->editor;
+    }
+
+    public function getVersion() {
+        return $this->version;
+    }
+
+    public function getCreationDate() {
+        return $this->creationDate;
+    }
+
+    public function getLastModificationDate() {
+        return $this->lastModificationDate;
+    }
+
+    public function getDependencies() {
+        return $this->dependencies;
+    }
+
+    public function getShortDescription() {
+        return $this->shortDescription;
+    }
+
+    public function getDescription() {
+        return $this->description;
+    }
+
+    public function getStars() {
+        return $this->stars;
+    }
+
+    public function getNumberOfUsers() {
+        return $this->numberOfUsers;
+    }
+
+    public function getLogo() {
+        return $this->logo;
+    }
+
+    public function getImages() {
+        return $this->images;
+    }
+
+    public function getOpinions() {
+        return $this->opinions;
+    }
+
+    public function getOtherInformations() {
+        return $this->otherInformations;
+    }
 }

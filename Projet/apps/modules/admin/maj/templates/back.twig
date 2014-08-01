@@ -17,18 +17,23 @@
                 <th width="20%">Nom</th>
                 <th width="20%" class="hidden-xs">Version installée</th>
                 <th width="20%">Version disponible</th>
-                <th width="15%" class="text-center">Action</th>
+                <th width="15%" class="text-center"></th>
             </tr>
             </thead>
             <tbody>
-                <!--TODO #API : récuperer version disponible -->
+                <!--TODO #API : récuperer version disponible et liste des modules à mettre à jour-->
                 {% for item in app.modules_front %}
                     <tr id="{{ item.lien }}">
                         <td class="dragHandle"><i class="fa fa-bars"></i></td>
                         <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
                         <td  class="hidden-xs">{{ item.version }}</td>
                         <td>{{ item.version }}</td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                        <td class="text-center">
+                            <span class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> </span>                          
+                            <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><span class="fa fa-spinner fa-spin"></span></span>            
+                            <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></span>            
+                            <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-cloud-download"></span></span>           
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -41,7 +46,7 @@
                     <th width="20%">Nom</th>
                     <th width="20%" class="hidden-xs">Version installée</th>
                     <th width="20%">Version disponible</th>
-                    <th width="15%" class="text-center">Action</th>
+                    <th width="15%" class="text-center"></th>
                 </tr>
             </thead>
             <tbody>
@@ -52,7 +57,12 @@
                         <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
                         <td class="hidden-xs">{{ item.version }}</td>
                         <td>{{ item.version }}</td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                        <td class="text-center">
+                            <span class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> </span>                          
+                            <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><span class="fa fa-spinner fa-spin"></span></span>            
+                            <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></span>            
+                            <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-cloud-download"></span></span>           
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -65,7 +75,7 @@
                     <th width="20%">Nom</th>
                     <th width="20%" class="hidden-xs">Version installée</th>
                     <th width="20%">Version disponible</th>
-                    <th width="15%" class="text-center">Action</th>
+                    <th width="15%" class="text-center"></th>
                 </tr>
             </thead>
             <tbody>
@@ -76,7 +86,12 @@
                         <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
                         <td class="hidden-xs">{{ item.version }}</td>
                         <td>{{ item.version }}</td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+                        <td class="text-center">
+                            <span class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> </span>                          
+                            <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><span class="fa fa-spinner fa-spin"></span></span>            
+                            <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></span>            
+                            <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-cloud-download"></span></span>           
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>

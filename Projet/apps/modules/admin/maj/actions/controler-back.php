@@ -15,6 +15,9 @@ $maj->get('/', function() use ($app) {
             __DIR__ . '/../templates/',)
     ));
 
+    
+    // TODO #API : récuperer version disponible et les fournir à twig
+    // TODO #API version_compare(version actuelle, version dispo, '<') -> liste module à mettre à jour à fournir à twig
 
     return $app['twig']->render('back.twig', array());
 });

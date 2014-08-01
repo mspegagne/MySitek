@@ -7,25 +7,26 @@
 
 
 {% block content %}
-
-    <div class="row col-md-12  custyle">
-        <table id="table-1" class="table table-striped sorted_table custab">
+<a href="#" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Tout mettre à jour</a>
+<br>
+        <table id="table-1" class="table table-striped sorted_table custab ">
 
             <thead>
-            <a href="#" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Tout mettre à jour</a>
-            <tr>
-                <th>Rang</th>
-                <th>Nom</th>
-                <th>Version</th>
-                <th class="text-center">Action</th>
+             <tr>
+                <th width="15%">Rang</th>
+                <th width="20%">Nom</th>
+                <th width="20%" class="hidden-xs">Version installée</th>
+                <th width="20%">Version disponible</th>
+                <th width="15%" class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
-
+                <!--TODO #API : récuperer version disponible -->
                 {% for item in app.modules_front %}
                     <tr id="{{ item.lien }}">
                         <td class="dragHandle"><i class="fa fa-bars"></i></td>
                         <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
+                        <td  class="hidden-xs">{{ item.version }}</td>
                         <td>{{ item.version }}</td>
                         <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                     </tr>
@@ -35,12 +36,13 @@
         <table id="table-2" class="table table-striped sorted_table custab">
 
             <thead>
-              <tr>
-                <th>Rang</th>
-                <th>Nom</th>
-                <th>Version</th>
-                <th class="text-center">Action</th>
-            </tr>
+                <tr>
+                    <th width="15%">Rang</th>
+                    <th width="20%">Nom</th>
+                    <th width="20%" class="hidden-xs">Version installée</th>
+                    <th width="20%">Version disponible</th>
+                    <th width="15%" class="text-center">Action</th>
+                </tr>
             </thead>
             <tbody>
 
@@ -48,21 +50,23 @@
                     <tr id="{{ item.lien }}">
                         <td class="dragHandle"><i class="fa fa-bars"></i></td>
                         <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
+                        <td class="hidden-xs">{{ item.version }}</td>
                         <td>{{ item.version }}</td>
                         <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-            <table id="table-3" class="table table-striped sorted_table custab">
+        <table id="table-3" class="table table-striped sorted_table custab">
 
             <thead>
-            <tr>
-                <th>Rang</th>
-                <th>Nom</th>
-                <th>Version</th>
-                <th class="text-center">Action</th>
-            </tr>
+                <tr>
+                    <th width="15%">Rang</th>
+                    <th width="20%">Nom</th>
+                    <th width="20%" class="hidden-xs">Version installée</th>
+                    <th width="20%">Version disponible</th>
+                    <th width="15%" class="text-center">Action</th>
+                </tr>
             </thead>
             <tbody>
 
@@ -70,13 +74,13 @@
                     <tr id="{{ item.lien }}">
                         <td class="dragHandle"><i class="fa fa-bars"></i></td>
                         <td><i class="{{ item.icon }}"></i> {{ item.name | title}}</td>
+                        <td class="hidden-xs">{{ item.version }}</td>
                         <td>{{ item.version }}</td>
                         <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
-    </div>
 {% endblock %}
 
 {% block js %}
@@ -86,55 +90,46 @@
         $(document).ready(function() {
 
             $('#table-1').tableDnD({
-                
                 onDrop: function() {
-                     $.post(
-                        '/admin/maj/rang/front', // Un script PHP que l'on va créer juste après
-                
-                        { table : decodeURI($.tableDnD.serialize()) },
-                        
-                        function(data){
+                    $.post(
+                            '/admin/maj/rang/front', 
 
-                            
-                        }
-                    ); 
+                            {table: decodeURI($.tableDnD.serialize())},
+                    function(data) {
+
+
+                    }
+                    );
                 },
-
                 dragHandle: ".dragHandle",
-             });
-              $('#table-2').tableDnD({
-                
+            });
+            $('#table-2').tableDnD({
                 onDrop: function() {
-                     $.post(
-                        '/admin/maj/rang/back', // Un script PHP que l'on va créer juste après
-                
-                        { table : decodeURI($.tableDnD.serialize()) },
-                        
-                        function(data){
+                    $.post(
+                            '/admin/maj/rang/back', 
 
-                        }
-                    ); 
+                            {table: decodeURI($.tableDnD.serialize())},
+                    function(data) {
+
+                    }
+                    );
                 },
-
                 dragHandle: ".dragHandle",
-             });
-              $('#table-3').tableDnD({
-                
+            });
+            $('#table-3').tableDnD({
                 onDrop: function() {
-                     $.post(
-                        '/admin/maj/rang/param', // Un script PHP que l'on va créer juste après
-                
-                        { table : decodeURI($.tableDnD.serialize()) },
-                        
-                        function(data){
+                    $.post(
+                            '/admin/maj/rang/param', 
 
-                            
-                        }
-                    ); 
+                            {table: decodeURI($.tableDnD.serialize())},
+                    function(data) {
+
+
+                    }
+                    );
                 },
-
                 dragHandle: ".dragHandle",
-             });
+            });
 
         });
         $("#table-1 tr").hover(function() {
@@ -142,13 +137,13 @@
         }, function() {
             $(this.cells[0]).removeClass('showDragHandle');
         });
-        
+
         $("#table-2 tr").hover(function() {
             $(this.cells[0]).addClass('showDragHandle');
         }, function() {
             $(this.cells[0]).removeClass('showDragHandle');
         });
-        
+
         $("#table-3 tr").hover(function() {
             $(this.cells[0]).addClass('showDragHandle');
         }, function() {

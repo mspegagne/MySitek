@@ -23,6 +23,8 @@
         </div>
     </div>
 
+    <!--TODO #API : A faire quand tous les modules seront disponibles sur le serveur 
+        (car sinon l'update delete le module mais ne peut pas le reinstaller...     -->
     <a href="#" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Tout mettre à jour</a>
     <br>
     <table id="table-1" class="table table-striped sorted_table custab ">
@@ -48,11 +50,11 @@
                         <a data-href="/admin/delete/modules/{{ item.lien }}" data-toggle="modal" data-target="#confirm-delete" href="#">
                             <span class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> </span>                          
                         </a>
-                       <!--TODO #API : recuperer liste mmodules à mettre à jour -->
+                        <!--TODO #API : recuperer liste mmodules à mettre à jour -->
                         <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>      
-                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;" data-toggle="tooltip" title="Module à jour"><i class="glyphicon glyphicon-ok"></i></span>            
                         <span id="maj{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
-                   </td>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -82,7 +84,7 @@
                         </a>
                         <!--TODO #API : recuperer liste mmodules à mettre à jour -->
                         <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>      
-                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;" data-toggle="tooltip" title="Module à jour"><i class="glyphicon glyphicon-ok"></i></span>            
                         <span id="maj{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
                     </td>
                 </tr>
@@ -114,7 +116,7 @@
                         </a>
                         <!--TODO #API : recuperer liste mmodules à mettre à jour -->
                         <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>      
-                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;" data-toggle="tooltip" title="Module à jour"><i class="glyphicon glyphicon-ok"></i></span>            
                         <span id="maj{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
                     </td>
                 </tr>
@@ -127,110 +129,114 @@
 
     <script src="/apps/modules/admin/maj/lib/jquery.tablednd.js"></script>
     <script type="text/javascript">
-        
-         // TODO #API : Boucler sur liste modules à mettre à jour
-        
-        {% for item in app.modules %}
-            
-         $("#maj{{ item.lien }}").click(function() {
 
-            $.ajax({
-                type: "POST",
-                url: '/admin/maj',
-                data: {type: "modules", file: "{{ item.lien }}"},
-                beforeSend: function() {
-                    $('#wait{{ item.lien }}').show();
-                    $('#maj{{ item.lien }}').hide();
-                },
-                success: function() {
-                    $('#wait{{ item.lien }}').hide();                    
-                    $('#ajour{{ item.lien }}').show();
-                },
-                error: function(request, error) { // Info Debuggage si erreur         
-                    alert("Erreur :" + request.responseText);
-                }
-
-            })
-                    .done(function(msg) {
-                        if (msg === '') {
-                            Notif('<p>{{ item.lien }} est maintenant à jour</p>', 5000);
-
-                        }
-                        else {
-                            Notif('<p>Erreur lors de la maj</p>', 5000);
-
-                        }
-                    });
-            return false;
-
+        $(function() {
+            $('span').tooltip({delay: 400});
         });
-        
+
+        // TODO #API : Boucler sur liste modules à mettre à jour
+
+        {% for item in app.modules %}
+
+            $("#maj{{ item.lien }}").click(function() {
+
+                $.ajax({
+                    type: "POST",
+                    url: '/admin/maj',
+                    data: {type: "modules", file: "{{ item.lien }}"},
+                    beforeSend: function() {
+                        $('#wait{{ item.lien }}').show();
+                        $('#maj{{ item.lien }}').hide();
+                    },
+                    success: function() {
+                        $('#wait{{ item.lien }}').hide();
+                        $('#ajour{{ item.lien }}').show();
+                    },
+                    error: function(request, error) { // Info Debuggage si erreur         
+                        alert("Erreur :" + request.responseText);
+                    }
+
+                })
+                        .done(function(msg) {
+                            if (msg === '') {
+                                Notif('<p>{{ item.lien }} est maintenant à jour</p>', 5000);
+
+                            }
+                            else {
+                                Notif('<p>Erreur lors de la maj</p>', 5000);
+
+                            }
+                        });
+                return false;
+
+            });
+
         {% endfor %}
 
 
-        $('#confirm-delete').on('show.bs.modal', function(e) {
-            $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
-        });
-
-        $(document).ready(function() {
-
-            $('#table-1').tableDnD({
-                onDrop: function() {
-                    $.post(
-                            '/admin/maj/rang/front',
-                            {table: decodeURI($.tableDnD.serialize())},
-                    function(data) {
-
-
-                    }
-                    );
-                },
-                dragHandle: ".dragHandle",
-            });
-            $('#table-2').tableDnD({
-                onDrop: function() {
-                    $.post(
-                            '/admin/maj/rang/back',
-                            {table: decodeURI($.tableDnD.serialize())},
-                    function(data) {
-
-                    }
-                    );
-                },
-                dragHandle: ".dragHandle",
-            });
-            $('#table-3').tableDnD({
-                onDrop: function() {
-                    $.post(
-                            '/admin/maj/rang/param',
-                            {table: decodeURI($.tableDnD.serialize())},
-                    function(data) {
-
-
-                    }
-                    );
-                },
-                dragHandle: ".dragHandle",
+            $('#confirm-delete').on('show.bs.modal', function(e) {
+                $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));
             });
 
-        });
-        $("#table-1 tr").hover(function() {
-            $(this.cells[0]).addClass('showDragHandle');
-        }, function() {
-            $(this.cells[0]).removeClass('showDragHandle');
-        });
+            $(document).ready(function() {
 
-        $("#table-2 tr").hover(function() {
-            $(this.cells[0]).addClass('showDragHandle');
-        }, function() {
-            $(this.cells[0]).removeClass('showDragHandle');
-        });
+                $('#table-1').tableDnD({
+                    onDrop: function() {
+                        $.post(
+                                '/admin/maj/rang/front',
+                                {table: decodeURI($.tableDnD.serialize())},
+                        function(data) {
 
-        $("#table-3 tr").hover(function() {
-            $(this.cells[0]).addClass('showDragHandle');
-        }, function() {
-            $(this.cells[0]).removeClass('showDragHandle');
-        });
+
+                        }
+                        );
+                    },
+                    dragHandle: ".dragHandle",
+                });
+                $('#table-2').tableDnD({
+                    onDrop: function() {
+                        $.post(
+                                '/admin/maj/rang/back',
+                                {table: decodeURI($.tableDnD.serialize())},
+                        function(data) {
+
+                        }
+                        );
+                    },
+                    dragHandle: ".dragHandle",
+                });
+                $('#table-3').tableDnD({
+                    onDrop: function() {
+                        $.post(
+                                '/admin/maj/rang/param',
+                                {table: decodeURI($.tableDnD.serialize())},
+                        function(data) {
+
+
+                        }
+                        );
+                    },
+                    dragHandle: ".dragHandle",
+                });
+
+            });
+            $("#table-1 tr").hover(function() {
+                $(this.cells[0]).addClass('showDragHandle');
+            }, function() {
+                $(this.cells[0]).removeClass('showDragHandle');
+            });
+
+            $("#table-2 tr").hover(function() {
+                $(this.cells[0]).addClass('showDragHandle');
+            }, function() {
+                $(this.cells[0]).removeClass('showDragHandle');
+            });
+
+            $("#table-3 tr").hover(function() {
+                $(this.cells[0]).addClass('showDragHandle');
+            }, function() {
+                $(this.cells[0]).removeClass('showDragHandle');
+            });
     </script>
 
 {% endblock %}

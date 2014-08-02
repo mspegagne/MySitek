@@ -31,5 +31,8 @@ abstract class AbstractService {
         }
     }
     
-    public function getInfosInJson();
+    /**
+     * @return array
+     */
+    public function getInfos();
 }

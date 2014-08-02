@@ -7,11 +7,11 @@ abstract class OneAbstractService extends AbstractService {
     /**
      * {@inheritdoc}
      */
-    public function getInfosInJson() {
+    public function getInfos() {
         $this->validateData();
         $name = $this->data['name'];
         $module = $this->repository->getElementByName($name);
         
-        return json_encode($module);
+        return $module;
     }
 }

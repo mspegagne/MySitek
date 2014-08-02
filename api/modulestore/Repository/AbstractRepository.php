@@ -30,8 +30,8 @@ abstract class AbstractRepository {
      * @throws NotFoundException
      */
     public function getElementByName($name) {
-        if (key_exists($name, $this->elements)) {
-            $this->getElementInDb($name);
+        if (!key_exists($name, $this->elements)) {
+            return $this->getElementInDb($name);
         }
         return $this->getCacheValue($name);
     }

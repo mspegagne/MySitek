@@ -2,15 +2,15 @@
 
 namespace Service;
 
-abstract class ManyAbstractService extends AbstractService{
+abstract class ManyAbstractService extends AbstractService {
 
     /**
      * {@inheritdoc}
      */
-    public function getInfosInJson() {
+    public function getInfos() {
         $this->validateData();
         $modules = $this->treatData();
-        return json_encode($modules);
+        return $modules;
     }
     
     /**

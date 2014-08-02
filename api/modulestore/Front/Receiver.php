@@ -21,20 +21,31 @@ class Receiver {
     public static function receive($jsonElement) {
 
         $receivedData = json_decode($jsonElement, true);
-        $service = $this->getServiceFromData($receivedData);
-        $json = $service->getInfosInJson();
         
-        /**
-         * @todo Renvoyer la chaîne Json
-         * @todo Intercepter les erreurs et les gérer
-         */
+
+        try {
+            $url = $this->getUrlFormJson($receivedData);
+            $service = $this->getServiceFromData($receivedData);
+        } catch (ReceptionException $ex) {
+            // Logger l'exception
+            return json_encode(array('error' => $ex->getMessage()));
+        }
+        try {
+            $infos = $service->getInfos();
+            $infos['url'] = $url;
+        } catch (Exception $ex) {
+            // Logger l'exception
+            return json_encode(array('error' => $ex->getMessage()));
+        }
+        
+        return json_encode($infos);
     }
-    
+
     /**
      * @param array $receivedData Les données à traiter
      * @return AbstractService Le service adapté pour traiter la chaine Json
      * 
-     * @throws ReceptionError
+     * @throws ReceptionException
      */
     protected function getServiceFromData(array $receivedData) {
         $mode = $receivedData['mode'];
@@ -51,5 +62,13 @@ class Receiver {
             default :
                 throw new ReceptionException("Mode inconnu pour l'élément Json");
         }
+    }
+    
+    protected function getUrlFormJson(array $receivedData) {
+        $url = $receivedData['url'];
+        if (empty($mode)) {
+            throw new ReceptionException("Url non trouvée dans l'élément Json");
+        }
+        return $url;
     }
 }

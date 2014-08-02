@@ -210,7 +210,7 @@ $app->get('/admin/delete/{type}/{file}', function($type, $file) use ($app) {
 });
 
 
-$app->post('/admin/maj', function () use ($app) {
+$app->post('/admin/update', function () use ($app) {
 
     
     $type = $_REQUEST["type"];    

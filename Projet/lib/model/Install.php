@@ -121,6 +121,14 @@ class Install {
 
         return($error);
     }
+    
+    public static function update($file, $type, $app) {
+        
+        $error = Install::delete($file, $type, $app);
+        $error .= Install::installation($file, $type, $app);
+
+        return $error;
+    }
 
     /**
      * @brief Telecharge le fichier zip et le stocke à l'adresse donnée

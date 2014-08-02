@@ -48,10 +48,11 @@
                         <a data-href="/admin/delete/modules/{{ item.lien }}" data-toggle="modal" data-target="#confirm-delete" href="#">
                             <span class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> </span>                          
                         </a>
-                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><i class="fa fa-spinner fa-spin"></i></span>      
-                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-ok"></i></span>            
-                        <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
-                    </td>
+                       <!--TODO #API : recuperer liste mmodules à mettre à jour -->
+                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>      
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="maj{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
+                   </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -79,9 +80,10 @@
                         <a data-href="/admin/delete/modules/{{ item.lien }}" data-toggle="modal" data-target="#confirm-delete" href="#">
                             <span class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> </span>                          
                         </a>
-                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><i class="fa fa-spinner fa-spin"></i></span>      
-                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-ok"></i></span>            
-                        <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
+                        <!--TODO #API : recuperer liste mmodules à mettre à jour -->
+                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>      
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="maj{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
                     </td>
                 </tr>
             {% endfor %}
@@ -110,9 +112,10 @@
                         <a data-href="/admin/delete/modules/{{ item.lien }}" data-toggle="modal" data-target="#confirm-delete" href="#">
                             <span class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-remove"></i> </span>                          
                         </a>
-                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs"><i class="fa fa-spinner fa-spin"></i></span>      
-                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs"><i class="glyphicon glyphicon-ok"></i></span>            
-                        <span id="wait{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
+                        <!--TODO #API : recuperer liste mmodules à mettre à jour -->
+                        <span id="wait{{ item.lien }}" class="btn btn-warning btn-xs" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>      
+                        <span id="ajour{{ item.lien }}" class="btn btn-success btn-xs" style="display: none;"><i class="glyphicon glyphicon-ok"></i></span>            
+                        <span id="maj{{ item.lien }}" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-cloud-download"></i></span>           
                     </td>
                 </tr>
             {% endfor %}
@@ -124,6 +127,46 @@
 
     <script src="/apps/modules/admin/maj/lib/jquery.tablednd.js"></script>
     <script type="text/javascript">
+        
+         // TODO #API : Boucler sur liste modules à mettre à jour
+        
+        {% for item in app.modules %}
+            
+         $("#maj{{ item.lien }}").click(function() {
+
+            $.ajax({
+                type: "POST",
+                url: '/admin/maj',
+                data: {type: "modules", file: "{{ item.lien }}"},
+                beforeSend: function() {
+                    $('#wait{{ item.lien }}').show();
+                    $('#maj{{ item.lien }}').hide();
+                },
+                success: function() {
+                    $('#wait{{ item.lien }}').hide();                    
+                    $('#ajour{{ item.lien }}').show();
+                },
+                error: function(request, error) { // Info Debuggage si erreur         
+                    alert("Erreur :" + request.responseText);
+                }
+
+            })
+                    .done(function(msg) {
+                        if (msg === '') {
+                            Notif('<p>{{ item.lien }} est maintenant à jour</p>', 5000);
+
+                        }
+                        else {
+                            Notif('<p>Erreur lors de la maj</p>', 5000);
+
+                        }
+                    });
+            return false;
+
+        });
+        
+        {% endfor %}
+
 
         $('#confirm-delete').on('show.bs.modal', function(e) {
             $(this).find('.danger').attr('href', $(e.relatedTarget).data('href'));

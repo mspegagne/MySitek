@@ -209,6 +209,27 @@ $app->get('/admin/delete/{type}/{file}', function($type, $file) use ($app) {
     }
 });
 
+
+$app->post('/admin/maj', function () use ($app) {
+
+    
+    $type = $_REQUEST["type"];    
+    $file = $_REQUEST["file"];
+    
+    require_once __DIR__ . '/../lib/model/Install.php';
+
+    //TODO #TOKEN : checkToken pour confirmer paiement si ok alors install
+    //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
+    //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
+    //peut également servir pour une future periode de test 
+
+    $error = Install::update($file, $type, $app);
+
+    return $error;
+    
+});
+
+
 $app->post('/admin/install', function () use ($app) {
 
     
@@ -227,6 +248,7 @@ $app->post('/admin/install', function () use ($app) {
     return $error;
     
 });
+
 
 $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 

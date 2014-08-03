@@ -3,7 +3,7 @@
 header('Content-Type: text/plain'); //pour que la réponse s'affiche comme du texte brut
 $name = 'api.mysitek.com';//nom du site
 
-$json = json_encode(array(1, 2,array("hello")));
+$json = json_encode(array("mode" => "one", "type" => "module",array("hello")));
 $data = 'json=' . $json;
  
 //la requête

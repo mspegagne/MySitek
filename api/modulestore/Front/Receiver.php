@@ -8,25 +8,33 @@ use Front\Helper\ManyModeReceiver;
 use Service\AbstractService;
 
 class Receiver {
+    
+    /**
+     * @var string Un élément Json
+     */
+    protected $json;
+    
+    /**
+     * @param string $json L'élément Json reçu
+     */
+    public function __construct($json) {
+        $this->json = $json;
+    }
 
     /**
-     * Methode permettant de receptionner un element Json et de le rediriger
-     * vers les methodes de traitement adapté
+     * Methode permettant de récupérer la réponse associé à l'élément Json
+     * donné lors de la construction de l'objet
      * 
-     * @param string $jsonElement
-     * 
-     * @return array Information en Json et Url cible
-     * 
-     * @throws ReceptionException
+     * @return string Elément Json réponse
      * 
      * @see \JsonSerializable
      */
-    public static function receive($jsonElement) {
-
-        $receivedData = json_decode($jsonElement, true);
-
+    public function getAnswer() {
+        
+        $receivedData = json_decode($this->json, true);
         try {
             $service = $this->getServiceFromData($receivedData);
+            
             $jsonAnswer = json_encode($service->getInfos());
         } catch (Exception $ex) {
             Logger::logMessage($ex->getMessage());
@@ -44,15 +52,15 @@ class Receiver {
      * @throws ReceptionException
      */
     protected function getServiceFromData(array $receivedData) {
+        
         $mode = $receivedData['mode'];
-
         if (empty($mode)) {
             throw new ReceptionException("Mode non trouvé dans l'élément Json");
         }
 
         switch ($mode) {
             case "one":
-                return OneModeHelper::translate($receivedData);
+                $res = OneModeHelper::translate($receivedData);
             case "many":
                 return ManyModeReceiver::translate($receivedData);
             default :

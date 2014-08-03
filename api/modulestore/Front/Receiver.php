@@ -2,6 +2,7 @@
 
 namespace Front;
 
+use Logs\Logger;
 use Front\Helper\OneModeHelper;
 use Front\Helper\ManyModeReceiver;
 use Service\AbstractService;
@@ -14,35 +15,37 @@ class Receiver {
      * 
      * @param string $jsonElement
      * 
-     * @throws ReceptionError
+     * @return array Information en Json et Url cible
+     * 
+     * @throws ReceptionException
      * 
      * @see \JsonSerializable
      */
     public static function receive($jsonElement) {
 
         $receivedData = json_decode($jsonElement, true);
-        
 
         try {
             $url = $this->getUrlFormJson($receivedData);
             $service = $this->getServiceFromData($receivedData);
         } catch (ReceptionException $ex) {
-            // Logger l'exception
-            return json_encode(array('error' => $ex->getMessage()));
+            Logger::logMessage($ex->getMessage());
+            throw $ex;
         }
         try {
-            $infos = $service->getInfos();
-            $infos['url'] = $url;
+            $infos['infos'] = json_encode($service->getInfos());
         } catch (Exception $ex) {
-            // Logger l'exception
-            return json_encode(array('error' => $ex->getMessage()));
+            Logger::logMessage($ex->getMessage());
+            $infos['infos'] = json_encode(array('error' => $ex->getMessage()));
         }
+        $infos['url'] = $url;
         
-        return json_encode($infos);
+        return $infos;
     }
 
     /**
      * @param array $receivedData Les données à traiter
+     * 
      * @return AbstractService Le service adapté pour traiter la chaine Json
      * 
      * @throws ReceptionException
@@ -64,9 +67,17 @@ class Receiver {
         }
     }
     
+    /**
+     * 
+     * @param array $receivedData Les données à traiter
+     * 
+     * @return string L'Url de l'émetteur du message
+     * 
+     * @throws ReceptionException
+     */
     protected function getUrlFormJson(array $receivedData) {
         $url = $receivedData['url'];
-        if (empty($mode)) {
+        if (empty($url)) {
             throw new ReceptionException("Url non trouvée dans l'élément Json");
         }
         return $url;

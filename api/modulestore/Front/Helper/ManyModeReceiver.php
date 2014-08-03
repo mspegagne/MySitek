@@ -4,7 +4,6 @@ namespace Front\Helper;
 
 use Front\ReceptionException;
 use Service\AbstractService;
-use Service\ManyMixedService;
 use Service\ManyModuleService;
 use Service\ManyThemeService;
 

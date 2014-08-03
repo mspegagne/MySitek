@@ -10,6 +10,9 @@ abstract class Sender {
 
     protected function sendJsonRequest($json, $url) {
 
+        /**
+         * @todo Compléter cette classe
+         */
         //$blogID = '8070105920543249955';
         //$authToken = 'OAuth 2.0 token here';
         // The data to send to the API

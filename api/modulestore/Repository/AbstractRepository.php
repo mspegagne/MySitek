@@ -9,7 +9,6 @@ abstract class AbstractRepository {
     // Cache de 5 minutes
     const MAXCACHETIME = 300;
 
-
     /**
      * @var ModuleEntity[]
      */

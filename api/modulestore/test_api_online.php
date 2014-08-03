@@ -5,7 +5,10 @@ $name = 'api.mysitek.com';//nom du site
 
 $json = json_encode(array('test1', 'test2'));
 
-$data = 'json=' . $json;
+$startJson = '0-MYJS0N-0';
+$endJson = '0-ENDMYJS0N-0';
+
+$data = 'json=' . $startJson . $json . $endJson;
  
 //la requête
 $envoi  = "POST / HTTP/1.1\r\n";
@@ -35,6 +38,9 @@ $reception = '';
 while($buff = socket_read($socket, 2000)){
    $reception.=$buff;
 }
-echo $reception;
+$startAnswer = strpos($reception, $startJson);
+$endAnswer = strpos($reception, $endJson);
+$shortAnswer = substr($reception, $startAnswer+strlen($startJson), $endAnswer-$startAnswer-strlen($startJson));
+echo $shortAnswer . "\n";
  
 socket_close($socket);

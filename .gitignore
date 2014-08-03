@@ -213,8 +213,4 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
-/MySitek/Site-vitrine/nbproject/private/
-/nbproject/private/
-/Projet/nbproject/private/
-/Projet/Archive/nbproject/private/
-/Projet/tmp-owncloud1405509522/nbproject/private/
+#nbproject/*

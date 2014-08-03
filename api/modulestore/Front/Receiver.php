@@ -26,21 +26,14 @@ class Receiver {
         $receivedData = json_decode($jsonElement, true);
 
         try {
-            $url = $this->getUrlFormJson($receivedData);
             $service = $this->getServiceFromData($receivedData);
-        } catch (ReceptionException $ex) {
-            Logger::logMessage($ex->getMessage());
-            throw $ex;
-        }
-        try {
-            $infos['infos'] = json_encode($service->getInfos());
+            $jsonAnswer = json_encode($service->getInfos());
         } catch (Exception $ex) {
             Logger::logMessage($ex->getMessage());
-            $infos['infos'] = json_encode(array('error' => $ex->getMessage()));
+            return json_encode(array('error' => $ex->getMessage()));
         }
-        $infos['url'] = $url;
         
-        return $infos;
+        return $jsonAnswer;
     }
 
     /**
@@ -65,21 +58,5 @@ class Receiver {
             default :
                 throw new ReceptionException("Mode inconnu pour l'élément Json");
         }
-    }
-    
-    /**
-     * 
-     * @param array $receivedData Les données à traiter
-     * 
-     * @return string L'Url de l'émetteur du message
-     * 
-     * @throws ReceptionException
-     */
-    protected function getUrlFormJson(array $receivedData) {
-        $url = $receivedData['url'];
-        if (empty($url)) {
-            throw new ReceptionException("Url non trouvée dans l'élément Json");
-        }
-        return $url;
     }
 }

@@ -1,11 +1,13 @@
 <?php
 
-/**
- * @todo Gestion de la réception / envoi des requetes Json
- */
+$json = htmlspecialchars($_POST['json']);
 
-if (empty($_POST['url'])) {
+if (empty($json)) {
     echo 'Vous vous trouvez actuellement sur une API. Les connexions directes ne sont pas prises en compte.';
     return;
 }
-echo 'Bienvenue';
+
+/**
+ * @todo Répondre par un simple affichage
+ */
+echo $json;

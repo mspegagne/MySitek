@@ -7,7 +7,17 @@ if (empty($json)) {
     return;
 }
 
+$translation = json_decode(str_replace('&quot;', '"', $json));
+
+echo 'Version originale :';
+var_dump($json);
+echo 'Traduction :';
+
+var_dump($translation);
+
+
+
 /**
  * @todo Répondre par un simple affichage
  */
-echo $json;
+//echo $json;

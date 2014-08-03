@@ -3,12 +3,8 @@
 header('Content-Type: text/plain'); //pour que la réponse s'affiche comme du texte brut
 $name = 'api.mysitek.com';//nom du site
 
-$json = json_encode(array('test1', 'test2'));
-
-$startJson = '0-MYJS0N-0';
-$endJson = '0-ENDMYJS0N-0';
-
-$data = 'json=' . $startJson . $json . $endJson;
+$json = json_encode(array(1, 2,array("hello")));
+$data = 'json=' . $json;
  
 //la requête
 $envoi  = "POST / HTTP/1.1\r\n";
@@ -38,9 +34,10 @@ $reception = '';
 while($buff = socket_read($socket, 2000)){
    $reception.=$buff;
 }
-$startAnswer = strpos($reception, $startJson);
+/*$startAnswer = strpos($reception, $startJson);
 $endAnswer = strpos($reception, $endJson);
 $shortAnswer = substr($reception, $startAnswer+strlen($startJson), $endAnswer-$startAnswer-strlen($startJson));
-echo $shortAnswer . "\n";
+echo $shortAnswer . "\n";*/
+echo $reception;
  
 socket_close($socket);

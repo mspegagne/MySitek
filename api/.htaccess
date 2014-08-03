@@ -1,12 +1,12 @@
 RewriteEngine on
 
 RewriteCond %{HTTP_HOST} ^api.mysitek.com$
-RewriteCond %{REQUEST_URI} !^/modulestore/public/
+RewriteCond %{REQUEST_URI} !^/modulestore/
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 
-RewriteRule ^(.*)$ /modulestore/public/$1
+RewriteRule ^(.*)$ /modulestore/$1
 
 RewriteCond %{HTTP_HOST} ^api.mysitek.com$
-RewriteRule ^(/)?$ modulestore/public/index.php [L]
+RewriteRule ^(/)?$ modulestore/index.php [L]

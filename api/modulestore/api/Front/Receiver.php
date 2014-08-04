@@ -30,7 +30,7 @@ class Receiver {
      * @see \JsonSerializable
      */
     public function getAnswer() {
-        
+        echo "Hey ! " . __CLASS__ . ":" . __METHOD__ . "\n\n";
         $receivedData = json_decode($this->json, true);
         try {
             $service = $this->getServiceFromData($receivedData);

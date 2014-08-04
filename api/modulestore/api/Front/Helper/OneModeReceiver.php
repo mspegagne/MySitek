@@ -19,7 +19,7 @@ abstract class OneModeHelper {
     public static function translate(array $receivedData) {
 
         $type = $receivedData['type'];
-
+        echo "Hey ! " . __CLASS__ . ":" . __METHOD__ . "\n\n";
         if (empty($type)) {
             throw new ReceptionException("Type non trouvé dans l'élément Json");
         }

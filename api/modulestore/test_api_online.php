@@ -17,16 +17,16 @@ $envoi .= $data."\r\n";
 /*ouverture socket*/
 $socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 if($socket < 0){
-        die('FATAL ERROR: socket_create() : " '.socket_strerror($socket).' "');
+   die('FATAL ERROR: socket_create() : " '.socket_strerror($socket).' "');
 }
  
 if (socket_connect($socket,gethostbyname($name),80) < 0){
-        die('FATAL ERROR: socket_connect()');
+   die('FATAL ERROR: socket_connect()');
 }
  
 /*envoi demande*/
 if(($int = socket_write($socket, $envoi, strlen($envoi))) === false){
-        die('FATAL ERROR: socket_write() failed, '.$int.' characters written');
+   die('FATAL ERROR: socket_write() failed, '.$int.' characters written');
 }
  
 /*lecture réponse*/

@@ -17,8 +17,8 @@ class Welcome {
     }
     
     public function getAnswer() {
-        var_dump(json_decode($this->json));
         $receiver = new Receiver($this->json);
+        echo "Hey ! " . __CLASS__ . ":" . __METHOD__ . "\n\n";
         return $receiver->getAnswer();
     }
 }
@@ -29,6 +29,9 @@ if (!$welcome->isJsonOk()) {
     echo 'Vous vous trouvez actuellement sur une API. Les connexions directes ne sont pas prises en compte.';
     return;
 }
+
+require_once 'app.php';
+
 echo "Answer :\n";
 $answer = $welcome->getAnswer();
 

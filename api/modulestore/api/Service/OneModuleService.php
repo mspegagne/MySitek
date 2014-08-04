@@ -15,5 +15,6 @@ class OneModuleService extends OneAbstractService {
          * @todo Changer ce comportement (qui est utilisé pour les tests)
          */
         $this->repository = new ModuleRepositoryStub();
+        require_once './api/Service/InvalidException.php';
     }
 }

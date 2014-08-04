@@ -18,7 +18,6 @@ class Welcome {
     
     public function getAnswer() {
         $receiver = new Receiver($this->json);
-        echo "Hey ! " . __CLASS__ . ":" . __METHOD__ . "\n\n";
         return $receiver->getAnswer();
     }
 }
@@ -30,11 +29,16 @@ if (!$welcome->isJsonOk()) {
     return;
 }
 
-require_once 'app.php';
+date_default_timezone_set('Europe/Paris');
+
+spl_autoload_register(
+    function ($class) {
+        $class = str_replace('\\', '/', $class);
+        echo '[AUTOLOAD] : ' . __DIR__ . "/$class.php\n";
+        require_once __DIR__ . "/$class.php";
+    },
+    true,
+    true);
 
 echo "Answer :\n";
 $answer = $welcome->getAnswer();
-
-/**
- * @todo Regler le problème d'import 
- */

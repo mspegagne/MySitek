@@ -30,7 +30,6 @@ class Receiver {
      * @see \JsonSerializable
      */
     public function getAnswer() {
-        echo "Hey ! " . __CLASS__ . ":" . __METHOD__ . "\n\n";
         $receivedData = json_decode($this->json, true);
         try {
             $service = $this->getServiceFromData($receivedData);
@@ -60,6 +59,7 @@ class Receiver {
 
         switch ($mode) {
             case "one":
+                echo 'HERE : ' . __CLASS__ . ":" . __METHOD__ . "\n\n";
                 $res = OneModeHelper::translate($receivedData);
             case "many":
                 return ManyModeReceiver::translate($receivedData);

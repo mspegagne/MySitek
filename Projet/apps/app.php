@@ -47,17 +47,21 @@ $app['index'] = $retour['value'];
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1 ORDER BY rang ASC";
 $app['modules_front'] = $app['db']->fetchAll($sql);
 
-//front à 0 signifie module back
+//front à 2 signifie module back
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 2 ORDER BY rang ASC";
 $app['modules_back'] = $app['db']->fetchAll($sql);
 
-//front à -1 signifie module uniquement admin
+//front à 0 signifie module uniquement admin
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0 ORDER BY rang ASC";
 $app['modules_admin'] = $app['db']->fetchAll($sql);
 
-//front à 2 signifie module param
+//front à 3 signifie module param
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 3 ORDER BY rang ASC";
 $app['modules_param'] = $app['db']->fetchAll($sql);
+
+//front à 4 signifie module param
+$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 4 ORDER BY rang ASC";
+$app['modules_param_plus'] = $app['db']->fetchAll($sql);
 
 //liste modules
 $sql = "SELECT * FROM modules WHERE front != -1 ORDER BY rang ASC";
@@ -285,6 +289,15 @@ foreach ($app['modules_admin'] as $module) {
     include_once __DIR__ . '/modules/admin/' . $module['lien'] . '/actions/controler-back.php';
 }
 
+foreach ($app['modules_param_plus'] as $module) {
+
+    include_once __DIR__ . '/modules/' . $module['lien'] . '/actions/controler-back.php';
+}
+
+foreach ($app['modules_param'] as $module) {
+
+    include_once __DIR__ . '/modules/admin/parametres/modules/' . $module['lien'] . '/actions/controler-back.php';
+}
 
 foreach ($app['modules_front'] as $module) {
 

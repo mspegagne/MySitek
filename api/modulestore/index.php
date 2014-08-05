@@ -38,7 +38,8 @@ spl_autoload_register(
         require_once __DIR__ . "/$class.php";
     },
     true,
-    true);
+    true
+);
 
 echo "Answer :\n";
 $answer = $welcome->getAnswer();

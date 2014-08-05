@@ -13,13 +13,13 @@
             {% block menuparam %}
                 <ul class="list-group">
                     {% for item in app.modules_param %}
-                        <a href="/admin/parametres/{{ item.lien }}/" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
+                        <a href="/admin/parametres/{{ item.lien }}" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
                             <span class="glyphicon glyphicon-chevron-right pull-right"></span>
                             {{ item.name | title}}
                         </a>
                     {% endfor %} 
                     {% for item in app.modules_param_plus %}
-                        <a href="/admin/parametres/{{ item.lien }}/" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
+                        <a href="/admin/parametres/{{ item.lien }}" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
                             <span class="glyphicon glyphicon-chevron-right pull-right"></span>
                             {{ item.name | title}}
                         </a>

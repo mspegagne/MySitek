@@ -88,7 +88,7 @@ $maj->post('/rang/param', function () use ($app) {
 
     foreach ($result as $value) {
         $i++;
-        $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = 3";
+        $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = 4";
         $app['db']->executeUpdate($sql, array($value));
     }
 

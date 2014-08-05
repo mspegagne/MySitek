@@ -97,6 +97,7 @@
                         <!-- Affichage du contenu du module  -->
                         {% block content %}
                         {% endblock %}
+                        
                     </div>
                 </div>
             </div>
@@ -137,7 +138,7 @@
         <script src="/lib/NotificationStyles/js/notificationFx.js"></script>
 
         <script>
-            
+
             function Modal(value) {
                 document.getElementById('modal-body').innerHTML = value + '<button type="button" class="close" data-dismiss="modal">×</button>';
                 $('#modal').modal('show');

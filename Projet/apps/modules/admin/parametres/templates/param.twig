@@ -7,40 +7,41 @@
 
 
 {% block content %}
+    <div class="row">
+        <div class="col-md-3">      
 
-    <div class="col-md-3">      
-        
-        {% block menuparam %}
-            <ul class="list-group">
-                {% for item in app.modules_param %}
-                    <a href="/admin/parametres/{{ item.lien }}" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
-                        <span class="glyphicon glyphicon-chevron-right pull-right"></span>
-                        {{ item.name | title}}
-                    </a>
-                {% endfor %} 
-                {% for item in app.modules_param_plus %}
-                    <a href="/admin/parametres/{{ item.lien }}" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
-                        <span class="glyphicon glyphicon-chevron-right pull-right"></span>
-                        {{ item.name | title}}
-                    </a>
-                {% endfor %} 
-            </ul>     
-        {% endblock %}
+            {% block menuparam %}
+                <ul class="list-group">
+                    {% for item in app.modules_param %}
+                        <a href="/admin/parametres/{{ item.lien }}" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
+                            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+                            {{ item.name | title}}
+                        </a>
+                    {% endfor %} 
+                    {% for item in app.modules_param_plus %}
+                        <a href="/admin/parametres/{{ item.lien }}" {% if app.selected == item.lien %}class="list-group-item active" {% else %} class="list-group-item" {% endif %}>
+                            <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+                            {{ item.name | title}}
+                        </a>
+                    {% endfor %} 
+                </ul>     
+            {% endblock %}
 
-        <div class="panel panel-default">
-            <div class="panel-body">
-                © 2014 Mysitek À propos Aide Conditions Confidentialité Cookies  Blog Statut Applications Offres d'emploi
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    © 2014 Mysitek À propos Aide Conditions Confidentialité Cookies  Blog Statut Applications Offres d'emploi
 
-            </div> 
+                </div> 
+            </div>
         </div>
-    </div>
-    <div class="col-md-9">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="row">
-                    <!-- Affichage du contenu du module  -->
-                    {% block contentparam %}
-                    {% endblock %}
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <!-- Affichage du contenu du module  -->
+                        {% block contentparam %}
+                        {% endblock %}
+                    </div>
                 </div>
             </div>
         </div>

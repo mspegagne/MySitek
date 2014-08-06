@@ -194,7 +194,7 @@
                         <h3>Mathieu Spegagne</h3>
                         <p class="lead">
                             Elève ingénieur en informatique, Mathieu développe des sites depuis plus de 6 ans. 
-                            Actuellement président de la Junior-Entreprise de son école, il a vu évoluer la demande 
+                            Actuellement président de la Junior-Entreprise de l'INSA de Rennes, il a vu évoluer la demande 
                             des artisans et des associations en matière de site simples et personnalisables. C'est pourquoi il a eu
                             l'idée de s'associer avec Bruno afin de créer la solution MySitek.
                         </p>

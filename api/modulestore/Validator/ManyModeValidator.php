@@ -2,7 +2,8 @@
 
 namespace Validator;
 
-class ManyModeValidator implements ValidatorInterface {
+class ManyModeValidator implements ValidatorInterface
+{
     
     /**
      * Données à valider
@@ -43,7 +44,8 @@ class ManyModeValidator implements ValidatorInterface {
      * 
      * @return boolean
      */
-    protected function alternativeValidation() {
+    protected function alternativeValidation()
+    {
         return $this->isNotEmptyAlternativeValidation()
             && $this->isRightTypeAlternativeValidation()
             && $this->areDataValidAlternativeValidation();
@@ -54,7 +56,8 @@ class ManyModeValidator implements ValidatorInterface {
      * 
      * @return boolean
      */
-    private function isNotEmptyAlternativeValidation() {
+    private function isNotEmptyAlternativeValidation()
+    {
         $isNotEmpty = !empty($data['template']);
         $isNotEmpty &=!empty($data['sort']);
         $isNotEmpty &=!empty($data['max-elmt']);
@@ -67,18 +70,21 @@ class ManyModeValidator implements ValidatorInterface {
      * 
      * @return boolean
      */
-    private function isRightTypeAlternativeValidation() {
+    private function isRightTypeAlternativeValidation()
+    {
         $isRightType = is_int($data['max-elmt']);
         $isRightType &= is_int($data['page']);
         return $isRightType;
     }
 
     /**
-     * Methode permettant de valider le format des données pour une requête complexe
+     * Methode permettant de valider le format des données
+     * pour une requête complexe
      * 
      * @return boolean
      */
-    private function areDataValidAlternativeValidation() {
+    private function areDataValidAlternativeValidation()
+    {
         $areDataValid = in_array(
             $data['template'],
             $this->validValuesForTemplateOption,

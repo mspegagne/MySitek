@@ -3,12 +3,13 @@
 namespace Service;
 
 use Validator\OneModeValidator;
-//use Repository\ModuleRepository;
 use Repository\ModuleRepositoryStub;
 
-class OneModuleService extends OneAbstractService {
+class OneModuleService extends OneAbstractService
+{
     
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         $this->data = $data;
         $this->validator = new OneModeValidator($this->data);
         /**

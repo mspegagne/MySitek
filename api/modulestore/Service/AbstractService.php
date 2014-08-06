@@ -5,7 +5,8 @@ namespace Service;
 use Validator\ValidatorInterface;
 use Repository\RepositoryInterface;
 
-abstract class AbstractService {
+abstract class AbstractService
+{
     
     /**
      * Données à valider
@@ -25,14 +26,17 @@ abstract class AbstractService {
      */
     protected $repository;
     
-    protected function validateData() {
-        if(!$this->validator->validate()) {
+    protected function validateData()
+    {
+        if (!$this->validator->validate()) {
             throw new InvalidException("Les données Json sont invalides");
         }
     }
     
     /**
      * @return array
+     * 
+     * @abstract
      */
-    public function getInfos();
+    abstract public function getInfos();
 }

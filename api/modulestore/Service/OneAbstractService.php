@@ -2,12 +2,14 @@
 
 namespace Service;
 
-abstract class OneAbstractService extends AbstractService {
+abstract class OneAbstractService extends AbstractService
+{
     
     /**
      * {@inheritdoc}
      */
-    public function getInfos() {
+    public function getInfos()
+    {
         require_once './api/Service/InvalidException.php';
         $this->validateData();
         $name = $this->data['name'];

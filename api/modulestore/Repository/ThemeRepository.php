@@ -2,18 +2,21 @@
 
 namespace Repository;
 
-class ThemeRepository extends AbstractRepository {
+class ThemeRepository extends AbstractRepository
+{
 
     /**
      * {@inheritdoc}
      */
-    public function getElements($template, $page, $maxElement, $sort) {
+    public function getElements($template, $page = -1, array $options = null)
+    {
         /**
-         * @todo
+         * @todo Compléter cette méthode
          */
     }
     
-    protected function getElementInDb($name) {
+    protected function getElementInDb($name)
+    {
         $this->elements[$name] = array();
         
         /**

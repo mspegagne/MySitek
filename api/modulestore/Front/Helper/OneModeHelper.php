@@ -7,21 +7,25 @@ use Service\AbstractService;
 use Service\OneModuleService;
 use Service\OneThemeService;
 
-abstract class OneModeHelper {
+abstract class OneModeHelper
+{
 
     /**
-     * Methode permettant de retourner un service adapté en fonction des données
+     * Methode permettant de retourner un service en fonction des données
      * 
      * @param array $receivedData
      * @return AbstractService Le service associé aux données reçues
      * @throws ReceptionException
      */
-    public static function translate(array $receivedData) {
+    public static function translate(array $receivedData)
+    {
 
         $type = $receivedData['type'];
         echo "Hey ! " . __CLASS__ . ":" . __METHOD__ . "\n\n";
         if (empty($type)) {
-            throw new ReceptionException("Type non trouvé dans l'élément Json");
+            throw new ReceptionException(
+                "Type non trouvé dans l'élément Json"
+            );
         }
 
         switch ($type) {
@@ -30,7 +34,9 @@ abstract class OneModeHelper {
             case "theme":
                 return new OneThemeService($receivedData);
             default :
-                throw new ReceptionException("Type inconnu pour l'élément Json");
+                throw new ReceptionException(
+                    "Type inconnu pour l'élément Json"
+                );
         }
     }
 }

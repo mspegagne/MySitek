@@ -7,21 +7,25 @@ use Service\AbstractService;
 use Service\ManyModuleService;
 use Service\ManyThemeService;
 
-abstract class ManyModeReceiver {
+abstract class ManyModeHelper
+{
     
     /**
-     * Methode permettant de retourner un service adapté en fonction des données
+     * Methode permettant de retourner un service en fonction des données
      * 
      * @param array $receivedData
      * @return AbstractService Le service associé aux données reçues
      * @throws ReceptionException
      */
-    public static function translate(array $receivedData) {
+    public static function translate(array $receivedData)
+    {
 
         $type = $receivedData['type'];
 
         if (empty($type)) {
-            throw new ReceptionException("Type non trouvé dans l'élément Json");
+            throw new ReceptionException(
+                "Type non trouvé dans l'élément Json"
+            );
         }
 
         switch ($type) {
@@ -30,7 +34,9 @@ abstract class ManyModeReceiver {
             case "theme":
                 return new ManyThemeService($receivedData);
             default :
-                throw new ReceptionException("Type inconnu pour l'élément Json");
+                throw new ReceptionException(
+                    "Type inconnu pour l'élément Json"
+                );
         }
     }
 }

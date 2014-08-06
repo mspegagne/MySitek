@@ -2,7 +2,8 @@
 
 namespace Validator;
 
-class OneModeValidator implements ValidatorInterface {
+class OneModeValidator implements ValidatorInterface
+{
 
     /**
      * Données à valider
@@ -10,14 +11,16 @@ class OneModeValidator implements ValidatorInterface {
      */
     protected $data;
 
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         $this->data = $data;
     }
     
     /**
      * {@inheritdoc}
      */
-    public function validate() {
+    public function validate()
+    {
         return !empty($data['name']);
     }
 }

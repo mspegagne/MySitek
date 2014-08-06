@@ -4,7 +4,8 @@ namespace Repository;
 
 use Entity\ModuleEntity;
 
-abstract class AbstractRepository {
+abstract class AbstractRepository
+{
 
     // Cache de 5 minutes
     const MAXCACHETIME = 300;
@@ -28,7 +29,8 @@ abstract class AbstractRepository {
      * 
      * @throws NotFoundException
      */
-    public function getElementByName($name) {
+    public function getElementByName($name)
+    {
         if (!key_exists($name, $this->elements)) {
             return $this->getElementInDb($name);
         }
@@ -36,7 +38,8 @@ abstract class AbstractRepository {
     }
 
     /**
-     * Methode permettant de récupérer plusieurs éléments avec un tableau de noms
+     * Methode permettant de récupérer plusieurs éléments
+     * avec un tableau de noms
      * 
      * @param string[] $names
      * 
@@ -50,7 +53,8 @@ abstract class AbstractRepository {
      *   ...
      * }
      */
-    public function getElementByNames(array $names) {
+    public function getElementByNames(array $names)
+    {
         $elements = array();
         foreach ($names as $name) {
             try {
@@ -63,18 +67,28 @@ abstract class AbstractRepository {
     }
 
     /**
-     * Methode permettant de récupérer un élement avec un système de template
+     * Methode permettant de récupérer un ou plusieurs élement(s)
+     * avec un système de template
      * 
      * @param string $template
      * @param int $page
-     * @param int $maxElement
-     * @param string $sort
+     * @param array $options
+     * 
+     * @abstract
      */
-    public function getElements($template, $page, $maxElement, $sort);
+    abstract public function getElements($template, $page, array $options);
     
-    protected function getElementInDb($name);
+    /**
+     * Methode permettant de récupérer un élément en BDD
+     * 
+     * @param string $name
+     * 
+     * @abstract
+     */
+    abstract protected function getElementInDb($name);
     
-    protected function getCacheValue($name) {
+    protected function getCacheValue($name)
+    {
         $cacheAge = $this->elements[$name]['cache_age'];
         $now = new \DateTime('now');
         $diff = $cacheAge->getTimestamp() - $now->getTimestamp();

@@ -7,7 +7,8 @@ use Front\Helper\OneModeHelper;
 use Front\Helper\ManyModeReceiver;
 use Service\AbstractService;
 
-class Receiver {
+class Receiver
+{
     
     /**
      * @var string Un élément Json
@@ -17,19 +18,21 @@ class Receiver {
     /**
      * @param string $json L'élément Json reçu
      */
-    public function __construct($json) {
+    public function __construct($json)
+    {
         $this->json = $json;
     }
 
     /**
-     * Methode permettant de récupérer la réponse associé à l'élément Json
-     * donné lors de la construction de l'objet
+     * Methode permettant de récupérer la réponse associé à
+     * l'élément Json donné lors de la construction de l'objet
      * 
      * @return string Elément Json réponse
      * 
      * @see \JsonSerializable
      */
-    public function getAnswer() {
+    public function getAnswer()
+    {
         $receivedData = json_decode($this->json, true);
         try {
             $service = $this->getServiceFromData($receivedData);
@@ -50,11 +53,14 @@ class Receiver {
      * 
      * @throws ReceptionException
      */
-    protected function getServiceFromData(array $receivedData) {
+    protected function getServiceFromData(array $receivedData)
+    {
         
         $mode = $receivedData['mode'];
         if (empty($mode)) {
-            throw new ReceptionException("Mode non trouvé dans l'élément Json");
+            throw new ReceptionException(
+                "Mode non trouvé dans l'élément Json"
+            );
         }
 
         switch ($mode) {
@@ -64,7 +70,9 @@ class Receiver {
             case "many":
                 return ManyModeReceiver::translate($receivedData);
             default :
-                throw new ReceptionException("Mode inconnu pour l'élément Json");
+                throw new ReceptionException(
+                    "Mode inconnu pour l'élément Json"
+                );
         }
     }
 }

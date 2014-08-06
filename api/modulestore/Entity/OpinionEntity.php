@@ -2,6 +2,7 @@
 
 namespace Entity;
 
-class OpinionEntity {
+class OpinionEntity
+{
     //put your code here
 }

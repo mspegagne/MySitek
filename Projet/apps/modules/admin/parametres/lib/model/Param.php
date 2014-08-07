@@ -14,7 +14,7 @@ class Param {
      * @param String $ref reference du param en bdd
      * @return Param avec la valeur
      */
-    public function __construct($ref) {
+    public function __construct($ref, $app) {
 
         $sql = "SELECT * FROM param WHERE ref = '" . $ref . "'";
         $retour = $app['db']->fetchAssoc($sql);
@@ -69,7 +69,7 @@ class Param {
     /**
      * @brief Sauvegarde le param
      */
-    public function save() {
+    public function save($app) {
 
         $ref = $this->getRef();
         $value = $this->getValue();
@@ -88,13 +88,31 @@ class Param {
     }
     
     /**
-     * @brief Sauvegarde le param
+     * @brief Sauvegarde la valeur à la ref donnee
+     * @param String $ref
+     * @param String $value
      */
-    public static function saveParam($ref, $value) {
+    public static function saveParam($ref, $value, $app) {
 
-        $param = new Param($ref);
+        $param = new Param($ref, $app);
         $param->setValue($value);
         $param->save();
+    }
+    
+    /**
+     * @brief Charge tous les params dans l'application
+     */
+    public static function load($app) {
+
+        $sql = "SELECT * FROM param";
+        $retour = $app['db']->fetchAll($sql);
+
+        foreach( $retour as $param )
+        {
+            $ref = $param['ref'];
+            $value = $param['value'];
+            $app[$ref] = $value;
+        }
     }
 
 }

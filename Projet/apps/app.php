@@ -17,14 +17,14 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
-
 /* Parametres du site */
 
-$app['siteName'] = 'MySitek';
-$app['url'] = 'http://localhost/';
-$app['user'] = 'mathieu.sge@hotmail.fr'; //TODO : à charger à partir des parametres
 $app['debug'] = true;
+$app['url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
 $app['selected'] = ''; //module en cours (pour affichage lien actif)
+
+require_once __DIR__ . '/modules/admin/parametres/lib/model/Param.php';
+Param::load($app);
 
 
 /* Recuperation du template */
@@ -32,13 +32,6 @@ $app['selected'] = ''; //module en cours (pour affichage lien actif)
 $sql = "SELECT * FROM templates WHERE selected = 1";
 $retour = $app['db']->fetchAssoc($sql);
 $app['template'] = $retour['name'];
-
-/* Recuperation du module index */
-
-$sql = "SELECT * FROM param WHERE ref = 'index'";
-$retour = $app['db']->fetchAssoc($sql);
-$app['index'] = $retour['value'];
-
 
 
 /* Recuperation des modules */

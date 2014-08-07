@@ -9,56 +9,37 @@
 {% block contentparam %}        
     <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> </div>
 
-    <!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-      <dl>
-        <dt>DEPARTMENT:</dt>
-        <dd>Administrator</dd>
-        <dt>HIRE DATE</dt>
-        <dd>11/12/2013</dd>
-        <dt>DATE OF BIRTH</dt>
-           <dd>11/12/2013</dd>
-        <dt>GENDER</dt>
-        <dd>Male</dd>
-      </dl>
-    </div>-->
     <div class=" col-md-9 col-lg-9 "> 
+        <form class="form-horizontal">
         <table class="table table-user-information">
             <tbody>
+               
                 <tr>
-                    <td>Department:</td>
-                    <td>Programming</td>
+                    <td><label class=" control-label" for="usr_name">Nom du responsable :</label></td>
+                    <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_name}}"></td>
                 </tr>
+                
                 <tr>
-                    <td>Hire date:</td>
-                    <td>06/23/2013</td>
+                    <td><label class=" control-label" for="usr_name">Prénom du responsable :</label></td>
+                    <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_firstName}}"></td>
                 </tr>
+                
                 <tr>
-                    <td>Date of Birth</td>
-                    <td>01/24/1988</td>
+                    <td><label class=" control-label" for="usr_name">Mail :</label></td>
+                    <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_mail}}"></td>
                 </tr>
-
+                
                 <tr>
-                <tr>
-                    <td>Gender</td>
-                    <td>Male</td>
+                    <td><label class=" control-label" for="usr_name">Nom du site:</label></td>
+                    <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.siteName}}"></td>
                 </tr>
-                <tr>
-                    <td>Home Address</td>
-                    <td>Metro Manila,Philippines</td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><a href="mailto:info@support.com">info@support.com</a></td>
-                </tr>
-            <td>Phone Number</td>
-            <td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
-            </td>
-
-            </tr>
-
             </tbody>
         </table>
-
+                <br>
+                 <div class="text-center"> 
+                <button id="save" name="save" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Enregistrer les modifications</button>
+                 </div>
+        </form>
     </div>
 {% endblock %}
 

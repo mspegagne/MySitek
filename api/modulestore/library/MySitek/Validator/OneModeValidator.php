@@ -20,6 +20,6 @@ class OneModeValidator implements ValidatorInterface
      */
     public function validate()
     {
-        return !empty($data['name']);
+        return !empty($this->data['name']);
     }
 }

@@ -175,11 +175,17 @@ class ModuleEntity
         return $this->version;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getCreationDate()
     {
         return $this->creationDate;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getLastModificationDate()
     {
         return $this->lastModificationDate;

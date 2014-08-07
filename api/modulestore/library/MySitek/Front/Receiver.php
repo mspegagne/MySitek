@@ -41,7 +41,6 @@ class Receiver
             Logger::logMessage($ex->getMessage());
             return json_encode(array('error' => $ex->getMessage()));
         }
-
         return $jsonAnswer;
     }
 

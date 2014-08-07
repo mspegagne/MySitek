@@ -9,10 +9,7 @@ abstract class OneAbstractService extends AbstractService
      */
     public function getInfos()
     {
-        $this->validateData();
-        $name = $this->data['name'];
-        $module = $this->repository->getElementByName($name);
-
-        return $module;
+        $this->validateData();  
+        return $this->repository->getElementByName($this->data['name']);
     }
 }

@@ -23,6 +23,7 @@ class TestMyServer extends SymfonyCommand
                 array(
                     "mode" => "one",
                     "type" => "module",
+                    "name" => "Module Stub",
                     array("hello")
                 )
             )
@@ -33,12 +34,31 @@ class TestMyServer extends SymfonyCommand
         curl_setopt($rh, CURLOPT_HEADER, false);
         curl_setopt($rh, CURLOPT_POSTFIELDS, $data);
         curl_setopt($rh, CURLOPT_RETURNTRANSFER, true);
-
+ 
         $reponse = curl_exec($rh);
+        $arrayReponse = json_decode($reponse);
 
         $output->writeln(
             "\n   <comment>Réponse du serveur $name :</comment>\n\n"
-            . "<info>$reponse</info>\n"
+            . "<info>$reponse</info>\n\n"
+            . "   <comment>Après decodage du Json :</comment>\n"
         );
+        foreach ($arrayReponse as $key => $data) {  
+            if (is_array($data)) {
+                if (count($data) === 0) {
+                    $data = 'Empty array';
+                } else {
+                    $data = implode(',', $data);
+                }
+            }
+            $output->writeln(
+                sprintf(
+                    "<info>[%s] => %s</info>",
+                    $key,
+                    $data
+                )   
+            );
+        }
+        $output->writeln("\n");
     }
 }

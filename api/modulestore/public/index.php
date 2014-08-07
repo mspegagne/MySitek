@@ -2,7 +2,7 @@
 
 namespace Front;
 
-use Front\Receiver;
+use MySitek\Front\Receiver;
 
 class Welcome
 {
@@ -35,6 +35,4 @@ if (!$welcome->isJsonOk()) {
     return;
 }
 
-
-echo "Answer :\n";
-$answer = $welcome->getAnswer();
+echo $welcome->getAnswer();

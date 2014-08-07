@@ -4,7 +4,6 @@ namespace MySitek\Entity;
 
 class ModuleEntityStub extends ModuleEntity
 {
-
     public function __construct()
     {
         $this->name = 'Module Stub';

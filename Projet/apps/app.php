@@ -23,7 +23,7 @@ $app['debug'] = true;
 $app['url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
 $app['selected'] = ''; //module en cours (pour affichage lien actif)
 
-require_once __DIR__ . '/modules/admin/parametres/lib/model/Param.php';
+require_once __DIR__ . '/../lib/model/Param.php';
 Param::load($app);
 
 

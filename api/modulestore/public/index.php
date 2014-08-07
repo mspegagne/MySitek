@@ -26,24 +26,15 @@ class Welcome
     }
 }
 
-$welcome = new Welcome($_POST['json']);
+$json = filter_input(INPUT_POST, 'json');
+
+$welcome = new Welcome($json);
 
 if (!$welcome->isJsonOk()) {
     echo 'Vous vous trouvez actuellement sur une API. Les connexions directes ne sont pas prises en compte.';
     return;
 }
-/**
- * @todo Mettre à jour cet autoloader
- */
-spl_autoload_register(
-    function ($class) {
-        $class = str_replace('\\', '/', $class);
-        echo '[AUTOLOAD] : ' . __DIR__ . "/$class.php\n";
-        require_once __DIR__ . "/$class.php";
-    },
-    true,
-    true
-);
+
 
 echo "Answer :\n";
 $answer = $welcome->getAnswer();

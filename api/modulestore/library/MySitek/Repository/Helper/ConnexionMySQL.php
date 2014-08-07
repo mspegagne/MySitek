@@ -40,4 +40,6 @@ abstract class DatabaseConnexionHelper
         unset($databaseSelect);
     }
 }
-// @todo UTILISATION PREFERABLE DE DOCTRINE !
+/**
+ *  @todo UTILISATION PREFERABLE DE DOCTRINE ! http://fr.openclassrooms.com/informatique/cours/utilisation-d-un-orm-les-bases-de-doctrine
+ */

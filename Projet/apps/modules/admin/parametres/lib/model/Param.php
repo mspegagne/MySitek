@@ -86,5 +86,15 @@ class Param {
             $app['db']->executeUpdate($sql, array());
         }
     }
+    
+    /**
+     * @brief Sauvegarde le param
+     */
+    public static function saveParam($ref, $value) {
+
+        $param = new Param($ref);
+        $param->setValue($value);
+        $param->save();
+    }
 
 }

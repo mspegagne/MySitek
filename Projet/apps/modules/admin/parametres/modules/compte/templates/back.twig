@@ -10,7 +10,7 @@
     <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> </div>
 
     <div class=" col-md-9 col-lg-9 "> 
-        <form class="form-horizontal" name="compte" action="/admin/parametres/compte/" method="post">
+        <form class="form-horizontal" id="compte" name="compte" action="/admin/parametres/compte/" method="post">
             <table class="table table-user-information">
                 <tbody>
 
@@ -29,11 +29,7 @@
                         <td><input id="user_mail" name="user_mail" maxlength="25" type="text" class="form-control input-md" value="{{app.user_mail}}"></td>
                     </tr>
 
-                    <tr>
-                        <td><label class=" control-label" for="usr_name">Nom du site:</label></td>
-                        <td><input id="siteName" name="siteName" maxlength="25" type="text" class="form-control input-md" value="{{app.siteName}}"></td>
-                    </tr>
-                </tbody>
+                    </tbody>
             </table>
             <br>
             <div class="text-center"> 
@@ -44,4 +40,37 @@
 {% endblock %}
 
 {% block js %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Lorsque je soumets le formulaire
+            $('#compte').on('submit', function(e) {
+                e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+
+                var $this = $(this); // L'objet jQuery du formulaire
+
+                // Je récupère les valeurs
+                var user_name = $('#user_name').val();
+                var user_firstName = $('#user_firstName').val();
+                var user_mail = $('#user_mail').val();
+
+                // Je vérifie une première fois pour ne pas lancer la requête HTTP
+                // si je sais que mon PHP renverra une erreur
+                if (user_name === '' || user_firstName === '' || user_mail === '') {
+                     Notif('<p>Les champs doivent êtres remplis</p>', 5000);
+                } else {
+                    // Envoi de la requête HTTP en mode asynchrone
+                    $.ajax({
+                        url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+                        type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+                        data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+                        dataType: 'json', // JSON
+                        success: function(json) { // Je récupère la réponse du fichier PHP
+                            Notif(json.response, 5000); // J'affiche cette réponse
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
 {% endblock %}

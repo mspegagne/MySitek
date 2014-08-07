@@ -19,19 +19,34 @@ $compte->get('/', function() use ($app) {
             __DIR__ . '/../templates/', __DIR__ . '/../../../templates/',)
     ));
 
-    
+
     $app['selected'] = 'compte';
 
     //TODO  modification des adresses en bdd
-    
+
     return $app['twig']->render('back.twig', array());
 });
 
 
-$compte->post('/', function (Request $request) {
-       
-    $name = $request->get('user_name');    
-    return new Response($name,200);
+$compte->post('/', function (Request $request) use($app) {
+
+    $user = array(
+        "user_name" => $request->get('user_name'),
+        "user_firstName" => $request->get('user_firstName'),
+        "user_mail" => $request->get('user_mail')
+    );
+
+    $sql = "UPDATE param SET value = ? WHERE ref = ?";
+
+    $response = 'Les données ont bien été enregistrées';
+
+    foreach ($user as $ref => $value) {
+        if (!$app['db']->executeUpdate($sql, array($value, $ref))) {
+            $response = 'Erreur lors de l\'enregistrement...';
+        }
+    }
+
+    return new Response(json_encode(['response' => $response]), 200);
 });
 
 

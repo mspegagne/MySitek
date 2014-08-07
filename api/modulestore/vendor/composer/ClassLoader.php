@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Autoload;
+namespace Composer\Autoload;
 
 /**
  * ClassLoader implements a PSR-0 class loader
@@ -143,6 +143,8 @@ class ClassLoader
      * @param string       $prefix  The prefix/namespace, with trailing '\\'
      * @param array|string $paths   The PSR-0 base directories
      * @param bool         $prepend Whether to prepend the directories
+     *
+     * @throws \InvalidArgumentException
      */
     public function addPsr4($prefix, $paths, $prepend = false)
     {
@@ -204,6 +206,8 @@ class ClassLoader
      *
      * @param string       $prefix The prefix/namespace, with trailing '\\'
      * @param array|string $paths  The PSR-4 base directories
+     *
+     * @throws \InvalidArgumentException
      */
     public function setPsr4($prefix, $paths)
     {

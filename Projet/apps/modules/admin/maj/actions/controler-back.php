@@ -73,13 +73,17 @@ $maj->post('/rang', function (Request $request) use ($app) {
     $explode = explode('&table-'.$table.'[]=', $result);
     $i = 0;
     
+    $response = '';
+
     foreach ($explode as $value) {
         $i++;
         $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = ".$table."";
-        $app['db']->executeUpdate($sql, array($value));
+        if (!$app['db']->executeUpdate($sql, array($value))) {
+            $response = 'Erreur...';
+        }
     }
        
-    return new Response('',200);
+    return new Response(json_encode(['response' => $response]),200);
 });
 
 //changer le nom du module

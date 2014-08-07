@@ -52,7 +52,7 @@ $app['modules_admin'] = $app['db']->fetchAll($sql);
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 3 ORDER BY rang ASC";
 $app['modules_param'] = $app['db']->fetchAll($sql);
 
-//front à 4 signifie module param
+//front à 4 signifie module param_plus
 $sql = "SELECT * FROM modules WHERE selected = 1 AND front = 4 ORDER BY rang ASC";
 $app['modules_param_plus'] = $app['db']->fetchAll($sql);
 

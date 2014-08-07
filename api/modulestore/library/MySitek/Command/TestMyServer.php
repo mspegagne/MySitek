@@ -23,11 +23,15 @@ class TestMyServer extends SymfonyCommand
                 array(
                     "mode" => "one",
                     "type" => "module",
-                    "name" => "Module Stub",
-                    array("hello")
+                    "name" => "Module Stub"
                 )
             )
         );
+        
+        $output->writeln(
+            "\n   <comment>Données en entrée :</comment>\n"
+        );
+        $this->displayArray($data, $output); 
 
         $rh = curl_init($name);
         curl_setopt($rh, CURLOPT_POST, true);
@@ -43,7 +47,14 @@ class TestMyServer extends SymfonyCommand
             . "<info>$reponse</info>\n\n"
             . "   <comment>Après decodage du Json :</comment>\n"
         );
-        foreach ($arrayReponse as $key => $data) {  
+        $this->displayArray($arrayReponse, $output);
+
+        $output->writeln("\n");
+    }
+
+    protected function displayArray($array, OutputInterface $output)
+    {
+        foreach ($array as $key => $data) {  
             if (is_array($data)) {
                 if (count($data) === 0) {
                     $data = 'Empty array';
@@ -59,6 +70,5 @@ class TestMyServer extends SymfonyCommand
                 )   
             );
         }
-        $output->writeln("\n");
     }
 }

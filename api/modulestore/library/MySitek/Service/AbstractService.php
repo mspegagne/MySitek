@@ -25,12 +25,7 @@ abstract class AbstractService
      */
     protected $repository;
 
-    protected function validateData()
-    {
-        if (!$this->validator->validate()) {
-            throw new InvalidException("Les données Json sont invalides");
-        }
-    }
+    abstract public function __construct(array $data);
 
     /**
      * @return array
@@ -38,4 +33,11 @@ abstract class AbstractService
      * @abstract
      */
     abstract public function getInfos();
+
+    protected function validateData()
+    {
+        if (!$this->validator->validate()) {
+            throw new InvalidException("Les données Json sont invalides");
+        }
+    }
 }

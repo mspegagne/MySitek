@@ -1,9 +1,9 @@
 <?php
 
-namespace Service;
+namespace MySitek\Service;
 
-use Validator\OneModeValidator;
-use Repository\ThemeRepository;
+use MySitek\Validator\OneModeValidator;
+use MySitek\Repository\ThemeRepository;
 
 class OneThemeService extends OneAbstractService
 {

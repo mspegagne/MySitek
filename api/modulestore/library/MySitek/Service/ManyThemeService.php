@@ -1,13 +1,12 @@
 <?php
 
-namespace Service;
+namespace MySitek\Service;
 
-use Validator\ManyModeValidator;
-use Repository\ThemeRepository;
+use MySitek\Validator\ManyModeValidator;
+use MySitek\Repository\ThemeRepository;
 
 class ManyThemeService extends ManyAbstractService
 {
-    
     public function __construct(array $data)
     {
         $this->data = $data;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Service;
+namespace MySitek\Service;
 
 class InvalidException extends \Exception
 {

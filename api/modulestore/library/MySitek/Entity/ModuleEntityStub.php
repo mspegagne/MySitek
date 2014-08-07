@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity;
+namespace MySitek\Entity;
 
 class ModuleEntityStub extends ModuleEntity
 {

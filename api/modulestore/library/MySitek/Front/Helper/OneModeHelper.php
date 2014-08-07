@@ -1,11 +1,11 @@
 <?php
 
-namespace Front\Helper;
+namespace MySitek\Front\Helper;
 
-use Front\ReceptionException;
-use Service\AbstractService;
-use Service\OneModuleService;
-use Service\OneThemeService;
+use MySitek\Front\ReceptionException;
+use MySitek\Service\AbstractService;
+use MySitek\Service\OneModuleService;
+use MySitek\Service\OneThemeService;
 
 abstract class OneModeHelper
 {
@@ -36,7 +36,7 @@ abstract class OneModeHelper
                 return new OneModuleService($receivedData);
             case "theme":
                 return new OneThemeService($receivedData);
-            default :
+            default:
                 throw new ReceptionException(
                     "Type inconnu pour l'élément Json"
                 );

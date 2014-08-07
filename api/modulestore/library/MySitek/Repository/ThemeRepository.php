@@ -1,6 +1,6 @@
 <?php
 
-namespace Repository;
+namespace MySitek\Repository;
 
 class ThemeRepository extends AbstractRepository
 {
@@ -14,17 +14,17 @@ class ThemeRepository extends AbstractRepository
          * @todo Compléter cette méthode
          */
     }
-    
+
     protected function getElementInDb($name)
     {
         $this->elements[$name] = array();
-        
+
         /**
          * @todo récuperation de l'élément en BDD
          */
-        
+
         $this->elements[$name]['cache_age'] = new \DateTime('now');
-        
+
         return $this->elements[$name];
     }
 }

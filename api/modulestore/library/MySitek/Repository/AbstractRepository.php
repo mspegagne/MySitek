@@ -1,8 +1,8 @@
 <?php
 
-namespace Repository;
+namespace MySitek\Repository;
 
-use Entity\ModuleEntity;
+use MySitek\Entity\ModuleEntity;
 
 abstract class AbstractRepository
 {
@@ -14,7 +14,7 @@ abstract class AbstractRepository
      * @var ModuleEntity[]
      */
     protected $elements;
-    
+
     /**
      * Methode permettant de récupérer un élément à partir de son nom
      * 
@@ -77,7 +77,7 @@ abstract class AbstractRepository
      * @abstract
      */
     abstract public function getElements($template, $page, array $options);
-    
+
     /**
      * Methode permettant de récupérer un élément en BDD
      * 
@@ -86,7 +86,7 @@ abstract class AbstractRepository
      * @abstract
      */
     abstract protected function getElementInDb($name);
-    
+
     protected function getCacheValue($name)
     {
         $cacheAge = $this->elements[$name]['cache_age'];

@@ -1,20 +1,19 @@
 <?php
 
-namespace Front;
+namespace MySitek\Front;
 
-use Logs\Logger;
-use Front\Helper\OneModeHelper;
-use Front\Helper\ManyModeHelper;
-use Service\AbstractService;
+use MySitek\Logs\Logger;
+use MySitek\Front\Helper\OneModeHelper;
+use MySitek\Front\Helper\ManyModeHelper;
+use MySitek\Service\AbstractService;
 
 class Receiver
 {
-    
     /**
      * @var string Un élément Json
      */
     protected $json;
-    
+
     /**
      * @param string $json L'élément Json reçu
      */
@@ -42,7 +41,7 @@ class Receiver
             Logger::logMessage($ex->getMessage());
             return json_encode(array('error' => $ex->getMessage()));
         }
-        
+
         return $jsonAnswer;
     }
 
@@ -55,7 +54,6 @@ class Receiver
      */
     protected function getServiceFromData(array $receivedData)
     {
-        
         $mode = $receivedData['mode'];
         if (empty($mode)) {
             throw new ReceptionException(
@@ -68,7 +66,7 @@ class Receiver
                 return OneModeHelper::translate($receivedData);
             case "many":
                 return ManyModeHelper::translate($receivedData);
-            default :
+            default:
                 throw new ReceptionException(
                     "Mode inconnu pour l'élément Json"
                 );

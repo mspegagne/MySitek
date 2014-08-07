@@ -1,10 +1,9 @@
 <?php
 
-namespace Service;
+namespace MySitek\Service;
 
 abstract class OneAbstractService extends AbstractService
 {
-    
     /**
      * {@inheritdoc}
      */
@@ -14,7 +13,7 @@ abstract class OneAbstractService extends AbstractService
         $this->validateData();
         $name = $this->data['name'];
         $module = $this->repository->getElementByName($name);
-        
+
         return $module;
     }
 }

@@ -1,10 +1,9 @@
 <?php
 
-namespace Validator;
+namespace MySitek\Validator;
 
 class ManyModeValidator implements ValidatorInterface
 {
-    
     /**
      * Données à valider
      * @var array
@@ -18,21 +17,23 @@ class ManyModeValidator implements ValidatorInterface
         'most-downloaded',
         'tiny'
     );
-    
+
     private $validValuesForSortOption = array(
         'asc',
         'desc'
     );
 
 
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         $this->data = $data;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function validate() {
+    public function validate()
+    {
         if (empty($data['names'])) {
             return $this->alternativeValidation();
         }
@@ -90,16 +91,16 @@ class ManyModeValidator implements ValidatorInterface
             $this->validValuesForTemplateOption,
             true
         );
-        
+
         $areDataValid &= in_array(
             $data['sort'],
             $this->validValuesForSortOption,
             true
         );
-        
+
         $areDataValid &= ($data['max-elmt'] > 0 || $data['max-elmt'] === -1);
         $areDataValid &= ($data['page'] > 0 || $data['page'] === -1);
-        
+
         return $areDataValid;
     }
 }

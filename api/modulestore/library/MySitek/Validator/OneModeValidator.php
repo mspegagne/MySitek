@@ -1,10 +1,9 @@
 <?php
 
-namespace Validator;
+namespace MySitek\Validator;
 
 class OneModeValidator implements ValidatorInterface
 {
-
     /**
      * Données à valider
      * @var array
@@ -15,7 +14,7 @@ class OneModeValidator implements ValidatorInterface
     {
         $this->data = $data;
     }
-    
+
     /**
      * {@inheritdoc}
      */

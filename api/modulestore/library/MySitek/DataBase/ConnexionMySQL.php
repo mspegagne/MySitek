@@ -1,6 +1,6 @@
 <?php
 
-namespace BDD;
+namespace MySitek\DataBase;
 
 function setMySQLConnexion()
 {

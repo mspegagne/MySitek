@@ -1,15 +1,14 @@
 <?php
 
-namespace Front\Helper;
+namespace MySitek\Front\Helper;
 
-use Front\ReceptionException;
-use Service\AbstractService;
-use Service\ManyModuleService;
-use Service\ManyThemeService;
+use MySitek\Front\ReceptionException;
+use MySitek\Service\AbstractService;
+use MySitek\Service\ManyModuleService;
+use MySitek\Service\ManyThemeService;
 
 abstract class ManyModeHelper
 {
-    
     /**
      * Methode permettant de retourner un service en fonction des données
      * 
@@ -33,7 +32,7 @@ abstract class ManyModeHelper
                 return new ManyModuleService($receivedData);
             case "theme":
                 return new ManyThemeService($receivedData);
-            default :
+            default:
                 throw new ReceptionException(
                     "Type inconnu pour l'élément Json"
                 );

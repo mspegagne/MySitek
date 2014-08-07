@@ -1,6 +1,6 @@
 <?php
 
-namespace Front;
+namespace MySitek\Front;
 
 class ReceptionException extends \Exception
 {

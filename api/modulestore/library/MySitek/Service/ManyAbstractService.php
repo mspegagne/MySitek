@@ -1,10 +1,9 @@
 <?php
 
-namespace Service;
+namespace MySitek\Service;
 
 abstract class ManyAbstractService extends AbstractService
 {
-
     /**
      * {@inheritdoc}
      */
@@ -14,7 +13,7 @@ abstract class ManyAbstractService extends AbstractService
         $modules = $this->treatData();
         return $modules;
     }
-    
+
     /**
      * Methode permettant de récupérer les informations demandées
      * selon le type de requêtes

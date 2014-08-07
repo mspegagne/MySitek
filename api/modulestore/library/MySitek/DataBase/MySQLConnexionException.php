@@ -1,6 +1,6 @@
 <?php
 
-namespace BDD;
+namespace MySitek\BDD;
 
 class MySQLConnexionException extends \Exception
 {

@@ -1,13 +1,12 @@
 <?php
 
-namespace Service;
+namespace MySitek\Service;
 
-use Validator\ManyModeValidator;
-use Repository\ModuleRepository;
+use MySitek\Validator\ManyModeValidator;
+use MySitek\Repository\ModuleRepository;
 
 class ManyModuleService extends ManyAbstractService
 {
-    
     public function __construct(array $data)
     {
         $this->data = $data;

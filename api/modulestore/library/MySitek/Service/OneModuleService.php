@@ -1,13 +1,12 @@
 <?php
 
-namespace Service;
+namespace MySitek\Service;
 
-use Validator\OneModeValidator;
-use Repository\ModuleRepositoryStub;
+use MySitek\Validator\OneModeValidator;
+use MySitek\Repository\ModuleRepositoryStub;
 
 class OneModuleService extends OneAbstractService
 {
-    
     public function __construct(array $data)
     {
         $this->data = $data;

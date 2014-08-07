@@ -4,19 +4,23 @@ namespace Front;
 
 use Front\Receiver;
 
-class Welcome {
-    
+class Welcome
+{
+
     private $json;
 
-    public function __construct($json) {
+    public function __construct($json)
+    {
         $this->json = str_replace('&quot;', '"', htmlspecialchars($json));
     }
-    
-    public function isJsonOk() {
+
+    public function isJsonOk()
+    {
         return !empty($this->json);
     }
-    
-    public function getAnswer() {
+
+    public function getAnswer()
+    {
         $receiver = new Receiver($this->json);
         return $receiver->getAnswer();
     }
@@ -28,6 +32,10 @@ if (!$welcome->isJsonOk()) {
     echo 'Vous vous trouvez actuellement sur une API. Les connexions directes ne sont pas prises en compte.';
     return;
 }
+
+$composer = require_once __DIR__ . '/vendor/autoload.php';
+
+$composer->add();
 
 date_default_timezone_set('Europe/Paris');
 

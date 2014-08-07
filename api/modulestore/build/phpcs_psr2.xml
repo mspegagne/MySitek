@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="CDN PSR2 SFR Rules">
+    <description>CDN SFR coding standards</description>
+
+    <exclude-pattern>/library/Markdown/*</exclude-pattern>
+    <exclude-pattern>/library/Pimple/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+
+    <rule ref="PSR2"></rule>
+
+    <rule ref="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps">
+        <exclude-pattern>*/application/*Bootstrap.php</exclude-pattern>
+        <exclude-pattern>*/tests/behat/*.php</exclude-pattern>
+    </rule>
+
+    <rule ref="PSR1.Classes.ClassDeclaration">
+        <exclude-pattern>*/application/*.php</exclude-pattern>
+        <exclude-pattern>*/tests/application/*.php</exclude-pattern>
+        <exclude-pattern>*/scripts/migrations/*.php</exclude-pattern>
+        <exclude-pattern>*/tests/behat/*.php</exclude-pattern>
+        <exclude-pattern>*/tests/library/Cdnfs/Service/Services.php</exclude-pattern>
+    </rule>
+
+    <rule ref="Squiz.Classes.ValidClassName.NotCamelCaps">
+        <exclude-pattern>*/application/*.php</exclude-pattern>
+        <exclude-pattern>*/tests/application/*.php</exclude-pattern>
+    </rule>
+
+    <!-- Surcharge du PSR-2 pour prendre en compte les lignes vides -->
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace">
+        <properties>
+            <property name="ignoreBlankLines" value="false"/>
+        </properties>
+    </rule>
+
+    <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
+        <exclude-pattern>*/tests/behat/*.php</exclude-pattern>
+    </rule>
+
+</ruleset>

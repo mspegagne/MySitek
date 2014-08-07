@@ -2,7 +2,8 @@
 
 namespace BDD;
 
-function setMySQLConnexion() {
+function setMySQLConnexion()
+{
     /**
      * @link http://php.net//manual/fr/function.parse-ini-file.php
      */
@@ -18,7 +19,9 @@ function setMySQLConnexion() {
      * @link http://php.net/manual/fr/book.mysql.php
      */
     $connect = mysql_connect(
-            $mysqlConfig['db.mysql.serveur'], $mysqlConfig['db.mysql.utilisateur'], $mysqlConfig['db.mysql.mdp']
+        $mysqlConfig['db.mysql.serveur'],
+        $mysqlConfig['db.mysql.utilisateur'],
+        $mysqlConfig['db.mysql.mdp']
     );
 
     if ($connect == 0) {

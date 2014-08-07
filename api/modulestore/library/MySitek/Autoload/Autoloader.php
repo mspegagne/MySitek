@@ -1,7 +1,7 @@
 <?php
 
-class Autoloader {
-    
+class Autoloader{
+
     private static $loader;
     
     public static function loadClassLoader($class)
@@ -10,7 +10,7 @@ class Autoloader {
             require __DIR__ . '/ClassLoader.php';
         }
     }
-    
+
     public static function getLoader()
     {
         if (null !== self::$loader) {

@@ -10,34 +10,34 @@
     <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> </div>
 
     <div class=" col-md-9 col-lg-9 "> 
-        <form class="form-horizontal">
+        <form class="form-horizontal" name="compte" action="/admin/parametres/compte/" method="post">
             <table class="table table-user-information">
                 <tbody>
 
                     <tr>
                         <td><label class=" control-label" for="usr_name">Nom du responsable :</label></td>
-                        <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_name}}"></td>
+                        <td><input id="user_name" name="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_name}}"></td>
                     </tr>
 
                     <tr>
                         <td><label class=" control-label" for="usr_name">Prénom du responsable :</label></td>
-                        <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_firstName}}"></td>
+                        <td><input id="user_firstName" name="user_firstName" maxlength="25" type="text" class="form-control input-md" value="{{app.user_firstName}}"></td>
                     </tr>
 
                     <tr>
                         <td><label class=" control-label" for="usr_name">Mail :</label></td>
-                        <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_mail}}"></td>
+                        <td><input id="user_mail" name="user_mail" maxlength="25" type="text" class="form-control input-md" value="{{app.user_mail}}"></td>
                     </tr>
 
                     <tr>
                         <td><label class=" control-label" for="usr_name">Nom du site:</label></td>
-                        <td><input id="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.siteName}}"></td>
+                        <td><input id="siteName" name="siteName" maxlength="25" type="text" class="form-control input-md" value="{{app.siteName}}"></td>
                     </tr>
                 </tbody>
             </table>
             <br>
             <div class="text-center"> 
-                <button id="save" name="save" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Enregistrer les modifications</button>
+                <button id="save" name="save" type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Enregistrer les modifications</button>
             </div>
         </form>
     </div>

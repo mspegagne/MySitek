@@ -207,11 +207,10 @@ $app->get('/admin/delete/{type}/{file}', function($type, $file) use ($app) {
 });
 
 
-$app->post('/admin/update', function () use ($app) {
-
+$app->post('/admin/update', function (Request $request) use ($app) {
     
-    $type = $_REQUEST["type"];    
-    $file = $_REQUEST["file"];
+    $type = $request->get('type'); 
+    $file = $request->get('file'); 
     
     require_once __DIR__ . '/../lib/model/Install.php';
 
@@ -221,17 +220,16 @@ $app->post('/admin/update', function () use ($app) {
     //peut également servir pour une future periode de test 
 
     $error = Install::update($file, $type, $app);
-
-    return $error;
+  
+    return new Response($error,200);
     
 });
 
 
-$app->post('/admin/install', function () use ($app) {
-
+$app->post('/admin/install', function (Request $request) use ($app) {
     
-    $type = $_REQUEST["type"];    
-    $file = $_REQUEST["file"];
+    $type = $request->get('type'); 
+    $file = $request->get('file'); 
     
     require_once __DIR__ . '/../lib/model/Install.php';
 

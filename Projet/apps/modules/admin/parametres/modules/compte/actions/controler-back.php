@@ -1,5 +1,8 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 //changer le nom du module
 $compte = $app['controllers_factory'];
 
@@ -23,6 +26,14 @@ $compte->get('/', function() use ($app) {
     
     return $app['twig']->render('back.twig', array());
 });
+
+
+$compte->post('/', function (Request $request) {
+       
+    $name = $request->get('user_name');    
+    return new Response($name,200);
+});
+
 
 //changer le nom du module
 $app->mount('/admin/parametres/compte', $compte);

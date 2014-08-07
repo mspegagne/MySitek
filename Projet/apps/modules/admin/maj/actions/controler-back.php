@@ -1,5 +1,8 @@
 <?php
 
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+
 //changer le nom du module
 $maj = $app['controllers_factory'];
 
@@ -47,52 +50,36 @@ $maj->get('/notif/{notif}', function($notif) use ($app) {
 });
 
 
-$maj->post('/rang/front', function () use ($app) {
-
-    $result = $_REQUEST["table"];
+$maj->post('/rang', function (Request $request) use ($app) {
+    
+    $result = $request->get('table'); 
+    $type = $request->get('type');
+    
+    switch ($type) {
+        case 'front':
+            $table = 1;
+            break;
+        case 'back':
+            $table = 2;
+            break;
+        case 'param':
+            $table = 4;
+            break;
+        default :
+            return $app->redirect('/admin/');
+    }
+    
     $result = '&' . $result;
-    $result = explode('&table-1[]=', $result);
+    $explode = explode('&table-'.$table.'[]=', $result);
     $i = 0;
-
-    foreach ($result as $value) {
+    
+    foreach ($explode as $value) {
         $i++;
-        $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = 1";
+        $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = ".$table."";
         $app['db']->executeUpdate($sql, array($value));
     }
-
-    return '';
-});
-
-$maj->post('/rang/back', function () use ($app) {
-
-    $result = $_REQUEST["table"];
-    $result = '&' . $result;
-    $result = explode('&table-2[]=', $result);
-    $i = 0;
-
-    foreach ($result as $value) {
-        $i++;
-        $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = 2";
-        $app['db']->executeUpdate($sql, array($value));
-    }
-
-    return '';
-});
-
-$maj->post('/rang/param', function () use ($app) {
-
-    $result = $_REQUEST["table"];
-    $result = '&' . $result;
-    $result = explode('&table-3[]=', $result);
-    $i = 0;
-
-    foreach ($result as $value) {
-        $i++;
-        $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = 4";
-        $app['db']->executeUpdate($sql, array($value));
-    }
-
-    return '';
+       
+    return new Response('',200);
 });
 
 //changer le nom du module

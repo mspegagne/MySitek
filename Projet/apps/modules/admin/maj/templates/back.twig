@@ -91,7 +91,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <table id="table-3" class="table table-striped sorted_table custab">
+    <table id="table-4" class="table table-striped sorted_table custab">
 
         <thead>
             <tr>
@@ -183,8 +183,8 @@
                 $('#table-1').tableDnD({
                     onDrop: function() {
                         $.post(
-                                '/admin/maj/rang/front',
-                                {table: decodeURI($.tableDnD.serialize())},
+                                '/admin/maj/rang',
+                                {table: decodeURI($.tableDnD.serialize()), type: 'front'},
                         function(data) {
 
 
@@ -196,8 +196,8 @@
                 $('#table-2').tableDnD({
                     onDrop: function() {
                         $.post(
-                                '/admin/maj/rang/back',
-                                {table: decodeURI($.tableDnD.serialize())},
+                                '/admin/maj/rang',
+                                {table: decodeURI($.tableDnD.serialize()), type: 'back'},
                         function(data) {
 
                         }
@@ -205,11 +205,11 @@
                     },
                     dragHandle: ".dragHandle",
                 });
-                $('#table-3').tableDnD({
+                $('#table-4').tableDnD({
                     onDrop: function() {
                         $.post(
-                                '/admin/maj/rang/param',
-                                {table: decodeURI($.tableDnD.serialize())},
+                                '/admin/maj/rang',
+                                {table: decodeURI($.tableDnD.serialize()), type: 'param'},
                         function(data) {
 
 
@@ -232,7 +232,7 @@
                 $(this.cells[0]).removeClass('showDragHandle');
             });
 
-            $("#table-3 tr").hover(function() {
+            $("#table-4 tr").hover(function() {
                 $(this.cells[0]).addClass('showDragHandle');
             }, function() {
                 $(this.cells[0]).removeClass('showDragHandle');

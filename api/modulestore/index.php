@@ -40,20 +40,17 @@ $composer = require_once __DIR__ . '/vendor/autoload.php';
 
 /**
  * @todo Ajouter le répertoire du projet $composer->add();
+ * plutot que d'avoir l'autoloader tout moche du dessous
  */
 
-/**
- * @todo Mettre à jour cet autoloader
- * spl_autoload_register(
+spl_autoload_register(
     function ($class) {
         $class = str_replace('\\', '/', $class);
-        echo '[AUTOLOAD] : ' . __DIR__ . "/$class.php\n";
-        require_once __DIR__ . "/$class.php";
+        include __DIR__ . "/library/$class.php";
     },
     true,
     true
 );
- */
 
 // Point d'entrée de l'application
 include_once __DIR__ . '/public/index.php';

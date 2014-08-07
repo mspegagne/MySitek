@@ -4,10 +4,9 @@ namespace Entity;
 
 class ModuleEntityStub extends ModuleEntity
 {
-    
+
     public function __construct()
     {
-        
         $this->name = 'Module Stub';
         $this->editor = 'MySitek Inc.';
         $this->version = '0.1.1';

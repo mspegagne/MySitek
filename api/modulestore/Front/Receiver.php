@@ -4,7 +4,7 @@ namespace Front;
 
 use Logs\Logger;
 use Front\Helper\OneModeHelper;
-use Front\Helper\ManyModeReceiver;
+use Front\Helper\ManyModeHelper;
 use Service\AbstractService;
 
 class Receiver
@@ -33,10 +33,10 @@ class Receiver
      */
     public function getAnswer()
     {
+        // Récupération d'un tableau à partir des données en Json
         $receivedData = json_decode($this->json, true);
         try {
             $service = $this->getServiceFromData($receivedData);
-            
             $jsonAnswer = json_encode($service->getInfos());
         } catch (Exception $ex) {
             Logger::logMessage($ex->getMessage());
@@ -65,10 +65,9 @@ class Receiver
 
         switch ($mode) {
             case "one":
-                echo 'HERE : ' . __CLASS__ . ":" . __METHOD__ . "\n\n";
-                $res = OneModeHelper::translate($receivedData);
+                return OneModeHelper::translate($receivedData);
             case "many":
-                return ManyModeReceiver::translate($receivedData);
+                return ManyModeHelper::translate($receivedData);
             default :
                 throw new ReceptionException(
                     "Mode inconnu pour l'élément Json"

@@ -4,13 +4,18 @@ namespace Repository;
 
 use Entity\ModuleEntityStub;
 
-class ModuleRepositoryStub extends AbstractRepository {
+class ModuleRepositoryStub extends AbstractRepository
+{
     
-    public function getElements($template, $page, $maxElement, $sort) {
-        return array();
+    public function getElements($template, $page = -1, array $options = null)
+    {
+        /**
+         * @todo Compléter cette méthode
+         */
     }
     
-    protected function getElementInDb($name) {
+    protected function getElementInDb($name)
+    {
         return new ModuleEntityStub();
     }
 }

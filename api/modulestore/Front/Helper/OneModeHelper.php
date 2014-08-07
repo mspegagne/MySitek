@@ -21,6 +21,9 @@ abstract class OneModeHelper
     {
 
         $type = $receivedData['type'];
+        /**
+         * @todo Supprimer cet affichage qui sert pour les tests
+         */
         echo "Hey ! " . __CLASS__ . ":" . __METHOD__ . "\n\n";
         if (empty($type)) {
             throw new ReceptionException(

@@ -1,4 +1,5 @@
 {
+    "name": "MySitek - Api Module-Store",
     "require": {
         "pimple/pimple": "3.0.*",
         "phpunit/phpunit": "4.1.*",

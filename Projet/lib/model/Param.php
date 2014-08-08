@@ -66,17 +66,20 @@ class Param {
         $this->value = $value;
     }
 
+    
     /**
-     * @brief Sauvegarde le param
+     * @brief Sauvegarde la valeur à la ref donnee
+     * @param String $ref
+     * @param String $value
+     * @param App $app
+     * @return String $response confirmation envoi
      */
-    public function save($app) {
-
-        $ref = $this->getRef();
-        $value = $this->getValue();
+    public static function saveParam($ref, $value, $app) {
 
         $sql = "SELECT * FROM param WHERE ref = '" . $ref . "'";
         $retour = $app['db']->fetchAssoc($sql);
 
+        
         if ($retour == '') {
 
             $sql = "INSERT INTO param (ref, value) VALUES (?,?)";
@@ -88,24 +91,14 @@ class Param {
     }
     
     /**
-     * @brief Sauvegarde la valeur à la ref donnee
-     * @param String $ref
-     * @param String $value
-     */
-    public static function saveParam($ref, $value, $app) {
-
-        $param = new Param($ref, $app);
-        $param->setValue($value);
-        $param->save();
-    }
-    
-    /**
      * @brief Charge tous les params dans l'application
      */
     public static function load($app) {
 
         $sql = "SELECT * FROM param";
-        $retour = $app['db']->fetchAll($sql);
+        if(!$retour = $app['db']->fetchAll($sql)){        
+            throw new Exception('Erreur de connexion avec la bdd.');
+        }
 
         foreach( $retour as $param )
         {

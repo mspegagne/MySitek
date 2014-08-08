@@ -4,9 +4,9 @@ $app = new Silex\Application();
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Debug\ErrorHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Persistence\ObjectManager;
-
 
 /* Activation de doctrine */
 
@@ -17,14 +17,18 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
+ErrorHandler::register();
+
 /* Parametres du site */
 
 $app['debug'] = true;
-$app['url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
+$app['url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 $app['selected'] = ''; //module en cours (pour affichage lien actif)
 
 require_once __DIR__ . '/../lib/model/Param.php';
-Param::load($app);
+
+    Param::load($app);
+
 
 
 /* Recuperation du template */
@@ -81,8 +85,8 @@ $app['security.firewalls'] = array(
     ),
 );
 
-        
-        
+
+
 /* Login */
 
 $app->register(new Silex\Provider\SessionServiceProvider());
@@ -141,7 +145,7 @@ $app->get('/admin/notif/{notif}', function($notif) use ($app) {
         case 'installnok':
             return $app['twig']->render('admin.twig', array(
                         'hello' => 'Hello world Admin !',
-                        'notif' => 'Erreur lors de l\\\'installation...',//Il faut mettre trois barres pour escape
+                        'notif' => 'Erreur lors de l\\\'installation...', //Il faut mettre trois barres pour escape
                         'time' => '5000'
             ));
         default :
@@ -170,19 +174,14 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
         return $app->redirect('/admin/install/' . $type . '/' . $file . '');
     } else {
 
-
-        //TODO : Récupération des variables ci dessous à partir des parametres en db client :
-        $prenom = 'john';
-        $nom = 'doe';
-
         $paymentUrl = PaymentUrl::generateUrl(array(
                     'amount' => $prix,
                     'currency' => 'EUR',
                     'ipnUrl' => $ipn,
                     'returnUrl' => $ipn,
-                    'email' => $app['user'],
-                    'firstName' => $prenom,
-                    'lastName' => $nom
+                    'email' => $app['user_mail'],
+                    'firstName' => $app['user_firstName'],
+                    'lastName' => $app['user_name']
         ));
 
         header("Location: $paymentUrl");
@@ -194,9 +193,9 @@ $app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
 
 
 $app->get('/admin/delete/{type}/{file}', function($type, $file) use ($app) {
-    
+
     require_once __DIR__ . '/../lib/model/Install.php';
-    
+
     $error = Install::delete($file, $type, $app);
 
     if ($error == '') {
@@ -208,10 +207,10 @@ $app->get('/admin/delete/{type}/{file}', function($type, $file) use ($app) {
 
 
 $app->post('/admin/update', function (Request $request) use ($app) {
-    
-    $type = $request->get('type'); 
-    $file = $request->get('file'); 
-    
+
+    $type = $request->get('type');
+    $file = $request->get('file');
+
     require_once __DIR__ . '/../lib/model/Install.php';
 
     //TODO #TOKEN : checkToken pour confirmer paiement si ok alors install
@@ -220,17 +219,16 @@ $app->post('/admin/update', function (Request $request) use ($app) {
     //peut également servir pour une future periode de test 
 
     $error = Install::update($file, $type, $app);
-  
-    return new Response($error,200);
-    
+
+    return new Response($error, 200);
 });
 
 
 $app->post('/admin/install', function (Request $request) use ($app) {
-    
-    $type = $request->get('type'); 
-    $file = $request->get('file'); 
-    
+
+    $type = $request->get('type');
+    $file = $request->get('file');
+
     require_once __DIR__ . '/../lib/model/Install.php';
 
     //TODO #TOKEN : checkToken pour confirmer paiement si ok alors install
@@ -241,14 +239,13 @@ $app->post('/admin/install', function (Request $request) use ($app) {
     $error = Install::installation($file, $type, $app);
 
     return $error;
-    
 });
 
 
 $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
 
     require_once __DIR__ . '/../lib/model/Install.php';
-    
+
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
@@ -258,7 +255,7 @@ $app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
     //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
     //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
     //peut également servir pour une future periode de test 
-    
+
     $error = Install::installation($file, $type, $app);
 
     if ($error == '') {

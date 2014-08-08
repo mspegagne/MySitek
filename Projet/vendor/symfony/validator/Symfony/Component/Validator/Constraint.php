@@ -11,9 +11,9 @@
 
 namespace Symfony\Component\Validator;
 
+use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 use Symfony\Component\Validator\Exception\InvalidOptionsException;
 use Symfony\Component\Validator\Exception\MissingOptionsException;
-use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 
 /**
  * Contains the properties of a constraint definition.
@@ -169,7 +169,6 @@ abstract class Constraint
      */
     public function getDefaultOption()
     {
-        return null;
     }
 
     /**

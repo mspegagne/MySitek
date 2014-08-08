@@ -78,7 +78,6 @@ class Param {
 
         $sql = "SELECT * FROM param WHERE ref = '" . $ref . "'";
         $retour = $app['db']->fetchAssoc($sql);
-
         
         if ($retour == '') {
 
@@ -96,9 +95,7 @@ class Param {
     public static function load($app) {
 
         $sql = "SELECT * FROM param";
-        if(!$retour = $app['db']->fetchAll($sql)){        
-            throw new Exception('Erreur de connexion avec la bdd.');
-        }
+        $retour = $app['db']->fetchAll($sql);
 
         foreach( $retour as $param )
         {

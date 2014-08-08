@@ -13,6 +13,7 @@ namespace Symfony\Component\Validator\Constraints;
 
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
+use Symfony\Component\Validator\Exception\UnexpectedTypeException;
 
 /**
  * Validates whether a value is a valid image file and is valid
@@ -23,10 +24,14 @@ use Symfony\Component\Validator\Exception\ConstraintDefinitionException;
 class ImageValidator extends FileValidator
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function validate($value, Constraint $constraint)
     {
+        if (!$constraint instanceof Image) {
+            throw new UnexpectedTypeException($constraint, __NAMESPACE__.'\Image');
+        }
+
         $violations = count($this->context->getViolations());
 
         parent::validate($value, $constraint);

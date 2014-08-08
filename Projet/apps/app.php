@@ -5,6 +5,7 @@ $app = new Silex\Application();
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Debug\ErrorHandler;
+use Symfony\Component\Debug\ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -17,7 +18,9 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
+//Prod : mettre register(false)
 ErrorHandler::register();
+ExceptionHandler::register();
 
 /* Parametres du site */
 
@@ -27,8 +30,7 @@ $app['selected'] = ''; //module en cours (pour affichage lien actif)
 
 require_once __DIR__ . '/../lib/model/Param.php';
 
-    Param::load($app);
-
+Param::load($app);
 
 
 /* Recuperation du template */

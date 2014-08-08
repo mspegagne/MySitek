@@ -29,10 +29,10 @@ class DateTimeToArrayTransformer extends BaseDateTimeTransformer
     /**
      * Constructor.
      *
-     * @param string  $inputTimezone  The input timezone
-     * @param string  $outputTimezone The output timezone
-     * @param array   $fields         The date fields
-     * @param Boolean $pad            Whether to use padding
+     * @param string $inputTimezone  The input timezone
+     * @param string $outputTimezone The output timezone
+     * @param array  $fields         The date fields
+     * @param bool   $pad            Whether to use padding
      *
      * @throws UnexpectedTypeException if a timezone is not a string
      */
@@ -45,7 +45,7 @@ class DateTimeToArrayTransformer extends BaseDateTimeTransformer
         }
 
         $this->fields = $fields;
-        $this->pad = (Boolean) $pad;
+        $this->pad = (bool) $pad;
     }
 
     /**
@@ -119,7 +119,7 @@ class DateTimeToArrayTransformer extends BaseDateTimeTransformer
     public function reverseTransform($value)
     {
         if (null === $value) {
-            return null;
+            return;
         }
 
         if (!is_array($value)) {
@@ -127,7 +127,7 @@ class DateTimeToArrayTransformer extends BaseDateTimeTransformer
         }
 
         if ('' === implode('', $value)) {
-            return null;
+            return;
         }
 
         $emptyFields = array();

@@ -166,7 +166,7 @@ class ChoiceType extends AbstractType
             $choices = null !== $options['choices'] ? $options['choices'] : array();
 
             // Reuse existing choice lists in order to increase performance
-            $hash = hash('sha256', json_encode(array($choices, $options['preferred_choices'])));
+            $hash = hash('sha256', serialize(array($choices, $options['preferred_choices'])));
 
             if (!isset($choiceListCache[$hash])) {
                 $choiceListCache[$hash] = new SimpleChoiceList($choices, $options['preferred_choices']);
@@ -190,10 +190,10 @@ class ChoiceType extends AbstractType
         $emptyValueNormalizer = function (Options $options, $emptyValue) {
             if ($options['multiple']) {
                 // never use an empty value for this case
-                return null;
+                return;
             } elseif (false === $emptyValue) {
                 // an empty value should be added but the user decided otherwise
-                return null;
+                return;
             } elseif ($options['expanded'] && '' === $emptyValue) {
                 // never use an empty label for radio buttons
                 return 'None';

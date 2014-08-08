@@ -26,8 +26,8 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 ));
 
 //TODO #PROD : mettre register(false)
-ErrorHandler::register();
-ExceptionHandler::register();
+ErrorHandler::register(true);
+ExceptionHandler::register(true);
 
 /* Parametres du site */
 

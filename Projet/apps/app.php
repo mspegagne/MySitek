@@ -9,6 +9,13 @@ use Symfony\Component\Debug\ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Persistence\ObjectManager;
 
+require_once __DIR__ . '/../lib/model/Install.php';
+require_once __DIR__ . '/../lib/model/User.php';
+require_once __DIR__ . '/../lib/model/Module.php';
+require_once __DIR__ . '/../lib/model/Param.php';
+require_once __DIR__ . '/../lib/model/UserProvider.php';
+
+
 /* Activation de doctrine */
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
@@ -18,17 +25,15 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     ),
 ));
 
-//Prod : mettre register(false)
+//TODO #PROD : mettre register(false)
 ErrorHandler::register();
 ExceptionHandler::register();
 
 /* Parametres du site */
 
-$app['debug'] = true;
+$app['debug'] = true; //TODO #PROD : mettre false
 $app['url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 $app['selected'] = ''; //module en cours (pour affichage lien actif)
-
-require_once __DIR__ . '/../lib/model/Param.php';
 
 Param::load($app);
 
@@ -42,29 +47,17 @@ $app['template'] = $retour['name'];
 
 /* Recuperation des modules */
 
-//front à 1 signifie que le module à une partie publique
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 1 ORDER BY rang ASC";
-$app['modules_front'] = $app['db']->fetchAll($sql);
+Module::getList($app, 'front');
 
-//front à 2 signifie module back
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 2 ORDER BY rang ASC";
-$app['modules_back'] = $app['db']->fetchAll($sql);
+Module::getList($app, 'back');
 
-//front à 0 signifie module uniquement admin
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 0 ORDER BY rang ASC";
-$app['modules_admin'] = $app['db']->fetchAll($sql);
+Module::getList($app, 'admin');
 
-//front à 3 signifie module param
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 3 ORDER BY rang ASC";
-$app['modules_param'] = $app['db']->fetchAll($sql);
+Module::getList($app, 'param');
 
-//front à 4 signifie module param_plus
-$sql = "SELECT * FROM modules WHERE selected = 1 AND front = 4 ORDER BY rang ASC";
-$app['modules_param_plus'] = $app['db']->fetchAll($sql);
+Module::getList($app, 'param_plus');
 
-//liste modules
-$sql = "SELECT * FROM modules WHERE front != -1 ORDER BY rang ASC";
-$app['modules'] = $app['db']->fetchAll($sql);
+Module::getAll($app);
 
 
 
@@ -73,7 +66,6 @@ $app['modules'] = $app['db']->fetchAll($sql);
 $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
-require_once __DIR__ . '/../lib/model/UserProvider.php';
 
 /* FIREWALL */
 $app['security.firewalls'] = array(
@@ -118,6 +110,7 @@ $app->get('/', function() use ($app) {
     return $app->redirect('/' . $app['index']);
 });
 
+
 $app->get('/admin/', function() use ($app) {
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -129,6 +122,7 @@ $app->get('/admin/', function() use ($app) {
                 'hello' => 'Hello world Admin !',
     ));
 });
+
 
 $app->get('/admin/notif/{notif}', function($notif) use ($app) {
 
@@ -155,44 +149,6 @@ $app->get('/admin/notif/{notif}', function($notif) use ($app) {
     }
 });
 
-$app->get('/admin/achat/{type}/{file}', function ($type, $file) use ($app) {
-
-    require_once __DIR__ . '/../lib/payplug/lib/Payplug.php';
-
-    Payplug::setConfigFromFile(__DIR__ . '/../lib/payplug/parameters.json');
-
-    $ipn = 'http://api.mysitek.com/payplug/ipn.php?user=' . $app['user'] . '&amp;type=' . $type . '&amp;module=' . $file . '';
-    $install = $app['url'] . 'admin/install/' . $type . '/' . $file . '';
-
-    //TODO #API : Récupération de l'objet module et remplir à partir la variable prix ci dessous :
-    $prix = '0150';
-
-    if ($prix == 0) {
-        //TODO #TOKEN
-        //execution de $ipn
-        //l'api sait à partir du nom du module que le prix est de 0
-        //Donc maj token               
-
-        return $app->redirect('/admin/install/' . $type . '/' . $file . '');
-    } else {
-
-        $paymentUrl = PaymentUrl::generateUrl(array(
-                    'amount' => $prix,
-                    'currency' => 'EUR',
-                    'ipnUrl' => $ipn,
-                    'returnUrl' => $ipn,
-                    'email' => $app['user_mail'],
-                    'firstName' => $app['user_firstName'],
-                    'lastName' => $app['user_name']
-        ));
-
-        header("Location: $paymentUrl");
-        exit();
-
-        return '';
-    }
-});
-
 
 $app->get('/admin/delete/{type}/{file}', function($type, $file) use ($app) {
 
@@ -215,50 +171,57 @@ $app->post('/admin/update', function (Request $request) use ($app) {
 
     require_once __DIR__ . '/../lib/model/Install.php';
 
-    //TODO #TOKEN : checkToken pour confirmer paiement si ok alors install
-    //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
-    //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
-    //peut également servir pour une future periode de test 
-
-    $error = Install::update($file, $type, $app);
+    if (User::checklist($app)) {
+        $error = Install::update($file, $type, $app);
+    } else {
+        $error = 'Module illégal !';
+    }
 
     return new Response($error, 200);
 });
 
 
-$app->post('/admin/install', function (Request $request) use ($app) {
+/* API cote client pour install à partir du store */
+$app->post('/install', function (Request $request) use ($app) {
 
     $type = $request->get('type');
     $file = $request->get('file');
+    $user_id = $request->get('user_id'); //sert à confirmer l'identité de l'user
 
-    require_once __DIR__ . '/../lib/model/Install.php';
+    if ($user_id == $app['user_id']) {
+        require_once __DIR__ . '/../lib/model/Install.php';
 
-    //TODO #TOKEN : checkToken pour confirmer paiement si ok alors install
-    //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
-    //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
-    //peut également servir pour une future periode de test 
-
-    $error = Install::installation($file, $type, $app);
+        if (User::checklist($user_id, $app)) {
+            $error = Install::installation($file, $type, $app);
+        } else {
+            $error = 'Installation hors Store !';
+        }
+    } else {
+        $error = 'Utilisateur non autorisé !';
+    }
 
     return $error;
 });
 
 
-$app->get('/admin/install/{type}/{file}', function ($type, $file) use ($app) {
-
-    require_once __DIR__ . '/../lib/model/Install.php';
+$app->get('/install/{type}/{file}/{user_id}', function ($type, $file, $user_id) use ($app) {
 
     $app->register(new Silex\Provider\TwigServiceProvider(), array(
         'twig.class_path' => __DIR__ . '/../vendor/Twig/lib',
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
     ));
 
-    //TODO #TOKEN : checkToken pour confirmer paiement si ok alors install
-    //a voir car possible pb de timing, les deux scripts sont exécutés en meme tps à l'issu du paiement...
-    //au pire ca installe (le client doit d'abord trouver l'url) et il se fera niquer lors du checkToken :P
-    //peut également servir pour une future periode de test 
+     if ($user_id == $app['user_id']) {
+        require_once __DIR__ . '/../lib/model/Install.php';
 
-    $error = Install::installation($file, $type, $app);
+        if (User::checklist($user_id, $app)) {
+            $error = Install::installation($file, $type, $app);
+        } else {
+            $error = 'Installation hors Store !';
+        }
+    } else {
+        $error = 'Utilisateur non autorisé !';
+    }
 
     if ($error == '') {
         return $app->redirect('/admin/notif/installok');

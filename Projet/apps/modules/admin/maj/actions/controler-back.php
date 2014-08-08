@@ -55,33 +55,7 @@ $maj->post('/rang', function (Request $request) use ($app) {
     $result = $request->get('table'); 
     $type = $request->get('type');
     
-    switch ($type) {
-        case 'front':
-            $table = 1;
-            break;
-        case 'back':
-            $table = 2;
-            break;
-        case 'param':
-            $table = 4;
-            break;
-        default :
-            return $app->redirect('/admin/');
-    }
-    
-    $result = '&' . $result;
-    $explode = explode('&table-'.$table.'[]=', $result);
-    $i = 0;
-    
-    $response = '';
-
-    foreach ($explode as $value) {
-        $i++;
-        $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = ".$table."";
-        if (!$app['db']->executeUpdate($sql, array($value))) {
-            $response = 'Erreur...';
-        }
-    }
+    $response = Module::rang($result, $type, $app);
        
     return new Response(json_encode(['response' => $response]),200);
 });

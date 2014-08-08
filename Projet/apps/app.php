@@ -191,7 +191,7 @@ $app->post('/install', function (Request $request) use ($app) {
     if ($user_id == $app['user_id']) {
         require_once __DIR__ . '/../lib/model/Install.php';
 
-        if (User::checklist($user_id, $app)) {
+        if (User::checklist($app)) {
             $error = Install::installation($file, $type, $app);
         } else {
             $error = 'Installation hors Store !';
@@ -214,7 +214,7 @@ $app->get('/install/{type}/{file}/{user_id}', function ($type, $file, $user_id) 
      if ($user_id == $app['user_id']) {
         require_once __DIR__ . '/../lib/model/Install.php';
 
-        if (User::checklist($user_id, $app)) {
+        if (User::checklist($app)) {
             $error = Install::installation($file, $type, $app);
         } else {
             $error = 'Installation hors Store !';

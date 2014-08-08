@@ -36,15 +36,7 @@ $compte->post('/', function (Request $request) use($app) {
         "user_mail" => $request->get('user_mail')
     );
 
-    $sql = "UPDATE param SET value = ? WHERE ref = ?";
-
-    $response = 'Les données ont bien été enregistrées';
-
-    foreach ($user as $ref => $value) {
-        if (!$app['db']->executeUpdate($sql, array($value, $ref))) {
-            $response = 'Erreur lors de l\'enregistrement...';
-        }
-    }
+    $response = Param::saveParams($user, $app);
 
     return new Response(json_encode(['response' => $response]), 200);
 });

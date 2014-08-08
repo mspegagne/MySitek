@@ -66,11 +66,30 @@ class Param {
         $this->value = $value;
     }
 
-    
+    /**
+     * @brief Sauvegarde la valeur à la ref donnee
+     * @param Array $array
+     * @param App $app
+     * @return String $response confirmation envoi
+     */
+    public static function saveParams($array, $app) {
+
+        $sql = "UPDATE param SET value = ? WHERE ref = ?";
+
+        $response = 'Les données ont bien été enregistrées';
+
+        foreach ($array as $ref => $value) {
+            if (!$app['db']->executeUpdate($sql, array($value, $ref))) {
+                $response = 'Erreur lors de l\'enregistrement...';
+            }
+        }
+        return $response;
+    }
+
     /**
      * @brief Sauvegarde la valeur à la ref donnee
      * @param String $ref
-     * @param String $value
+     * @param String value
      * @param App $app
      * @return String $response confirmation envoi
      */
@@ -78,17 +97,24 @@ class Param {
 
         $sql = "SELECT * FROM param WHERE ref = '" . $ref . "'";
         $retour = $app['db']->fetchAssoc($sql);
-        
+
+        $response = 'Les données ont bien été enregistrées';
+
         if ($retour == '') {
 
             $sql = "INSERT INTO param (ref, value) VALUES (?,?)";
-            $app['db']->executeUpdate($sql, array($ref, $value));
+            if (!$app['db']->executeUpdate($sql, array($ref, $value))) {
+                $response = 'Erreur lors de l\'enregistrement...';
+            }
         } else {
+            
             $sql = "UPDATE param SET value = '" . $value . "' WHERE lien = '" . $ref . "'";
-            $app['db']->executeUpdate($sql, array());
+            if (!$app['db']->executeUpdate($sql, array())) {
+                $response = 'Erreur lors de l\'enregistrement...';
+            }
         }
     }
-    
+
     /**
      * @brief Charge tous les params dans l'application
      */
@@ -97,8 +123,7 @@ class Param {
         $sql = "SELECT * FROM param";
         $retour = $app['db']->fetchAll($sql);
 
-        foreach( $retour as $param )
-        {
+        foreach ($retour as $param) {
             $ref = $param['ref'];
             $value = $param['value'];
             $app[$ref] = $value;

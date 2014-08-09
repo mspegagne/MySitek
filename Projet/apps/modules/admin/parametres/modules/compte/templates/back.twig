@@ -21,23 +21,26 @@
 
                         <tr>
                             <td><label class=" control-label" for="usr_name">Nom du responsable :</label></td>
-                            <td><input id="user_name" name="user_name" maxlength="70" size="50" type="text" class="form-control input-md" value="{{app.user_name}}" data-validation="required"></td>
+                            <td><input id="user_name" name="user_name" maxlength="70" size="45" type="text" class="form-control input-md" value="{{app.user_name}}" data-validation="required"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="usr_name">Prénom du responsable :</label></td>
-                            <td><input id="user_firstName" name="user_firstName" maxlength="70" size="50" type="text" class="form-control input-md" value="{{app.user_firstName}}" data-validation="required"></td>
+                            <td><input id="user_firstName" name="user_firstName" maxlength="70" size="45" type="text" class="form-control input-md" value="{{app.user_firstName}}" data-validation="required"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="usr_name">Mail :</label></td>
-                            <td><input id="user_mail" name="user_mail" maxlength="255" size="50" type="text" class="form-control input-md" value="{{app.user_mail}}" data-validation="email" data-validation="required"></td>
+                            <td><input id="user_mail" name="user_mail" maxlength="255" size="45" type="text" class="form-control input-md" value="{{app.user_mail}}" data-validation="email" data-validation="required"></td>
                         </tr>
 
                     </tbody>
                 </table>
                 <div class="text-center"> 
-                    <button id="save" name="save" type="submit" class="btn btn-primary"><i class="fa fa-floppy-o"></i> Enregistrer les modifications</button>
+                    <button id="save" name="save" type="submit" class="btn btn-primary">
+                        <i id="loadcompte" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                        <i id="iconcompte" class="fa fa-floppy-o" ></i> Enregistrer les modifications
+                    </button>
                 </div>
             </form>
         </div>
@@ -55,24 +58,27 @@
 
                         <tr>
                             <td><label class=" control-label" for="old_pwd">Ancien mot de passe :</label></td>
-                            <td><input id="old_pwd" name="old_pwd" maxlength="70" size="50" type="password" class="form-control input-md" data-validation="required"></td>
+                            <td><input id="old_pwd" name="old_pwd" maxlength="70" size="42" type="password" class="form-control input-md" data-validation="required"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="new_pwd">Nouveau mot de passe :</label></td>
-                            <td><input id="new_pwd" name="pass_confirmation" maxlength="70" size="50" type="password" class="form-control input-md" data-validation="strength" data-validation-strength="1"></td>
+                            <td><input id="new_pwd" name="pass_confirmation" maxlength="70" size="42" type="password" class="form-control input-md" data-validation="strength" data-validation-strength="1"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="new_pwd2">Nouveau mot de passe :</label></td>
-                            <td><input id="new_pwd2" name="pass" maxlength="70" size="50" type="password" class="form-control input-md" data-validation="confirmation"></td>
+                            <td><input id="new_pwd2" name="pass" maxlength="70" size="42" type="password" class="form-control input-md" data-validation="confirmation"></td>
                         </tr>
 
                     </tbody>
                 </table>
 
-                <div class="text-center"> 
-                    <button id="save" name="save" type="submit" class="btn btn-primary"><i class="fa fa-key"></i> Enregistrer le mot de passe</button>
+                <div class="text-center">                      
+                    <button id="save" name="save" type="submit" class="btn btn-primary">
+                        <i id="loadcompte" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                        <i id="iconcompte" class="fa fa-key"></i> Enregistrer le mot de passe
+                    </button>
                 </div>
                 <br>
             </form>
@@ -81,43 +87,12 @@
 
 {% endblock %}
 
-{% block js %}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
-    <script src="/lib/FormValidator/jquery.form-validator.js"></script> <!--parametrage-->
-    
+{% block js %}    
     <script type="text/javascript">
 
-        $(document).ready(function() {
-            // Lorsque je soumets le formulaire
-            $('#compte').on('submit', function(e) {
-                e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+        valiSend('compte');
+        valiSend('password');
 
-                var $this = $(this); // L'objet jQuery du formulaire
-
-                // Je récupère les valeurs
-                var user_name = $('#user_name').val();
-                var user_firstName = $('#user_firstName').val();
-                var user_mail = $('#user_mail').val();
-
-                // Je vérifie une première fois pour ne pas lancer la requête HTTP
-                // si je sais que mon PHP renverra une erreur
-                if (user_name === '' || user_firstName === '' || user_mail === '') {
-                    Notif('<p>Les champs doivent êtres remplis</p>', 5000);
-                } else {
-                    // Envoi de la requête HTTP en mode asynchrone
-                    $.ajax({
-                        url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
-                        type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-                        data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
-                        dataType: 'json', // JSON
-                        success: function(json) { // Je récupère la réponse du fichier PHP
-                            Notif(json.response, 5000); // J'affiche cette réponse
-                        }
-                    });
-                }
-            });
-
-        });
     </script>
 
 {% endblock %}

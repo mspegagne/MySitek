@@ -34,7 +34,42 @@ var myLanguage = {
     badCVV: 'The CVV number was not correct'
 };
 
-$.validate({
-    language: myLanguage,
-    modules: 'security'
-});
+function valiSend(form)
+{
+    $.validate({
+        language: myLanguage,
+        form: '#' + form,
+        modules: 'security'
+    });
+
+    // Lorsque je soumets le formulaire
+    $('#' + form).on('submit', function(e) {
+
+        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+
+        var $this = $(this); // L'objet jQuery du formulaire
+
+        if ($("input.error")[0]) {
+
+            Notif('<p>Le formulaire est invalide</p>', 5000);
+
+        } else {
+            // Envoi de la requête HTTP en mode asynchrone
+            $.ajax({
+                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+                data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+                dataType: 'json', // JSON
+                beforeSend: function() {
+                    $('#load' + form).show();
+                    $('#icon' + form).hide();
+                },
+                success: function(json) { // Je récupère la réponse du fichier PHP
+                    $('#load' + form).hide();
+                    $('#icon' + form).show();
+                    Notif(json.response, 5000); // J'affiche cette réponse
+                }
+            });
+        }
+    });
+}

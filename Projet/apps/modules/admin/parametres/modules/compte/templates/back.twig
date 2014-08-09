@@ -21,17 +21,17 @@
 
                         <tr>
                             <td><label class=" control-label" for="usr_name">Nom du responsable :</label></td>
-                            <td><input id="user_name" name="user_name" maxlength="25" type="text" class="form-control input-md" value="{{app.user_name}}"></td>
+                            <td><input id="user_name" name="user_name" maxlength="70" size="50" type="text" class="form-control input-md" value="{{app.user_name}}" data-validation="required"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="usr_name">Prénom du responsable :</label></td>
-                            <td><input id="user_firstName" name="user_firstName" maxlength="25" type="text" class="form-control input-md" value="{{app.user_firstName}}"></td>
+                            <td><input id="user_firstName" name="user_firstName" maxlength="70" size="50" type="text" class="form-control input-md" value="{{app.user_firstName}}" data-validation="required"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="usr_name">Mail :</label></td>
-                            <td><input id="user_mail" name="user_mail" maxlength="25" type="text" class="form-control input-md" value="{{app.user_mail}}"></td>
+                            <td><input id="user_mail" name="user_mail" maxlength="255" size="50" type="text" class="form-control input-md" value="{{app.user_mail}}" data-validation="email" data-validation="required"></td>
                         </tr>
 
                     </tbody>
@@ -49,27 +49,28 @@
         </div>
 
         <div class=" col-md-9 col-lg-9 "> 
-            <form class="form-horizontal" id="compte" name="password" action="/admin/parametres/compte/" method="post">
+            <form class="form-horizontal" id="password" name="password" action="/admin/parametres/compte/" method="post">
                 <table class="table table-user-information">
                     <tbody>
 
                         <tr>
                             <td><label class=" control-label" for="old_pwd">Ancien mot de passe :</label></td>
-                            <td><input id="old_pwd" name="old_pwd" maxlength="25" type="password" class="form-control input-md"></td>
+                            <td><input id="old_pwd" name="old_pwd" maxlength="70" size="50" type="password" class="form-control input-md" data-validation="required"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="new_pwd">Nouveau mot de passe :</label></td>
-                            <td><input id="new_pwd" name="unew_pwd" maxlength="25" type="password" class="form-control input-md"></td>
+                            <td><input id="new_pwd" name="pass_confirmation" maxlength="70" size="50" type="password" class="form-control input-md" data-validation="strength" data-validation-strength="1"></td>
                         </tr>
 
                         <tr>
                             <td><label class=" control-label" for="new_pwd2">Nouveau mot de passe :</label></td>
-                            <td><input id="new_pwd2" name="new_pwd2" maxlength="25" type="password" class="form-control input-md"></td>
+                            <td><input id="new_pwd2" name="pass" maxlength="70" size="50" type="password" class="form-control input-md" data-validation="confirmation"></td>
                         </tr>
 
                     </tbody>
                 </table>
+
                 <div class="text-center"> 
                     <button id="save" name="save" type="submit" class="btn btn-primary"><i class="fa fa-key"></i> Enregistrer le mot de passe</button>
                 </div>
@@ -81,7 +82,14 @@
 {% endblock %}
 
 {% block js %}
+    <script src="/lib/FormValidator/jquery.form-validator.js"></script>
+    <script>
+        $.validate({
+            modules: 'security',
+        });
+    </script>
     <script type="text/javascript">
+
         $(document).ready(function() {
             // Lorsque je soumets le formulaire
             $('#compte').on('submit', function(e) {
@@ -111,6 +119,7 @@
                     });
                 }
             });
+
         });
     </script>
 

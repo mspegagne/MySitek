@@ -114,6 +114,17 @@ class Param {
             }
         }
     }
+    
+    /**
+     * @brief Sauvegarde le nouveu mail temporairement et envoie mail confirm
+     * @param String $mail
+     * @param App $app
+     * @return String $response confirmation envoi
+     */
+    public static function saveMail($mail, $app) {
+
+        
+    }
 
     /**
      * @brief Charge tous les params dans l'application

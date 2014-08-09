@@ -28,15 +28,22 @@ $compte->get('/', function() use ($app) {
 });
 
 
-$compte->post('/', function (Request $request) use($app) {
+$compte->post('/user', function (Request $request) use($app) {
 
-    $user = array(
-        "user_name" => $request->get('user_name'),
-        "user_firstName" => $request->get('user_firstName'),
-        "user_mail" => $request->get('user_mail')
-    );
+    $csrf = $request->get('csrf');
 
-    $response = Param::saveParams($user, $app);
+    if ($csrf == $app['user_id']) {
+
+        $user = array(
+            "user_name" => $request->get('user_name'),
+            "user_firstName" => $request->get('user_firstName'),
+            "user_mail" => $request->get('user_mail')
+        );
+
+        $response = Param::saveParams($user, $app);
+    } else {
+        $response = 'Merci d\'executer la requete au bon endroit...';
+    }
 
     return new Response(json_encode(['response' => $response]), 200);
 });

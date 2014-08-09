@@ -49,7 +49,7 @@ function valiSend(form)
 
         var $this = $(this); // L'objet jQuery du formulaire
 
-        if ($("input.error")[0]) {
+        if ($("input.error", '#' + form)[0]) {
 
             Notif('<p>Le formulaire est invalide</p>', 5000);
 

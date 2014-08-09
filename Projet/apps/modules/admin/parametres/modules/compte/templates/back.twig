@@ -82,12 +82,9 @@
 {% endblock %}
 
 {% block js %}
-    <script src="/lib/FormValidator/jquery.form-validator.js"></script>
-    <script>
-        $.validate({
-            modules: 'security',
-        });
-    </script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+    <script src="/lib/FormValidator/jquery.form-validator.js"></script> <!--parametrage-->
+    
     <script type="text/javascript">
 
         $(document).ready(function() {

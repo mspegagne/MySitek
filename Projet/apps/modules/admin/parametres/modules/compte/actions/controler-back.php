@@ -59,9 +59,12 @@ $compte->post('/user', function (Request $request) use($app) {
 
             $user = array(
                 "user_name" => $request->get('user_name'),
-                "user_firstName" => $request->get('user_firstName')
+                "user_firstName" => $request->get('user_firstName'),
+                "user_mail" => $app['user_mail']
             );
 
+            User::maj($user);
+            
             $response = Param::saveParams($user, $app);
         } else {
             $response = 'Mail invalide...';

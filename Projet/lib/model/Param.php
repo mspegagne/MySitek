@@ -151,14 +151,14 @@ class Param {
      * @return String $response confirmation envoi
      */
     public static function saveMail($mail, $app) {
-        
+
         $response = FALSE;
 
         if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
 
 
             $token = uniqid(rand());
-            $url = $app['url'].'admin/parametres/compte/verif/'.$token;
+            $url = $app['url'] . 'admin/parametres/compte/verif/' . $token;
             $saveMail = Param::saveParam('mail_temp', $mail, $app);
             $saveToken = Param::saveParam('mail_token', $token, $app);
 
@@ -170,25 +170,25 @@ class Param {
                     $passage_ligne = "\n";
                 }
                 //=====Déclaration des messages au format texte et au format HTML.
-                $message_txt = "Merci de bien vouloir aller à l'adresse web ci-dessous pour confirmer votre adresse mail. Ce lien vous redirige vers votre site internet. Merci d'ignorer ce mail s'il ne vous est pas destiné. ".$url;
-                $message_html = '<html><head></head><body>Merci de bien vouloir cliquer sur le lien ci-dessous pour confirmer votre adresse mail. Ce lien vous redirige vers votre site internet. <br>Merci d\'ignorer ce mail s\'il ne vous est pas destiné. <br><a href="'.$url.'">'.$url.'</a></body></html>';
-                
+                $message_txt = "Merci de bien vouloir aller à l'adresse web ci-dessous pour confirmer votre adresse mail. Ce lien vous redirige vers votre site internet. Merci d'ignorer ce mail s'il ne vous est pas destiné. " . $url;
+                $message_html = '<html><head></head><body>Merci de bien vouloir cliquer sur le lien ci-dessous pour confirmer votre adresse mail. Ce lien vous redirige vers votre site internet. <br>Merci d\'ignorer ce mail s\'il ne vous est pas destiné. <br><a href="' . $url . '">' . $url . '</a></body></html>';
+
                 //==========
                 //=====Création de la boundary.
                 $boundary = "-----=" . md5(rand());
                 $boundary_alt = "-----=" . md5(rand());
-                
+
                 //==========
                 //=====Définition du sujet.
                 $sujet = "Validation de l'addresse mail";
-                
+
                 //=========
                 //=====Création du header de l'e-mail.
                 $header = "From: \"MySitek\"<contact@mysitek.com>" . $passage_ligne;
                 $header.= "Reply-to: \"MySitek\" <contact@mysitek.com>" . $passage_ligne;
                 $header.= "MIME-Version: 1.0" . $passage_ligne;
                 $header.= "Content-Type: multipart/mixed;" . $passage_ligne . " boundary=\"$boundary\"" . $passage_ligne;
-                
+
                 //==========
                 //=====Création du message.
                 $message = $passage_ligne . "--" . $boundary . $passage_ligne;
@@ -204,7 +204,7 @@ class Param {
                 $message.= "Content-Type: text/html; charset=\"ISO-8859-1\"" . $passage_ligne;
                 $message.= "Content-Transfer-Encoding: 8bit" . $passage_ligne;
                 $message.= $passage_ligne . $message_html . $passage_ligne;
-                
+
                 //==========
                 //=====On ferme la boundary alternative.
                 $message.= $passage_ligne . "--" . $boundary_alt . "--" . $passage_ligne;
@@ -242,6 +242,14 @@ class Param {
                 if ($app['db']->executeUpdate($sql, array($app['mail_temp'], $username))) {
 
                     if ((Param::deleteParam('mail_temp', $app)) && (Param::deleteParam('mail_token', $app))) {
+
+                        $user = array(
+                            "user_name" => $app['user_name'],
+                            "user_firstName" => $app['user_firstName'],
+                            "user_mail" => $app['mail_temp']
+                        );
+
+                        User::maj($user);
 
                         $response = 'Le mail est désormais valide et vous servira d\'identifiant de connexion';
                     }

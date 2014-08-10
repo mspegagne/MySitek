@@ -30,7 +30,12 @@ class User {
         $this->user_url = $app['url'];
     }
     
-    public function maj() {
+    /**
+    * @brief Enregistre dans nos base l'user
+    * @param Array $user
+    * @return Rien du tout pour éviter bug en cas de pb
+    */
+    public function maj($user) {
         
         //TODO #USER : maj dans nos base de name firstname et mail uniquement.       
         

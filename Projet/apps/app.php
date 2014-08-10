@@ -208,7 +208,7 @@ $app->get('/install/{type}/{file}/{user_id}', function ($type, $file, $user_id) 
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
     ));
 
-     if ($user_id == $app['user_id']) {
+    if ($user_id == $app['user_id']) {
         require_once __DIR__ . '/../lib/model/Install.php';
 
         if (User::checklist($app)) {

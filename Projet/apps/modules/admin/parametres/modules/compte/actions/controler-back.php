@@ -25,6 +25,26 @@ $compte->get('/', function() use ($app) {
     return $app['twig']->render('back.twig', array());
 });
 
+$compte->get('/verif/{token}', function($token) use ($app) {
+
+    /* Activation de twig avec les templates du module */
+
+    $app->register(new Silex\Provider\TwigServiceProvider(), array(
+        'twig.class_path' => __DIR__ . '/../../../../../../../vendor/Twig/lib',
+        'twig.path' => array(__DIR__ . '/../../../../../../templates/' . $app['template'] . '/',
+            __DIR__ . '/../templates/', __DIR__ . '/../../../templates/',)
+    ));
+
+    $app['selected'] = 'compte';
+
+    $validMail = Param::validMail($token, $app);
+
+    return $app['twig']->render('back.twig', array(
+                'notif' => $validMail,
+                'time' => '5000'
+    ));
+});
+
 
 $compte->post('/user', function (Request $request) use($app) {
 
@@ -32,13 +52,20 @@ $compte->post('/user', function (Request $request) use($app) {
 
     if ($csrf == $app['user_id']) {
 
-        $user = array(
-            "user_name" => $request->get('user_name'),
-            "user_firstName" => $request->get('user_firstName'),
-            "user_mail" => $request->get('user_mail')
-        );
+        $mail = $request->get('user_mail');
+        $retourmail = Param::saveMail($mail, $app);
 
-        $response = Param::saveParams($user, $app);
+        if ($retourmail) {
+
+            $user = array(
+                "user_name" => $request->get('user_name'),
+                "user_firstName" => $request->get('user_firstName')
+            );
+
+            $response = Param::saveParams($user, $app);
+        } else {
+            $response = 'Mail invalide...';
+        }
     } else {
         $response = 'Merci d\'executer la requete au bon endroit...';
     }

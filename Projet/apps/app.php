@@ -66,7 +66,6 @@ Module::getAll($app);
 $app->register(new Silex\Provider\SecurityServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 
-
 /* FIREWALL */
 $app['security.firewalls'] = array(
     'user' => array(
@@ -78,8 +77,6 @@ $app['security.firewalls'] = array(
         }),
     ),
 );
-
-
 
 /* Login */
 

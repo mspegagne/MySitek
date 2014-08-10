@@ -19,9 +19,7 @@ $compte->get('/', function() use ($app) {
             __DIR__ . '/../templates/', __DIR__ . '/../../../templates/',)
     ));
 
-
     $app['selected'] = 'compte';
-
     //TODO  modification des adresses en bdd
 
     return $app['twig']->render('back.twig', array());
@@ -47,6 +45,25 @@ $compte->post('/user', function (Request $request) use($app) {
 
     return new Response(json_encode(['response' => $response]), 200);
 });
+
+$compte->post('/password', function (Request $request) use($app) {
+
+    $csrf = $request->get('csrf');
+
+    if ($csrf == $app['user_id']) {
+
+        $old_pwd = $request->get('old_pwd');
+        $new_pwd = $request->get('pass_confirmation');
+        $new_pwd2 = $request->get('pass');
+
+        $response = Param::savePwd($old_pwd, $new_pwd, $new_pwd2, $app);
+    } else {
+        $response = 'Merci d\'executer la requete au bon endroit...';
+    }
+
+    return new Response(json_encode(['response' => $response]), 200);
+});
+
 
 
 //changer le nom du module

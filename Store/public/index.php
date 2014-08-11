@@ -35,7 +35,7 @@ $apiModule = $apiService->getOneModule('Module Stub');
 
 $pageData[3]['title'] = $apiModule['name'];
 $pageData[3]['description'] = $apiModule['description'];
-$pageData[3]['image'] = 'data/responsive.jpg';
+$pageData[3]['image'] = reset($apiModule['images']);
 $pageData[3]['price'] = $apiModule['price'] . '€';
 
 ?>

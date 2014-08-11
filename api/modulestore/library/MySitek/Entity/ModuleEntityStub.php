@@ -21,7 +21,7 @@ class ModuleEntityStub extends ModuleEntity
         $this->stars = 3.5;
         $this->numberOfUsers = 500;
         $this->logo = 'http://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Wikipedia-logo-v2-fr.svg/150px-Wikipedia-logo-v2-fr.svg.png';
-        $this->images = array();
+        $this->images = array('http://download.mysitek.com/screen/totoro.gif');
         $this->opinions = array();
         $this->otherInformations = array();
     }

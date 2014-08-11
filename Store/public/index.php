@@ -1,4 +1,9 @@
 <?php
+
+include_once '../index.php';
+
+$apiService = new \MySitek\Service\ApiService('api.mysitek.com');
+
 /**
  * @todo Charger les données à partir de l'api
  */
@@ -24,6 +29,15 @@ $pageData[2]['title'] = 'Test Module 2';
 $pageData[2]['description'] = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, labore, magni illum nemo ipsum quod voluptates ab natus nulla possimus incidunt aut neque quaerat mollitia perspiciatis assumenda asperiores consequatur soluta.';
 $pageData[2]['image'] = 'data/responsive.jpg';
 $pageData[2]['price'] = '800€';
+
+
+$apiModule = $apiService->getOneModule('Module Stub');
+
+$pageData[3]['title'] = $apiModule['name'];
+$pageData[3]['description'] = $apiModule['description'];
+$pageData[3]['image'] = 'data/responsive.jpg';
+$pageData[3]['price'] = 'todo';
+
 ?>
 
 <!DOCTYPE html>

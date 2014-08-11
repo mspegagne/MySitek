@@ -300,6 +300,25 @@ class Param {
     }
 
     /**
+     * @brief Renvoie l'array des bg dispo par défaut
+     * @param App $app
+     * @return Array of String $response 
+     */
+    public static function getBg() {
+
+        $response = 0;
+
+        if ($dossier = opendir('/data/bg')) {
+            while (false !== ($fichier = readdir($dossier))) {
+                $response++;
+            }
+            closedir($dossier);
+        }
+
+        return $response;
+    }
+
+    /**
      * @brief Charge tous les params dans l'application
      */
     public static function load($app) {

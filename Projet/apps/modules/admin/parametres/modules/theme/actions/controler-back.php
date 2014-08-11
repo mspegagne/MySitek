@@ -19,9 +19,11 @@ $theme->get('/', function() use ($app) {
     
     $app['selected'] = 'theme';
 
-    //TODO  modification des adresses en bdd
+    $nb = Param::getBg();
     
-    return $app['twig']->render('back.twig', array());
+    return $app['twig']->render('back.twig', array(
+                'notif' => $nb,
+                'time' => '5000'));
 });
 
 //changer le nom du module

@@ -57,6 +57,12 @@ class ModuleEntity
     protected $description;
 
     /**
+     * Le prix du module
+     * @var float 
+     */
+    protected $price;
+
+    /**
      * Nombre d'étoiles
      * @var float
      */
@@ -128,6 +134,11 @@ class ModuleEntity
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    public function setPrice($price)
+    {
+        $this->price = $price;
     }
 
     public function setStars($stars)
@@ -204,6 +215,14 @@ class ModuleEntity
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 
     public function getStars()

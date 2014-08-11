@@ -44,6 +44,7 @@ class ModuleRepository extends AbstractRepository
             "dependencies" => $module->getDependencies(),
             "shortDescription" => $module->getShortDescription(),
             "description" => $module->getDescription(),
+            "price" => $module->getPrice(),
             "stars" => $module->getStars(),
             "number_of_users" => $module->getNumberOfUsers(),
             "logo" => $module->getLogo(),

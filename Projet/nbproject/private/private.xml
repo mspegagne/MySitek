@@ -3,8 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/home/bruno/Projets/MySitek-Depot/Projet/index.php</file>
             <file>file:/home/bruno/Projets/MySitek-Depot/Projet/lib/model/Module.php</file>
+=======
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/modules/admin/parametres/modules/compte/templates/back.twig</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/lib/model/User.php</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/lib/model/Param.php</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/templates/business/login.twig</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/modules/admin/parametres/modules/theme/actions/controler-back.php</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/modules/admin/parametres/modules/theme/templates/back.twig</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/lib/model/Install.php</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/templates/business/layout.twig</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/templates/business/css/business.css</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/modules/admin/parametres/modules/compte/actions/controler-back.php</file>
+            <file>file:/Users/Moi/Documents/Sites/mysitek/Projet/apps/app.php</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

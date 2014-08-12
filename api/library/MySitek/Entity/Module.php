@@ -2,7 +2,7 @@
 
 namespace MySitek\Entity;
 
-class ModuleEntity
+class Module
 {
 
     /**

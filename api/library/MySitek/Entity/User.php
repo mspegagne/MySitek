@@ -2,7 +2,6 @@
 
 namespace MySitek\Entity;
 
-class OpinionEntity
-{
+class User {
     //put your code here
 }

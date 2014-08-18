@@ -6,12 +6,12 @@
  */
 class Module {
 
-    private $name;
-    private $lien;
-    private $icon;
-    private $front;
-    private $versiondispo;
-    private $prix;
+    protected $name;
+    protected $lien;
+    protected $icon;
+    protected $front;
+    protected $versiondispo;
+    protected $prix;
 
     //A modifier et à compléter, c'est juste pour avoir une idée.
 

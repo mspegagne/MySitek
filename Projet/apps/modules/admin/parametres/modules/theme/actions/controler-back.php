@@ -19,11 +19,10 @@ $theme->get('/', function() use ($app) {
     
     $app['selected'] = 'theme';
 
-    $nb = Param::getBg();
+    $response = Param::getBackground($app);
     
     return $app['twig']->render('back.twig', array(
-                'notif' => $nb,
-                'time' => '5000'));
+                'dossier' => $response));
 });
 
 //changer le nom du module

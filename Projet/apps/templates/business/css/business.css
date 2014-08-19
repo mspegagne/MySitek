@@ -3,20 +3,6 @@ html,body{
     height: 100%;
 }
 
-
-body {
-  background: url(/data/img/bg.jpg) no-repeat center center fixed; 
-    background-color: #000;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    -o-background-size: cover;
-
-
-}
-
-
-
 p {
   font-size: 1.25em;
   line-height: 1.6;

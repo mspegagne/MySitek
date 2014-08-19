@@ -35,6 +35,20 @@
         <![endif]-->
 
         <!-- Contenu à mettre dans head à partir du twig qui utilise le template (ex: css)  -->
+        <style>
+            body {
+                background-image: url(/data/bg/{{ app.background }});
+                background-repeat: no-repeat;                 
+                background-position: center center;
+                background-attachment: fixed;
+                  background-color: #000;
+                  -webkit-background-size: cover;
+                  -moz-background-size: cover;
+                  background-size: cover;
+                  -o-background-size: cover;
+              }
+
+        </style>
         {% block css %}
         {% endblock %}
 
@@ -162,6 +176,11 @@
                 Notif('<p>{{ notif | raw }}</p>',{% if time is defined %}{{ time }}{% else %} 4500{% endif %});
 
             {% endif %}
+                
+            
+            $(function() {
+                $('span').tooltip({delay: 400});
+            });
 
         </script>
 

@@ -300,58 +300,6 @@ class Param {
     }
 
     /**
-     * @brief Renvoie l'array des bg dispo par défaut
-     * @param App $app
-     * @return Array of String $response 
-     */
-    public static function getBackground($app) {
-
-        $response = '';
-
-        $url = $app['url'];
-
-
-        $dir_nom = './data/bg'; // dossier listé (pour lister le répertoir courant : $dir_nom = '.'  --> ('point')
-        $dir = opendir($dir_nom) or die('Erreur de listage : le répertoire n\'existe pas'); // on ouvre le contenu du dossier courant
-        $fichier = array(); // on déclare le tableau contenant le nom des fichiers
-        $dossier = array(); // on déclare le tableau contenant le nom des dossiers
-
-        while ($element = readdir($dir)) {
-            if ($element != '.' && $element != '..') {
-                if (!is_dir($dir_nom . '/' . $element)) {
-                    $fichier[] = $element;
-                } else {
-                    $dossier[] = $element;
-                }
-            }
-        }
-
-        closedir($dir);
-
-        if (!empty($dossier)) {
-            sort($dossier); // pour le tri croissant, rsort() pour le tri décroissant
-            $response .= "Liste des dossiers accessibles dans '$dir_nom' : \n\n";
-            $response .= "\t\t<ul>\n";
-            foreach ($dossier as $lien) {
-                $response .= "\t\t\t<li><a href=\"$dir_nom/$lien \">$lien</a></li>\n";
-            }
-            $response .= "\t\t</ul>";
-        }
-
-        if (!empty($fichier)) {
-            sort($fichier); // pour le tri croissant, rsort() pour le tri décroissant
-            $response .= "Liste des fichiers/documents accessibles dans '$dir_nom' : \n\n";
-            $response .= "\t\t<ul>\n";
-            foreach ($fichier as $lien) {
-                $response .= "\t\t\t<li><a href=\"$url/$dir_nom/$lien \">$lien</a></li>\n";
-            }
-            $response .= "\t\t</ul>";
-        }
-
-        return $response;
-    }
-
-    /**
      * @brief Charge tous les params dans l'application
      */
     public static function load($app) {

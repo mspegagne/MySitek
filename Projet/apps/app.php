@@ -13,6 +13,7 @@ require_once __DIR__ . '/../lib/model/Install.php';
 require_once __DIR__ . '/../lib/model/User.php';
 require_once __DIR__ . '/../lib/model/Module.php';
 require_once __DIR__ . '/../lib/model/Param.php';
+require_once __DIR__ . '/../lib/model/Function.php';
 require_once __DIR__ . '/../lib/model/UserProvider.php';
 
 

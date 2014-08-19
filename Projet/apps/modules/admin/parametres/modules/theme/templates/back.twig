@@ -6,8 +6,7 @@
 {% endblock %}
 
 
-{% block contentparam %}      
-    <p>Module Theme</p>
+{% block contentparam %}     
     <!-- 
     
     choix bg
@@ -24,9 +23,63 @@
     
     
     -->
-    {{ dossier | raw }}
-    
+
+    <div class="row">
+
+        <div class="col-lg-4">
+            <h2 style="margin-top: 0px;">Choisir un fond</h2>
+        </div>
+    </div>
+
+    <br>
+
+    <form class="form-horizontal" id="fond" name="fond" action="/admin/parametres/theme/fond" method="post">
+
+        <div class="row">
+            {% for fichier in dossier %}
+                <div class="col-lg-3">
+                    <button type="button" style="background:white; border:solid 0px black;">  
+                        <img id="fond{{ loop.index }}" class="img-responsive fond
+                             {% if fichier == app.background %} 
+                                 fond_selected 
+                             {% endif %}"
+                             src="/data/bg/{{ fichier }}" alt="{{ fichier }}">
+                    </button> 
+
+                </div>    
+            {% endfor %}
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <input type="hidden" name="csrf" value="{{ app.user_id }}">                      
+                <input id="valuefond" type="hidden" name="fond" value="{{ app.background }}">  
+                <button id="save" name="save" type="submit" class="btn btn-primary">
+                    <i id="loadfond" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                    <i id="iconfond" class="fa fa-tint"></i> Valider
+                </button>
+            </div>
+        </div>
+    </form>
+
 {% endblock %}
 
 {% block js %}
+    <script type="text/javascript">
+        {% for fichier in dossier %}
+
+            $("#fond{{ loop.index }}").click(function() {
+                $(".fond_selected").removeClass("fond_selected");
+                $("#fond{{ loop.index }}").toggleClass("fond_selected");
+                $("#valuefond").val('{{ fichier }}');
+                $('body').css('background-image', 'url(/data/bg/{{ fichier }})');
+            });
+
+        {% endfor %}
+
+            valiSend('fond');
+
+    </script>
 {% endblock %}

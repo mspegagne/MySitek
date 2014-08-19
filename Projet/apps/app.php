@@ -116,9 +116,7 @@ $app->get('/admin/', function() use ($app) {
         'twig.path' => array(__DIR__ . '/templates/' . $app['template'] . '/')
     ));
 
-    return $app['twig']->render('admin.twig', array(
-                'hello' => 'Hello world Admin !',
-    ));
+    return $app['twig']->render('admin.twig', array());
 });
 
 

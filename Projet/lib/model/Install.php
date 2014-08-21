@@ -1,5 +1,7 @@
 <?php
 
+namespace Model;
+
 // init
 ob_start();
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
@@ -71,7 +73,7 @@ class Install {
         $error.=Install::getfile('http://download.mysitek.com/' . $type . '/' . $file . '.zip', '' . $file . '.zip');
 
         // unpacking into owncloud folder
-        $zip = new ZipArchive;
+        $zip = new \ZipArchive;
         $res = $zip->open('' . $file . '.zip');
         if ($res == true) {
             $zip->extractTo('apps/' . $type . '/');
@@ -105,8 +107,8 @@ class Install {
 
         $dossier = __DIR__ . '/../../apps/' . $type . '/' . $file . '/';
 
-        $dir_iterator = new RecursiveDirectoryIterator($dossier);
-        $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::CHILD_FIRST);
+        $dir_iterator = new \RecursiveDirectoryIterator($dossier);
+        $iterator = new \RecursiveIteratorIterator($dir_iterator, \RecursiveIteratorIterator::CHILD_FIRST);
 
         // On supprime chaque dossier et chaque fichier	du dossier cible
         foreach ($iterator as $fichier) {

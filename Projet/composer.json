@@ -1,0 +1,32 @@
+{
+    "name": "MySitek - Projet",
+    "description": "Projet de CMS révolutionnaire",
+    "license": "CC-BY-NC",
+    "type": "project",
+    "require": {
+        "php": ">=5.3.3",
+        "silex/silex": "~1.2",
+        "silex/web-profiler": "~1.0",
+        "symfony/browser-kit": "~2.3",
+        "symfony/class-loader": "~2.3",
+        "symfony/config": "~2.3",
+        "symfony/console": "~2.3",
+        "symfony/css-selector": "~2.3",
+        "symfony/debug": "~2.3",
+        "symfony/finder": "~2.3",
+        "symfony/form": "~2.3",
+        "symfony/monolog-bridge": "~2.3",
+        "symfony/process": "~2.3",
+        "symfony/security": "~2.3",
+        "symfony/translation": "~2.3",
+        "symfony/twig-bridge": "~2.3",
+        "symfony/validator": "~2.3",        
+        "doctrine/common": "~2.4",
+        "doctrine/dbal": "~2.4",
+        "swiftmailer/swiftmailer": "~5.2",
+        "imagine/imagine": "~0.6"
+    },
+    "autoload": {
+        "psr-0": { "": "lib/" }
+    }
+}

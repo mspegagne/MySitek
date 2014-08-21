@@ -1,5 +1,7 @@
 <?php
 
+namespace Model;
+
 /**
  * @brief Classe de gestion des parametres
  *

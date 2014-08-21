@@ -37,7 +37,7 @@ $compte->get('/verif/{token}', function($token) use ($app) {
 
     $app['selected'] = 'compte';
 
-    $validMail = Param::validMail($token, $app);
+    $validMail = Model\Param::validMail($token, $app);
 
     return $app['twig']->render('back.twig', array(
                 'notif' => $validMail,
@@ -53,7 +53,7 @@ $compte->post('/user', function (Request $request) use($app) {
     if ($csrf == $app['user_id']) {
 
         $mail = $request->get('user_mail');
-        $retourmail = Param::saveMail($mail, $app);
+        $retourmail = Model\Param::saveMail($mail, $app);
 
         if ($retourmail) {
 
@@ -63,9 +63,9 @@ $compte->post('/user', function (Request $request) use($app) {
                 "user_mail" => $app['user_mail']
             );
 
-            User::maj($user);
+            Model\User::maj($user);
             
-            $response = Param::saveParams($user, $app);
+            $response = Model\Param::saveParams($user, $app);
         } else {
             $response = 'Mail invalide...';
         }
@@ -86,7 +86,7 @@ $compte->post('/password', function (Request $request) use($app) {
         $new_pwd = $request->get('pass_confirmation');
         $new_pwd2 = $request->get('pass');
 
-        $response = Param::savePwd($old_pwd, $new_pwd, $new_pwd2, $app);
+        $response = Model\Param::savePwd($old_pwd, $new_pwd, $new_pwd2, $app);
     } else {
         $response = 'Merci d\'executer la requete au bon endroit...';
     }

@@ -36,7 +36,7 @@ $theme->post('/fond', function (Request $request) use($app) {
 
         $fond = $request->get('fond');
 
-        if (Param::saveParam('background', $fond, $app)) {
+        if (Model\Param::saveParam('background', $fond, $app)) {
             $response = 'Le fond a bien été modifié';
         } else {
             $response = 'Erreur lors de l\'enregistrement';

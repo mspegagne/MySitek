@@ -24,7 +24,8 @@
         "doctrine/common": "~2.4",
         "doctrine/dbal": "~2.4",
         "swiftmailer/swiftmailer": "~5.2",
-        "imagine/imagine": "~0.6"
+        "imagine/imagine": "~0.6",
+        "phpunit/phpunit": "~4.2"
     },
     "autoload": {
         "psr-0": { "": "lib/" }

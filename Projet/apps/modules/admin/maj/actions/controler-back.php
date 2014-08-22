@@ -55,7 +55,7 @@ $maj->post('/rang', function (Request $request) use ($app) {
     $result = $request->get('table'); 
     $type = $request->get('type');
     
-    $response = Model\Module::rang($result, $type, $app);
+    $response = Module::rang($result, $type, $app);
        
     return new Response(json_encode(['response' => $response]),200);
 });

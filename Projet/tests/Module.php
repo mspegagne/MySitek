@@ -1,5 +1,7 @@
 <?php
 
+namespace Model;
+
 /**
  * @brief Classe de gestion des modules
  * A completer au fur et à mesure

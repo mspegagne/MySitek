@@ -9,7 +9,7 @@ use Symfony\Component\Debug\ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Persistence\ObjectManager;
 
-require_once __DIR__ . '/../lib/model/Function.php';
+require_once __DIR__ . '/../lib/model/Service.php';
 
 /* Activation de doctrine */
 
@@ -30,7 +30,7 @@ $app['debug'] = true; //TODO #PROD : mettre false
 $app['url'] = 'http://' . $_SERVER['HTTP_HOST'] . '/';
 $app['selected'] = ''; //module en cours (pour affichage lien actif)
 
-Model\Param::load($app);
+Param::load($app);
 
 
 /* Recuperation du template */
@@ -42,17 +42,17 @@ $app['template'] = $retour['name'];
 
 /* Recuperation des modules */
 
-Model\Module::getList($app, 'front');
+Module::getList($app, 'front');
 
-Model\Module::getList($app, 'back');
+Module::getList($app, 'back');
 
-Model\Module::getList($app, 'admin');
+Module::getList($app, 'admin');
 
-Model\Module::getList($app, 'param');
+Module::getList($app, 'param');
 
-Model\Module::getList($app, 'param_plus');
+Module::getList($app, 'param_plus');
 
-Model\Module::getAll($app);
+Module::getAll($app);
 
 
 
@@ -68,7 +68,7 @@ $app['security.firewalls'] = array(
         'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check'),
         'logout' => array('logout_path' => '/admin/logout'),
         'users' => $app->share(function () use ($app) {
-            return new Model\UserProvider($app['db']);
+            return new UserProvider($app['db']);
         }),
     ),
 );
@@ -142,7 +142,7 @@ $app->get('/admin/notif/{notif}', function($notif) use ($app) {
 
 $app->get('/admin/delete/{type}/{file}', function($type, $file) use ($app) {
 
-    $error = Model\Install::delete($file, $type, $app);
+    $error = Install::delete($file, $type, $app);
 
     if ($error == '') {
         return $app->redirect('/admin/maj/notif/deleteok');
@@ -157,8 +157,8 @@ $app->post('/admin/update', function (Request $request) use ($app) {
     $type = $request->get('type');
     $file = $request->get('file');
 
-    if (Model\User::checklist($app)) {
-        $error = Model\Install::update($file, $type, $app);
+    if (User::checklist($app)) {
+        $error = Install::update($file, $type, $app);
     } else {
         $error = 'Module illégal !';
     }
@@ -176,8 +176,8 @@ $app->post('/install', function (Request $request) use ($app) {
 
     if ($user_id == $app['user_id']) {
 
-        if (Model\User::checklist($app)) {
-            $error = Model\Install::installation($file, $type, $app);
+        if (User::checklist($app)) {
+            $error = Install::installation($file, $type, $app);
         } else {
             $error = 'Installation hors Store !';
         }
@@ -198,8 +198,8 @@ $app->get('/install/{type}/{file}/{user_id}', function ($type, $file, $user_id) 
 
     if ($user_id == $app['user_id']) {
 
-        if (Model\User::checklist($app)) {
-            $error = Model\Install::installation($file, $type, $app);
+        if (User::checklist($app)) {
+            $error = Install::installation($file, $type, $app);
         } else {
             $error = 'Installation hors Store !';
         }

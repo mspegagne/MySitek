@@ -22,7 +22,7 @@ $theme->get('/', function() use ($app) {
 
     $app['selected'] = 'theme';
 
-    $dossier = getDossier('./data/bg');
+    $dossier = Service\getDossier('./data/bg');
 
     return $app['twig']->render('back.twig', array(
                 'dossier' => $dossier));
@@ -36,7 +36,7 @@ $theme->post('/fond', function (Request $request) use($app) {
 
         $fond = $request->get('fond');
 
-        if (Model\Param::saveParam('background', $fond, $app)) {
+        if (Param::saveParam('background', $fond, $app)) {
             $response = 'Le fond a bien été modifié';
         } else {
             $response = 'Erreur lors de l\'enregistrement';

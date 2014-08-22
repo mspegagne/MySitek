@@ -28,6 +28,6 @@
         "phpunit/phpunit": "~4.2"
     },
     "autoload": {
-        "psr-0": { "": "lib/" }
+        "psr-0": {"": "lib/model/"}
     }
 }

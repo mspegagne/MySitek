@@ -1,5 +1,7 @@
 <?php
 
+namespace Model;
+
 /**
  * @brief Classe de gestion du compte user associé au site
  * A completer au fur et à mesure

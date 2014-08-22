@@ -4,6 +4,8 @@
  * @brief Function usuelles
  */
 
+namespace Service;
+
 /**
  * @brief Renvoie l'array des fichiers dispo dans le dossier
  * @param String $dir_nom

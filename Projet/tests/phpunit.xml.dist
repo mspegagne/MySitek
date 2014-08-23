@@ -9,11 +9,20 @@
          stopOnFailure="false"
          syntaxCheck="false"
          bootstrap="../vendor/autoload.php"
+         strict="true"
+         timeoutForSmallTests="1"
+         timeoutForMediumTests="5"
+         timeoutForLargeTests="10"
 >
+    
     <testsuites>
         <testsuite name="MySitek Testing">
             <directory>./</directory> 
         </testsuite>
     </testsuites>
+    
+    <listeners>
+        <listener file="listeners/TimeListener.php" class="TimeListener"/>
+    </listeners>
     
 </phpunit>

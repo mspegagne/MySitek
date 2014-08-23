@@ -88,13 +88,13 @@ class Module {
         $explode = explode('&table-'.$table.'[]=', $result);
         $i = 0;
 
-        $response = '';
+        $response = 'Erreur...';
 
         foreach ($explode as $value) {
             $i++;
             $sql = "UPDATE modules SET rang = " . $i . " WHERE lien = ? AND front = ".$table."";
-            if (!$app['db']->executeUpdate($sql, array($value))) {
-                $response = 'Erreur...';
+            if ($app['db']->executeUpdate($sql, array($value))) {
+                $response = '';
             }
         }
         

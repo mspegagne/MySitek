@@ -44,7 +44,7 @@ class Install {
             $error.='PHP Safe Mode is enabled. ownCloud requires that it is disabled to work properly.';
         }
 
-        return($error);
+        return $error;
     }
 
     /**
@@ -74,7 +74,7 @@ class Install {
         $zip = new \ZipArchive;
         $res = $zip->open('' . $file . '.zip');
         if ($res == true) {
-            $zip->extractTo('apps/' . $type . '/');
+            $zip->extractTo(__DIR__ . '/../../apps/' . $type . '/');
             $zip->close();
         } else {
             $error.='Extraction du zip a échoué.';
@@ -82,17 +82,21 @@ class Install {
 
         // deleting zip file
         $result = @unlink('' . $file . '.zip');
-        if ($result == false)
+
+        if ($result == false) {
             $error.='La suppression du zip a échoué.';
+        }
 
         include_once __DIR__ . '/../../apps/' . $type . '/' . $file . '/setup.php';
 
         // deleting setup file
         $result = @unlink(__DIR__ . '/../../apps/' . $type . '/' . $file . '/setup.php');
-        if ($result == false)
-            $error.='La suppresion du fichier setup a échoué.';
 
-        return($error);
+        if ($result == false) {
+            $error.='La suppresion du fichier setup a échoué.';
+        }
+
+        return $error;
     }
 
     public static function delete($file, $type, $app) {
@@ -116,14 +120,15 @@ class Install {
         // On supprime le dossier cible
         $result = rmdir($dossier);
 
-        if ($result == false)
+        if ($result == false) {
             $error.='La suppresion du fichier setup a échoué.';
+        }
 
         return($error);
     }
-    
+
     public static function update($file, $type, $app) {
-        
+
         $error = Install::delete($file, $type, $app);
         $error .= Install::installation($file, $type, $app);
 
@@ -143,7 +148,6 @@ class Install {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_TIMEOUT, 0);
         curl_setopt($ch, CURLOPT_FILE, $fp);
-        curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT']);
         if (Install::iscertinfoavailable()) {
             curl_setopt($ch, CURLOPT_CERTINFO, TRUE);
         }
@@ -190,4 +194,5 @@ class Install {
 
 }
 
-?>
+
+ob_end_clean();

@@ -8,8 +8,32 @@ class ModuleTest extends WebTestCase {
         $app = require __DIR__ . '/../../apps/app.php';
         $app['debug'] = true;
         $app['exception_handler']->disable();
-
+       
         return $app;
+    }
+    
+    
+    /**
+     * @brief Copie la bdd pour pouvoir executer les requetes
+     */
+    public function setUp()
+    {
+        $database = __DIR__ . '/../../data/app.db';
+        $databaseTest = __DIR__ . '/../../data/appSave.db';
+
+        copy($database, $databaseTest);          
+    }
+
+    /**
+     * @brief Supprime la sauvegarde de la bdd
+     */
+    public function tearDown()
+    {
+        $database = __DIR__ . '/../../data/appSave.db';
+        $databaseTest = __DIR__ . '/../../data/app.db';
+
+        copy($database, $databaseTest); 
+        unlink($database);
     }
     
     public function testConvertType()
@@ -38,8 +62,23 @@ class ModuleTest extends WebTestCase {
     public function testRang()
     {
         $app = self::createApplication();
-        $response = Module::rang('test', 'admin', $app);
-        $this->assertEquals('Erreur...', $response);       
+        $back = $app['modules_back'];
+        $result = '';
+        $i = 0;
+        foreach ($back as $module)    
+        {
+            if($i == 0)
+            {
+                $result .='table-2[]='.$module['lien'].'';
+            }
+            else
+            {
+                $result .='&table-2[]='.$module['lien'].'';
+            }
+            $i++;
+        }
+        $response = Module::rang($result, 'back', $app);   
+        $this->assertSame('', $response);       
     }
     
 }

@@ -6,7 +6,7 @@ class TimeListener implements PHPUnit_Framework_TestListener
      * Number of seconds that this test can run
      * @var integer
      */
-    const TEST_LIMIT_TIME = 1;
+    const TEST_LIMIT_TIME = 10;
     
     /**
      * called when test is ended - determines if it was long and prints

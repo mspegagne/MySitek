@@ -76,11 +76,12 @@ class Param {
 
         $sql = "UPDATE param SET value = ? WHERE ref = ?";
 
-        $response = 'Les données ont bien été enregistrées';
+        $response = 'Erreur lors de l\'enregistrement...';
 
         foreach ($array as $ref => $value) {
-            if (!$app['db']->executeUpdate($sql, array($value, $ref))) {
-                $response = 'Erreur lors de l\'enregistrement...';
+            if ($app['db']->executeUpdate($sql, array($value, $ref))) {
+                
+                $response = 'Les données ont bien été enregistrées';
             }
         }
         return $response;

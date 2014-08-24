@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>MySitek</title>
+        <link rel="icon" type="image/png" href="/data/img/favicon.png" />
+
+        <!-- Open Graph Protocol -->
+        <meta content='fr_FR' property='og:locale'>
+        <meta content='website' property='og:type'>
+        <meta content="" property='og:title'>
+        <meta content='' property='og:url'>
+        <meta content="" property='og:description'>
+        <meta property="og:image" content="" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content="200" />
+        <meta property="og:image:height" content="200" />
+
+        <!-- Bootstrap Core CSS -->
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+        <!-- Fonts -->  
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <link href="./css/uploadfile.css" rel="stylesheet">
+    </head>
+    <body>
+
+        <div class="container">
+
+            <div class="row">
+                <div class="box">
+                    <br />
+                    <div id="advancedUpload">Parcourir</div>
+                    <br />
+                    <a id="startUpload" href="#" class="btn btn-primary btn-success"><span class="glyphicon glyphicon-cloud-upload"></span> Envoyer</a>
+
+                    <div id="status"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Core JavaScript Files -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>        
+        <script src="./js/jquery.uploadfile.js"></script>
+        <script>
+
+            $(document).ready(function()
+            {
+
+                var uploadObj = $("#advancedUpload").uploadFile({                    
+                    url: "upload.php",
+                    method: "POST",
+                    multiple: true,
+                    autoSubmit: false,
+                    fileName: "myfile",
+                    maxFileSize: 1024 * 10000,
+                    maxFileCount: 10,
+                    showStatusAfterSuccess: true,
+                    dragDropStr: "<span><b>Faites glisser et déposez les fichiers</b></span>",
+                    abortStr: "Arreter",
+                    cancelStr: "Supprimer",
+                    doneStr: "Envoyé",
+                    multiDragErrorStr: "Plusieurs Drag & Drop de fichiers ne sont pas autorisés.",
+                    extErrorStr: "n'est pas autorisé. Extensions autorisées:",
+                    sizeErrorStr: "n'est pas autorisé. Admis taille max:",
+                    uploadErrorStr: "Upload n'est pas autorisé",      
+                    showPreview: true,                    
+                    previewWidth: "20%"
+
+                });
+                $("#startUpload").click(function()
+                {
+                    uploadObj.startUpload();
+                });
+
+            });
+            
+        </script>
+    </body>
+</html>

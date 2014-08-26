@@ -11,7 +11,13 @@
  */
 
 error_reporting(E_ALL | E_STRICT);
-require('UploadHandler.php');
+require('../../../../../../../lib/Blueimp/Upload/server/php/UploadHandler.php');
 $upload_handler = new UploadHandler(array(
+    'accept_file_types' => '/\.(gif|jpe?g|png)$/i',
+    'script_url' => $_SERVER['PHP_SELF'],
+    'upload_dir' => '../../../../../../../data/bgperso/',
+    'upload_url' => '../../../../../../../data/bgperso/',
+            
+            
 ));
 

@@ -5,7 +5,7 @@
     <link href="/apps/modules/admin/parametres/modules/theme/templates/css/module.css" rel="stylesheet">    
     <link href="/lib/Blueimp/Upload/css/jquery.fileupload.css" rel="stylesheet">
     <!-- blueimp Gallery styles -->
-    <link rel="stylesheet" href="/lib/Blueimp/Gallery/blueimp-gallery.min.css">
+    <link href="/lib/Blueimp/Gallery/blueimp-gallery.min.css" rel="stylesheet">
 {% endblock %}
 
 
@@ -32,6 +32,8 @@
 
             <div class="col-lg-10">
                 <h2 style="margin-top: 0px;">Choisir un thème préconçu</h2>
+                <p>Testez un thème puis cliquez sur "Valider" s'il vous convient.</p>
+        
             </div>
 
             <div class="col-lg-2">
@@ -74,15 +76,28 @@
         <br>
     </form>
                 
-  <hr />            
-    <div class="row">
+  <hr />        
+  
+    <form class="form-horizontal" id="fondperso" name="fondperso" action="/admin/parametres/theme/fondperso" method="post">
 
-        <div class="col-lg-12">
+    <div class="row">
+        <div class="col-lg-10">
             <h2>Personnalisez le vôtre</h2>
-            <p>Voyez vos modifications instantanément : elles ne sont sauvegardées que lorsque vous cliquez sur "Enregistrer les modifications."</p>
+            <p>Voyez vos modifications instantanément : elles ne sont sauvegardées que lorsque vous cliquez sur "Valider".</p>
+
+        </div>
+
+        <div class="col-lg-2"><br>
+            <input type="hidden" name="csrf" value="{{ app.user_id }}">                      
+            <input id="valuefondperso" type="hidden" name="fondperso" value="{{ app.background }}">  
+            <button id="save" name="save" class="btn btn-sm btn-primary">
+                <i id="loadfond" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                <i id="iconfond" class="fa fa-check"></i> Valider
+            </button>
         </div>
     </div>
-
+    
+    </form>
     <br>
 
                 
@@ -93,7 +108,7 @@
         <div class="row fileupload-buttonbar">
             <div class="col-lg-6">
                 <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-sm btn-success fileinput-button">
+                <span class="btn btn-success fileinput-button">
                     <span>Changer le fond</span>
                     <input type="file" name="files[]">
                 </span>                     
@@ -243,7 +258,7 @@
             $('#fileupload').fileupload({
                 // Uncomment the following to send cross-domain cookies:
                 //xhrFields: {withCredentials: true},
-                url: '/lib/Blueimp/Upload/server/php/',
+                url: '/apps/modules/admin/parametres/modules/theme/actions/uploader.php',
                 // Enable image resizing, except for Android and Opera,
                 // which actually support image resizing, but fail to
                 // send Blob objects via XHR requests:
@@ -256,10 +271,17 @@
             });
 
         });
-        $('#fileupload').bind('fileuploadfinished', function (e, data) {
-            $.each(data.files, function (index, item) {
-                alert(item.name);
+        
+        $('#fileupload').bind('fileuploadcompleted', function (e, data) {
+            $.each(data.files, function (index, item) { 
+                $('body').css('background-image', 'url(/data/bgperso/'+item.name+')');                
+                $("#valuefondperso").val(item.name);
             });
+        });
+        
+        $('#fileupload').bind('fileuploaddestroyed', function (e, data) {
+            $('body').css('background-image', 'url(/data/bgperso/{{ app.background }})');                
+            $("#valuefondperso").val('{{ app.background }}');
         });
 
     </script>
@@ -276,7 +298,8 @@
 
         {% endfor %}
 
-        valiSend('fond');
+        valiSend('fond');        
+        valiSend('fondperso');
 
     </script>
 {% endblock %}

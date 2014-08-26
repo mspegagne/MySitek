@@ -34,7 +34,7 @@ class UploadHandler
         'min_width' => 'L\'image requière une largeur minimum',
         'max_height' => 'L\'image dépasse la hauteur maximum autorisée',
         'min_height' => 'L\'image requière une hauteur minimum',
-        'abort' => 'Envoi annulé',
+        'abort' => 'Echec de l\'envoi',
         'image_resize' => 'Impossible de réduire l\'image'
     );
 
@@ -43,8 +43,8 @@ class UploadHandler
     function __construct($options = null, $initialize = true, $error_messages = null) {
         $this->options = array(
             'script_url' => $this->get_full_url().'/',
-            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/files/',
-            'upload_url' => $this->get_full_url().'/files/',
+            'upload_dir' => dirname($this->get_server_var('SCRIPT_FILENAME')).'/../../../../../data/files/',
+            'upload_url' => $this->get_full_url().'/../../../../../data/files/',
             'user_dirs' => false,
             'mkdir_mode' => 0755,
             'param_name' => 'files',

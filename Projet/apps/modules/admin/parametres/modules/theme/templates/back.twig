@@ -2,7 +2,10 @@
 
 
 {% block css %}
-    <link href="/apps/modules/admin/parametres/modules/theme/templates/css/module.css" rel="stylesheet">
+    <link href="/apps/modules/admin/parametres/modules/theme/templates/css/module.css" rel="stylesheet">    
+    <link href="/lib/Blueimp/Upload/css/jquery.fileupload.css" rel="stylesheet">
+    <!-- blueimp Gallery styles -->
+    <link rel="stylesheet" href="/lib/Blueimp/Gallery/blueimp-gallery.min.css">
 {% endblock %}
 
 
@@ -23,70 +26,257 @@
     
     
     -->
+    <form class="form-horizontal" id="fond" name="fond" action="/admin/parametres/theme/fond" method="post">
 
+        <div class="row">
+
+            <div class="col-lg-10">
+                <h2 style="margin-top: 0px;">Choisir un thème préconçu</h2>
+            </div>
+
+            <div class="col-lg-2">
+                <input type="hidden" name="csrf" value="{{ app.user_id }}">                      
+                <input id="valuefond" type="hidden" name="fond" value="{{ app.background }}">  
+                <button id="save" name="save" type="submit" class="btn btn-sm btn-primary">
+                    <i id="loadfond" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                    <i id="iconfond" class="fa fa-check"></i> Valider
+                </button>
+            </div>
+        </div>
+
+        <br>
+
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                {% for fichier in dossier %}
+                    {% if loop.index0%4 == 0 %}
+                        <div class="row">
+                        {% endif %}
+                        <div class="col-sm-3">
+                            <button type="button" style="background:white; border:solid 0px black;">  
+                                <img id="fond{{ loop.index }}" class="img-responsive fond
+                                     {% if fichier == app.background %} 
+                                     fond_selected 
+                                     {% endif %}"
+                                     src="/data/bg/{{ fichier }}" alt="{{ fichier }}">
+                            </button> 
+
+                        </div>    
+
+                        {% if loop.index%4 == 0 or loop.last %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+    </form>
+                
+  <hr />            
     <div class="row">
 
-        <div class="col-lg-4">
-            <h2 style="margin-top: 0px;">Choisir un fond</h2>
+        <div class="col-lg-12">
+            <h2>Personnalisez le vôtre</h2>
+            <p>Voyez vos modifications instantanément : elles ne sont sauvegardées que lorsque vous cliquez sur "Enregistrer les modifications."</p>
         </div>
     </div>
 
     <br>
 
-    <form class="form-horizontal" id="fond" name="fond" action="/admin/parametres/theme/fond" method="post">
-
-        <div class="row">
-            {% for fichier in dossier %}
-                {% if loop.index0%4 == 0 %}
-                    <div class="row">
-                    {% endif %}
-                    <div class="col-sm-3">
-                        <button type="button" style="background:white; border:solid 0px black;">  
-                            <img id="fond{{ loop.index }}" class="img-responsive fond
-                                 {% if fichier == app.background %} 
-                                     fond_selected 
-                                 {% endif %}"
-                                 src="/data/bg/{{ fichier }}" alt="{{ fichier }}">
-                        </button> 
-
-                    </div>    
-
-                    {% if loop.index%4 == 0  %}
-                    </div>
-                {% endif %}
-            {% endfor %}
-        </div>
-
-        <br>
-
-        <div class="row">
-            <div class="col-lg-3">
-                <input type="hidden" name="csrf" value="{{ app.user_id }}">                      
-                <input id="valuefond" type="hidden" name="fond" value="{{ app.background }}">  
-                <button id="save" name="save" type="submit" class="btn btn-primary">
-                    <i id="loadfond" class="fa fa-spinner fa-spin" style="display: none;"></i>
-                    <i id="iconfond" class="fa fa-tint"></i> Valider
-                </button>
+                
+{% raw %}  
+    <!-- The file upload form used as target for the file upload widget -->
+    <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+        <div class="row fileupload-buttonbar">
+            <div class="col-lg-6">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-sm btn-success fileinput-button">
+                    <span>Changer le fond</span>
+                    <input type="file" name="files[]">
+                </span>                     
+                
+                <!-- The global file processing state -->
+                <span class="fileupload-process"></span>   
+            </div>
+            <!-- The global progress state -->
+            <div class="col-lg-6 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
             </div>
         </div>
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
     </form>
+    <br>
+<!-- The blueimp Gallery widget -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
 
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <span class="name">{%=file.name%}</span>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <span class="size">Envoi...</span>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-sm btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Envoyer</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-sm btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Annuler</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <span class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </span>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Erreur</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.deleteUrl) { %}
+                <button class="btn btn-sm btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Supprimer</span>
+                </button>
+            {% } else { %}
+                <button class="btn btn-sm btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Annuler</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+{% endraw %}
 {% endblock %}
 
 {% block js %}
+
+
+    <!-- The Templates plugin is included to render the upload/download listings -->
+    <script src="/lib/Blueimp/Templates/tmpl.min.js"></script>
+    <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+    <script src="/lib/Blueimp/Load-image/load-image.min.js"></script>
+    <!-- The Canvas to Blob plugin is included for image resizing functionality -->
+    <script src="/lib/Blueimp/Canvas-to-Blob/canvas-to-blob.min.js"></script>
+    <!-- blueimp Gallery script -->
+    <script src="/lib/Blueimp/Gallery/jquery.blueimp-gallery.min.js"></script>
+
+
+    <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+    <script src="/lib/Blueimp/Upload/js/vendor/jquery.ui.widget.js"></script>
+    <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+    <script src="/lib/Blueimp/Upload/js/jquery.iframe-transport.js"></script>
+    <!-- The basic File Upload plugin -->
+    <script src="/lib/Blueimp/Upload/js/jquery.fileupload.js"></script>
+    <!-- The File Upload processing plugin -->
+    <script src="/lib/Blueimp/Upload/js/jquery.fileupload-process.js"></script>
+    <!-- The File Upload image preview & resize plugin -->
+    <script src="/lib/Blueimp/Upload/js/jquery.fileupload-image.js"></script>
+    <!-- The File Upload audio preview plugin -->
+    <script src="/lib/Blueimp/Upload/js/jquery.fileupload-audio.js"></script>
+    <!-- The File Upload video preview plugin -->
+    <script src="/lib/Blueimp/Upload/js/jquery.fileupload-video.js"></script>
+    <!-- The File Upload validation plugin -->
+    <script src="/lib/Blueimp/Upload/js/jquery.fileupload-validate.js"></script>
+    <!-- The File Upload user interface plugin -->
+    <script src="/lib/Blueimp/Upload/js/jquery.fileupload-ui.js"></script>
+
+
+    <!-- The main application script -->
+    <script type="text/javascript">
+        $(function() {
+            // Initialize the jQuery File Upload widget:
+            $('#fileupload').fileupload({
+                // Uncomment the following to send cross-domain cookies:
+                //xhrFields: {withCredentials: true},
+                url: '/lib/Blueimp/Upload/server/php/',
+                // Enable image resizing, except for Android and Opera,
+                // which actually support image resizing, but fail to
+                // send Blob objects via XHR requests:
+                disableImageResize: /Android(?!.*Chrome)|Opera/
+                        .test(window.navigator && navigator.userAgent),
+                imageMaxWidth: 1920,
+                imageMaxHeight: 1080,
+                maxChunkSize: 3000000, // 3 MB
+                limitConcurrentUploads: 3
+            });
+
+        });
+        $('#fileupload').bind('fileuploadfinished', function (e, data) {
+            $.each(data.files, function (index, item) {
+                alert(item.name);
+            });
+        });
+
+    </script>
+
     <script type="text/javascript">
         {% for fichier in dossier %}
 
-            $("#fond{{ loop.index }}").click(function() {
-                $(".fond_selected").removeClass("fond_selected");
-                $("#fond{{ loop.index }}").toggleClass("fond_selected");
-                $("#valuefond").val('{{ fichier }}');
-                $('body').css('background-image', 'url(/data/bg/{{ fichier }})');
-            });
+        $("#fond{{ loop.index }}").click(function() {
+            $(".fond_selected").removeClass("fond_selected");
+            $("#fond{{ loop.index }}").toggleClass("fond_selected");
+            $("#valuefond").val('{{ fichier }}');
+            $('body').css('background-image', 'url(/data/bg/{{ fichier }})');
+        });
 
         {% endfor %}
 
-            valiSend('fond');
+        valiSend('fond');
 
     </script>
 {% endblock %}

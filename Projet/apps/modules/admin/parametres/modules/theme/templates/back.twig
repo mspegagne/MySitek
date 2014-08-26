@@ -280,7 +280,7 @@
         });
         
         $('#fileupload').bind('fileuploaddestroyed', function (e, data) {
-            $('body').css('background-image', 'url(/data/bgperso/{{ app.background }})');                
+            $('body').css('background-image', 'url(/data/{{ app.background }})');                
             $("#valuefondperso").val('{{ app.background }}');
         });
 

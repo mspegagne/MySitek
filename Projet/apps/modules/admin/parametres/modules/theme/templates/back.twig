@@ -272,8 +272,8 @@
 
         });
         
-        $('#fileupload').bind('fileuploadcompleted', function (e, data) {
-            $.each(data.files, function (index, item) { 
+        $('#fileupload').bind('fileuploaddone', function (e, data) {
+            $.each(data.result.files, function (index, item) { 
                 $('body').css('background-image', 'url(/data/bgperso/'+item.name+')');                
                 $("#valuefondperso").val(item.name);
             });

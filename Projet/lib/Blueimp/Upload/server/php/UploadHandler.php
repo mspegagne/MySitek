@@ -419,7 +419,7 @@ class UploadHandler
     protected function upcount_name_callback($matches) {
         $index = isset($matches[1]) ? intval($matches[1]) + 1 : 1;
         $ext = isset($matches[2]) ? $matches[2] : '';
-        return ' ('.$index.')'.$ext;
+        return '_'.$index.''.$ext;
     }
 
     protected function upcount_name($name) {
@@ -445,6 +445,8 @@ class UploadHandler
             }
             $name = $this->upcount_name($name);
         }
+        
+        $name = str_replace(' ', '_', $name);
         return $name;
     }
 
@@ -453,7 +455,7 @@ class UploadHandler
         // Remove path information and dots around the filename, to prevent uploading
         // into different directories or replacing hidden system files.
         // Also remove control characters and spaces (\x00..\x20) around the filename:
-        $name = trim(basename(stripslashes($name)), ".\x00..\x20");
+        $name = trim(basename(stripslashes($name)), ".\x00..\x20");    
         // Use a timestamp for empty filenames:
         if (!$name) {
             $name = str_replace('.', '-', microtime(true));
@@ -485,7 +487,11 @@ class UploadHandler
                     $name = implode('.', $parts);
                 }
             }
-        }
+        }            
+        $name = str_replace(' ', '', $name);                
+        $replace   = array("(", ")", "\\", "/");
+        $name = str_replace($replace, '_', $name);
+        
         return $name;
     }
 

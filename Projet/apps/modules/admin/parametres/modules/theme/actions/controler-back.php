@@ -67,5 +67,26 @@ $theme->post('/fondperso', function (Request $request) use($app) {
 
     return new Response(json_encode(['response' => $response]), 200);
 });
+
+$theme->post('/identity', function (Request $request) use($app) {
+
+    $csrf = $request->get('csrf');
+
+    if ($csrf == $app['user_id']) {
+
+        $logo = $request->get('valuelogo');        
+        $name = $request->get('valuename');        
+        $title = $request->get('valuetitle');
+        $params = array("logo"=>$logo, "siteName"=>$name, "title"=>$title);
+
+        $response = Param::saveParams($params, $app);
+        
+    } else {
+        $response = 'Merci d\'executer la requete au bon endroit...';
+    }
+
+    return new Response(json_encode(['response' => $response]), 200);
+});
+
 //changer le nom du module
 $app->mount('/admin/parametres/theme', $theme);

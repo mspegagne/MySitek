@@ -37,7 +37,7 @@
         <!-- Contenu à mettre dans head à partir du twig qui utilise le template (ex: css)  -->
         <style>
             body {
-                background-image: url(/data/{{ app.background }});
+                background-image: url('/data/{{ app.background }}');
                 background-repeat: no-repeat;                 
                 background-position: center center;
                 background-attachment: fixed;
@@ -56,14 +56,19 @@
 
     <body>
 
-        <div class="brand">
+        <div class="brand row">
+            <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             {% if app.logo == "" %} 
-                {{ app.siteName }}
-            {% else %}
-                <img src="/data/img/{{ app.logo }}"  width="400"  alt="logo" class="logo"/>
+                <span id="name">{{ app.siteName }}</span>                
+                <img style="display: none;" id="logo" src="/data/img/{{ app.logo }}"  width="400"  alt="logo" class="logo"/>
+            {% else %}                
+                <span style="display: none;" id="name">{{ app.siteName }}</span>
+                <img id="logo" src="/data/img/{{ app.logo }}"  alt="logo" class="logo img-responsive"/>
             {% endif %}
+            </div>
         </div>
-         <div class="address-bar">{{ app.title }}</div>
+        
+        <div class="address-bar">{{ app.title }}</div>
 
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">

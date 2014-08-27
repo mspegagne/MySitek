@@ -64,9 +64,7 @@
                                      {% endif %}"
                                      src="/data/bg/{{ fichier }}" alt="{{ fichier }}">
                             </button> 
-
                         </div>    
-
                         {% if loop.index%4 == 0 or loop.last %}
                         </div>
                     {% endif %}
@@ -101,7 +99,7 @@
     <br>
 
     <!-- The file upload form used as target for the file upload widget -->
-    <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+    <form id="fileupload1" action="" method="POST" enctype="multipart/form-data" data-upload-template-id="template-upload-1" data-download-template-id="template-download-1">
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="row fileupload-buttonbar">
             <div class="col-lg-3">
@@ -113,6 +111,7 @@
             <br />
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
                     <span>Changer le fond</span>
                     <input type="file" name="files[]">
                 </span>                     
@@ -149,7 +148,7 @@
 
 {% raw %}
 <!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
+<script id="template-upload-1" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">
         <td>
@@ -181,7 +180,7 @@
 {% } %}
 </script>
 <!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
+<script id="template-download-1" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-download fade">
         <td>
@@ -236,9 +235,9 @@
 
         <div class="col-lg-2"><br>
             <input type="hidden" name="csrf" value="{{ app.user_id }}">                      
-            <input id="valuelogo" type="hidden" name="fondperso" value="{{ app.logo }}">             
-            <input id="valuename" type="hidden" name="fondperso" value="{{ app.siteName }}">                     
-            <input id="valuetitle" type="hidden" name="fondperso" value="{{ app.title }}"> 
+            <input id="valuelogo" type="hidden" name="valuelogo" value="{{ app.logo }}">             
+            <input id="valuename" type="hidden" name="valuename" value="{{ app.siteName }}">                     
+            <input id="valuetitle" type="hidden" name="valuetitle" value="{{ app.title }}"> 
             <button id="save" name="save" class="btn btn-sm btn-primary">
                 <i id="loadfond" class="fa fa-spinner fa-spin" style="display: none;"></i>
                 <i id="iconfond" class="fa fa-check"></i> Valider
@@ -250,16 +249,17 @@
     <br>
 
     <!-- The file upload form used as target for the file upload widget -->
-    <form id="fileupload" action="" method="POST" enctype="multipart/form-data">
+    <form id="fileupload2" action="" method="POST" enctype="multipart/form-data" data-upload-template-id="template-upload-2" data-download-template-id="template-download-2">
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="row fileupload-buttonbar">
-            <div class="col-lg-3" >
-                <img id="backgroundperso" class="img-responsive fond" src="/data/img/{{ app.logo }}" alt="currentbackground">
+            <div id="logomodifdiv" class="col-lg-3" >
+                <img id="logomodif" class="img-responsive" src="/data/img/{{ app.logo }}" alt="currentbackground">
                 <br />
             </div>
             <div class="col-lg-3">
                 <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button">
+                <span class="btn btn-success fileinput-button">                
+                    <i class="glyphicon glyphicon-plus"></i>
                     <span>Changer le logo</span>
                     <input type="file" name="files[]">
                 </span>                     
@@ -270,8 +270,6 @@
             <!-- The global progress state -->
             <div class="col-lg-6 fileupload-progress fade">
                 <!-- The global progress bar -->
-                <br>
-                <br>
                 <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
                     <div class="progress-bar progress-bar-success" style="width:0%;"></div>
                 </div>
@@ -296,7 +294,7 @@
 
 {% raw %}
 <!-- The template to display files available for upload -->
-<script id="template-upload" type="text/x-tmpl">
+<script id="template-upload-2" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-upload fade">
         <td>
@@ -328,7 +326,7 @@
 {% } %}
 </script>
 <!-- The template to display files available for download -->
-<script id="template-download" type="text/x-tmpl">
+<script id="template-download-2" type="text/x-tmpl">
 {% for (var i=0, file; file=o.files[i]; i++) { %}
     <tr class="template-download fade">
         <td>
@@ -410,10 +408,10 @@
     <script type="text/javascript">
         $(function() {
             // Initialize the jQuery File Upload widget:
-            $('#fileupload').fileupload({
+            $('#fileupload1').fileupload({
                 // Uncomment the following to send cross-domain cookies:
                 //xhrFields: {withCredentials: true},
-                url: '/apps/modules/admin/parametres/modules/theme/actions/uploader.php',
+                url: '/apps/modules/admin/parametres/modules/theme/actions/uploaderBg.php',
                 // Enable image resizing, except for Android and Opera,
                 // which actually support image resizing, but fail to
                 // send Blob objects via XHR requests:
@@ -427,7 +425,7 @@
 
         });
         
-        $('#fileupload').bind('fileuploadcompleted', function (e, data) {
+        $('#fileupload1').bind('fileuploadcompleted', function (e, data) {
             $.each(data.result.files, function (index, item) { 
                 $('body').css('background-image', 'url(/data/bgperso/'+item.name+')');               
                 $('#backgroundperso').attr('src','/data/bgperso/'+item.name);
@@ -435,10 +433,50 @@
             });
         });
         
-        $('#fileupload').bind('fileuploaddestroyed', function (e, data) {
+        $('#fileupload1').bind('fileuploaddestroyed', function (e, data) {
             $('body').css('background-image', 'url(/data/{{ app.background }})'); 
             $('#backgroundperso').attr('src','/data/{{ app.background }}');
             $("#valuefondperso").val('{{ app.background }}');
+        });
+
+    </script>
+    
+     <script type="text/javascript">
+        $(function() {
+            // Initialize the jQuery File Upload widget:
+            $('#fileupload2').fileupload({
+                // Uncomment the following to send cross-domain cookies:
+                //xhrFields: {withCredentials: true},
+                url: '/apps/modules/admin/parametres/modules/theme/actions/uploaderLogo.php',
+                // Enable image resizing, except for Android and Opera,
+                // which actually support image resizing, but fail to
+                // send Blob objects via XHR requests:
+                disableImageResize: /Android(?!.*Chrome)|Opera/
+                        .test(window.navigator && navigator.userAgent),
+                imageMaxWidth: 1920,
+                imageMaxHeight: 1080,
+                maxChunkSize: 3000000, // 3 MB
+                limitConcurrentUploads: 3
+            });
+
+        });
+        
+        $('#fileupload2').bind('fileuploadcompleted', function (e, data) {
+            $.each(data.result.files, function (index, item) {  
+                $('#logo').attr('src','/data/img/'+item.name);              
+                $('#logomodif').attr('src','/data/img/'+item.name);
+                $("#valuelogo").val(item.name);                               
+                $('#logo').show(); 
+                $('#name').hide();                 
+                $('#logomodifdiv').show();
+            });
+        });
+        
+        $('#fileupload2').bind('fileuploaddestroyed', function (e, data) {
+            $('#logo').hide(); 
+            $('#name').show(); 
+            $('#logomodifdiv').hide();
+            $("#valuelogo").val('');
         });
 
     </script>
@@ -456,7 +494,8 @@
         {% endfor %}
 
         valiSend('fond');        
-        valiSend('fondperso');
+        valiSend('fondperso');         
+        valiSend('identity');
 
     </script>
 {% endblock %}

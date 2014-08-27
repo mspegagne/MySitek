@@ -56,8 +56,14 @@
 
     <body>
 
-        <div class="brand">{{ app.siteName }}</div>
-        <div class="address-bar">The Plaza | 5483 Start Bootstrap Ave. | Beverly Hills, California 26892 | 555.519.2013</div>
+        <div class="brand">
+            {% if app.logo == "" %} 
+                {{ app.siteName }}
+            {% else %}
+                <img src="/data/img/{{ app.logo }}"  width="400"  alt="logo" class="logo"/>
+            {% endif %}
+        </div>
+         <div class="address-bar">{{ app.title }}</div>
 
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">

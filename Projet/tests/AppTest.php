@@ -15,7 +15,7 @@ class AppTest extends WebTestCase {
     public function testIndex() {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/default/');
+        $crawler = $client->request('GET', '/accueil/');
 
         $this->assertTrue($client->getResponse()->isOk());
         $this->assertTrue($crawler->filter('html:contains("Accueil")')->count() > 0);

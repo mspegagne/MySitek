@@ -1,0 +1,59 @@
+
+/* Carousel Styles */
+.carousel-indicators .active {
+    background-color: #2980b9;
+}
+
+.carousel-inner img {
+    width: 100%;
+    max-height: 460px
+}
+
+/* Carousel Header Styles */
+.header-text {
+    position: absolute;
+    top: 20%;
+    left: 1.8%;
+    right: auto;
+    width: 96.66666666666666%;
+    color: #fff;
+}
+
+
+.header-text h4 span {
+    background-color: #2980b9;
+	padding: 10px;
+}
+
+.header-text h5 span {
+	background-color: #000;
+	padding: 15px;
+}
+
+.btn-min-block {
+    min-width: 170px;
+    line-height: 26px;
+}
+
+.btn-theme {
+    color: #fff;
+    background-color: transparent;
+    border: 2px solid #fff;
+    margin-right: 15px;
+}
+
+.btn-theme:hover {
+    color: #000;
+    background-color: #fff;
+    border-color: #fff;
+}
+
+#content
+{
+    text-align: justify;
+}
+
+.panel-body
+{
+    text-align: justify;
+}

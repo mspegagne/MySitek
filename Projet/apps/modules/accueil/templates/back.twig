@@ -7,10 +7,11 @@
 
 
 {% block content %}
-    <p>
+    <textarea class="ckeditor" name="editor1">
         {{ hello }}
-    </p>
+    </textarea>
 {% endblock %}
 
 {% block js %}
+    <script src="/lib/ckeditor/ckeditor.js"></script>
 {% endblock %}

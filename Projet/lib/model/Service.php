@@ -37,3 +37,12 @@ function getDossier($dir_nom) {
 
     return $fichier;
 }
+
+function getValue($app, $bdd, $table, $ref) {
+
+    $sql = "SELECT * FROM " . $table . " WHERE ref = '" . $ref . "'";
+    $retour = $app['dbs'][$bdd]->fetchAssoc($sql);
+    $value = $retour['value'];
+
+    return $value;
+}

@@ -14,10 +14,35 @@ $accueiladmin->get('/', function() use ($app) {
         'twig.path' => array(__DIR__ . '/../../../templates/' . $app['template'] . '/',
             __DIR__ . '/../templates/',)
     ));
+    
+    $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+        'dbs.options' => array(
+            'app' => array(
+                'driver' => 'pdo_sqlite',
+                'path' => __DIR__ . '/../../../../data/app.db',
+            ),
+            'accueil' => array(
+                'driver' => 'pdo_sqlite',
+                'path' => __DIR__ . '/../../../../data/accueil/accueil.db',
+            ),
+        ),
+    ));
 
+    function getTxt($app, $ref) {
+
+        return Service\getValue($app, 'accueil', 'accueil_text', $ref);
+    }
+
+    $description = getTxt($app, 'description');
+
+    $box1 = getTxt($app, 'box1');
+
+    $box2 = getTxt($app, 'box2');
+
+    $box3 = getTxt($app, 'box3');
 
     return $app['twig']->render('back.twig', array(
-                'hello' => 'Hello world Back ! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit.'
+                'description' => $description,
     ));
 });
 

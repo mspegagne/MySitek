@@ -14,9 +14,11 @@ require_once __DIR__ . '/../lib/model/Service.php';
 /* Activation de doctrine */
 
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver' => 'pdo_sqlite',
-        'path' => __DIR__ . '/../data/app.db',
+    'dbs.options' => array(
+        'app' => array(
+            'driver' => 'pdo_sqlite',
+            'path' => __DIR__ . '/../data/app.db',
+        ),
     ),
 ));
 

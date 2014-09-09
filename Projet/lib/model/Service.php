@@ -46,3 +46,17 @@ function getValue($app, $bdd, $table, $ref) {
 
     return $value;
 }
+
+function saveValue($app, $bdd, $table, $ref, $data) {
+    
+    $response = FALSE;
+
+    $sql = "UPDATE ".$table." SET value = ? WHERE ref = ?";
+    
+    if ($app['dbs'][$bdd]->executeUpdate($sql, array($data, $ref))) {
+        
+        $response = TRUE;
+    }
+    
+    return $response;
+}

@@ -7,22 +7,22 @@
 
 
 {% block content %}
-    <form class="form-horizontal" id="description_form" name="description_form" action="/admin/accueil/description_form" method="post">
+    <div class="col-lg-12">
+        <form class="form-horizontal" id="description_form" name="description_form" action="/admin/accueil/description_form" method="post">
 
-        <input type="hidden" name="csrf" value="{{ app.user_id }}"> 
+            <input type="hidden" name="csrf" value="{{ app.user_id }}"> 
 
-        <textarea class="ckeditor" name="description">
-            {{ description }}
-        </textarea>
-        <br />
-        <button id="save" name="save" onClick="CKupdate();" class="btn btn-sm btn-primary">
-            <i id="loadfond" class="fa fa-spinner fa-spin" style="display: none;"></i>
-            <i id="iconfond" class="fa fa-check"></i> Valider
-        </button>
+            <textarea class="ckeditor" name="description">
+                {{ description }}
+            </textarea>
+            <br />
+            <button id="save" name="save" onClick="CKupdate();" class="btn btn-sm btn-primary">
+                <i id="loadfond" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                <i id="iconfond" class="fa fa-check"></i> Valider
+            </button>
 
+        </form>
     </div>
-
-</form>
 {% endblock %}
 
 {% block js %}
@@ -30,12 +30,12 @@
 
     <script type="text/javascript">
 
-        valiSend('description_form');
+            valiSend('description_form');
 
-        function CKupdate() {
-            for (instance in CKEDITOR.instances)
-                CKEDITOR.instances[instance].updateElement();
-        }
-        
+            function CKupdate() {
+                for (instance in CKEDITOR.instances)
+                    CKEDITOR.instances[instance].updateElement();
+            }
+
     </script>
 {% endblock %}

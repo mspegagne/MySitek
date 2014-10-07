@@ -35,12 +35,14 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
+foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/../vendor/autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
     if (file_exists($file)) {
         define('PHPUNIT_COMPOSER_INSTALL', $file);
         break;
     }
 }
+
+unset($file);
 
 if (!defined('PHPUNIT_COMPOSER_INSTALL')) {
     echo 'You need to set up the project dependencies using the following commands:' . PHP_EOL .
